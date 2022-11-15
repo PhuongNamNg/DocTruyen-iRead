@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".FragmentCaNhan.CaNhanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/anh1"
+        android:layout_marginBottom="10dp">
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
-        android:text="Thống kê"/>
+        android:text="Thống Kê"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="Yêu Thích"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="Đổi Mật Khẩu"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:text="Đăng Xuất"/>
 
 
-</FrameLayout>
+
+
+</LinearLayout>
