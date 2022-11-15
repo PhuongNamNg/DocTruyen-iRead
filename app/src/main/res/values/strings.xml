@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DocTruyen-iRead</string>
+    <string name="app_name">Đọc Truyện - iRead</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="action_truyen">Truyện</string>
     <string name="action_theloai">Thể Loại</string>
