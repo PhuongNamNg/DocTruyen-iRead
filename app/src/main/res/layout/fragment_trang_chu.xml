@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".FragmentTrangChu.TrangChuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tất Cả Truyện"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recvi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/yellow"
+        android:clickable="true"
+        app:tint="@android:color/white"
+        android:src="@android:drawable/ic_input_add"
+        app:fabSize="auto"
+        app:maxImageSize="32dp" />
+
+</FrameLayout>
