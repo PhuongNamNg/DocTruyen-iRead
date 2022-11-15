@@ -17,28 +17,28 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:id="@+id/tvThongKe"
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Thống Kê"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:id="@+id/tvYeuThich"
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Yêu Thích"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:id="@+id/tvDoiMK"
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Đổi Mật Khẩu"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:id="@+id/tvDangXuat"
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Đăng Xuất"/>
