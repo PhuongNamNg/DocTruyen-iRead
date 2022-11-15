@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/drawable-v24/round_border.xml" value="0.188" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/fragment_trang_chu.xml" value="0.35625" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/item_story.xml" value="0.35520833333333335" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border_2.xml" value="0.1875" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_trang_chu.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_bottom.xml" value="0.24895833333333334" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_nav.xml" value="0.24895833333333334" />
       </map>
     </option>
   </component>
