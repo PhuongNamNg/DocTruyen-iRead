@@ -5,6 +5,11 @@
       <map>
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border_2.xml" value="0.1875" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main2.xml" value="0.2359375" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sig_in.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_trang_chu.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_bottom.xml" value="0.24895833333333334" />
