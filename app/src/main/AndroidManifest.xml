@@ -14,10 +14,10 @@
         android:theme="@style/Theme.DocTruyeniRead"
         tools:targetApi="31">
         <activity
-            android:name=".AddStoryActivity"
+            android:name=".FragmentTrangChu.AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ReadStoryActivity"
+            android:name=".FragmentTrangChu.ReadStoryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
