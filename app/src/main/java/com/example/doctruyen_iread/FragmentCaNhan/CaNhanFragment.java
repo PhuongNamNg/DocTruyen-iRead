@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,6 @@ import android.widget.TextView;
 
 import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DangXuat;
 import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DoiMatKhau;
-import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.ThongKe;
-import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.YeuThich;
 import com.example.doctruyen_iread.R;
 
 
