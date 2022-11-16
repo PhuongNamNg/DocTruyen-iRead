@@ -14,7 +14,10 @@
         android:theme="@style/Theme.DocTruyeniRead"
         tools:targetApi="31">
         <activity
-            android:name=".FragmentCaNhan.InCaNhan.ThongKe"
+            android:name=".FragmentTrangChu.EditStoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentCaNhan.ThongKe"
             android:exported="false" />
         <activity
             android:name=".FragmentCaNhan.InCaNhan.DangXuat"
@@ -23,7 +26,7 @@
             android:name=".FragmentCaNhan.InCaNhan.DoiMatKhau"
             android:exported="false" />
         <activity
-            android:name=".FragmentCaNhan.InCaNhan.YeuThich"
+            android:name=".FragmentCaNhan.YeuThich"
             android:exported="false" />
         <activity
             android:name=".Splash"
