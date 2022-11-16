@@ -39,6 +39,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:hint="Email"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         android:textColorHint="@color/content_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +64,8 @@
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white"
         android:hint="Mật Khẩu"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         android:textColorHint="@color/content_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +98,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:text="Sign In"
+        android:text="Đăng Nhập"
         android:textColor="@color/black"
         android:backgroundTint="@color/yellow"
         />
@@ -112,7 +116,7 @@
             android:layout_width="wrap_content"
             android:textSize="14sp"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="Không có tài khoản?"
             android:textColor="@color/content_white"/>
 
         <TextView
@@ -121,7 +125,7 @@
             android:layout_marginStart="5dp"
             android:textColor="@color/yellow"
             android:textSize="16sp"
-            android:text="Sign Up"/>
+            android:text="Đăng ký"/>
 
     </LinearLayout>
 

@@ -1,16 +1,131 @@
 package com.example.doctruyen_iread.ManageAccount;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
-
+    private EditText edtEmail,edtPassword,edtcheckpass, edtUserName, edtTuoi;
+    private Button btnSignUp;
+    private Button btn_Cancel;
+    private ProgressDialog progressDialog;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final CollectionReference colRef = db.collection("User");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        initUi();
+        initListener();
+        cancel();
+    }
+    private void initUi(){
+        progressDialog = new ProgressDialog(this);
+        edtUserName = findViewById(R.id.edt_Username);
+        edtTuoi = findViewById(R.id.edt_Tuoi);
+        edtEmail = findViewById(R.id.edt_email1);
+        edtPassword = findViewById(R.id.edt_password);
+        btnSignUp = findViewById(R.id.btn_sign_up);
+        btn_Cancel = findViewById(R.id.btn_Cancel);
+        edtcheckpass = findViewById(R.id.edt_checkpass);
+
+    }
+    private void initListener(){
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickSigUp();
+            }
+        });
+    }
+    private boolean onClickSigUp() {
+        String strUserName = edtUserName.getText().toString().trim();
+
+
+        Integer intTuoi = Integer.parseInt(edtTuoi.getText().toString().trim());
+        String strcheckpass = edtcheckpass.getText().toString().trim();
+        String strEmail = edtEmail.getText().toString().trim();
+        String strPassword = edtPassword.getText().toString().trim();
+        if (strEmail.isEmpty() || strPassword.isEmpty() || strUserName.isEmpty() || intTuoi.toString().isEmpty()) {
+            Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (intTuoi < 1 || intTuoi > 100) {
+            Toast.makeText(this, "Tuổi từ 1 đến 100", Toast.LENGTH_SHORT).show();
+        }
+        else if(strPassword.length()<6){
+            Toast.makeText(this, "Mật khẩu phải trên 6 kí tự", Toast.LENGTH_SHORT).show();
+        }
+        else if(strPassword.equals(strcheckpass)) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            progressDialog.show();
+            auth.createUserWithEmailAndPassword(strEmail, strPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
+                            if (task.isSuccessful()) {
+                                Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                addUser(strEmail, strUserName, intTuoi);
+                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                                finishAffinity();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Đăng ký thất bại",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+        else{
+            Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+    private void cancel(){
+        btn_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this,SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    private void addUser (String strEmail, String strUserName, int intTuoi) {
+        UserObj user = new UserObj();
+        user.setUserEmail(strEmail);
+        user.setUserName(strUserName);
+        user.setUserAge(intTuoi);
+
+        colRef.document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.i("Check add user", "Thành Công");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("Check add user", "Thất Bại");
+            }
+        });
     }
 }
