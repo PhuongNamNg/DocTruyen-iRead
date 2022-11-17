@@ -127,6 +127,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/linearDel"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginEnd="4dp"
@@ -154,6 +155,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginEnd="4dp"
@@ -208,6 +210,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearFav"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:background="@drawable/round_border_2"

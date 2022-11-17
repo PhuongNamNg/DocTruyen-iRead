@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddStoryActivity extends AppCompatActivity {
     private EditText etTitle, etContent, etAuthorName;
@@ -34,7 +35,7 @@ public class AddStoryActivity extends AppCompatActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final DocumentReference noteRef = db.collection("Story").document("Story 1");
     private final CollectionReference colRef = db.collection("Story");
-    private String storyDatePost;
+    private String storyDatePost, datePost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,43 +79,43 @@ public class AddStoryActivity extends AppCompatActivity {
             }
         });
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddStoryActivity.this);
-                builder.setTitle("THÔNG BÁO!");
-                builder.setMessage("Bạn chắc chắn muốn lưu?");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Story mStory = new Story();
-                        mStory.setStoryTitle(etTitle.getText().toString().trim());
-                        mStory.setStoryContent(etContent.getText().toString());
-                        mStory.setAuthorsName(etAuthorName.getText().toString());
-                        mStory.setStoryView(0);
+        btnSave.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddStoryActivity.this);
+            builder.setTitle("THÔNG BÁO!");
+            builder.setMessage("Bạn chắc chắn muốn lưu?");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Story mStory = new Story();
+                    mStory.setStoryTitle(etTitle.getText().toString().trim());
+                    mStory.setAuthorsName(etAuthorName.getText().toString());
+                    mStory.setStoryViews(0);
 
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
-                        storyDatePost = dateFormat.format(Calendar.getInstance().getTime());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
+                    storyDatePost = dateFormat.format(Calendar.getInstance().getTime());
 
-                        mStory.setStoryDatePost(storyDatePost);
-                        colRef.document().set(mStory).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(AddStoryActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
-                builder.setNegativeButton("Cancel", null);
-                builder.show();
-            }
+                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy");
+                    datePost = dateFormat2.format(Calendar.getInstance().getTime());
+
+                    mStory.setStoryId(etTitle.getText().toString().trim() + datePost);
+                    mStory.setStoryDatePost(storyDatePost);
+                    colRef.document(mStory.getStoryId()).set(mStory).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddStoryActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+            builder.setNegativeButton("Cancel", null);
+            builder.show();
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

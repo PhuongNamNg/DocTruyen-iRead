@@ -1,7 +1,5 @@
 package com.example.doctruyen_iread.FragmentTrangChu;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -13,10 +11,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +42,7 @@ public class ReadStoryActivity extends AppCompatActivity {
     private TextView tvContent, tvAuthorsName, tvDatePost, tvView;
     private ImageButton imbEdit, imbDelete, imbFav, imbCate;
     private Toolbar toolbar;
+    private LinearLayout linear;
     private ListView lvChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -54,13 +52,10 @@ public class ReadStoryActivity extends AppCompatActivity {
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private final ArrayList<String> listStoryName = new ArrayList<>();
 
-    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            Intent intent = result.getData();
-            String title = intent.getStringExtra("title");
-            getStory(title);
-        }
+    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        Intent intent = result.getData();
+        String title = intent.getStringExtra("title");
+        getStory(title);
     });
 
     @Override
@@ -72,6 +67,7 @@ public class ReadStoryActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
+        String id = bundle.getString("id");
 
         setSupportActionBar(toolbar);
 //        toolbar.setTitle(title);
@@ -88,6 +84,9 @@ public class ReadStoryActivity extends AppCompatActivity {
 //        AdapterLvChapter adapter = new AdapterLvChapter(this, listChapter);
 //        lvChapter.setAdapter(adapter);
 
+        linear.setOnClickListener(v -> {
+            Toast.makeText(this, "xóa", Toast.LENGTH_SHORT).show();
+        });
 
         imbEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,28 +109,17 @@ public class ReadStoryActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        colRefStory.whereEqualTo("storyTitle", title).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            String docID;
-
+                        docRef = db.collection("Story").document(id);
+                        docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                for (QueryDocumentSnapshot doc : task.getResult()) {
-                                    docID = doc.getId();
-                                    Log.e("Doc ID", "" + docID);
-                                }
-                                docRef = db.collection("Story").document(docID);
-                                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(ReadStoryActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(ReadStoryActivity.this, MainActivity.class));
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(ReadStoryActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ReadStoryActivity.this, MainActivity.class));
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -239,11 +227,10 @@ public class ReadStoryActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                 for (DocumentSnapshot docSnap : list) {
-                    tvContent.setText(docSnap.getString("storyContent"));
                     tvAuthorsName.setText("Tác Giả: " + docSnap.getString("authorsName"));
                     tvDatePost.setText(docSnap.getString("storyDatePost"));
-                    tvView.setText((Integer.parseInt(docSnap.get("storyView").toString()) + 1 + " lượt xem"));
-                    updateView(title);
+                    tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
+                    updateView(docSnap.getString("storyId"));
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -254,20 +241,10 @@ public class ReadStoryActivity extends AppCompatActivity {
         });
     }
 
-    private void updateView(String title) {
-        colRefStory.whereEqualTo("storyTitle", title).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            String docID;
-
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot doc : task.getResult()) {
-                    docID = doc.getId();
-                    Log.e("Doc ID", "" + docID);
-                }
-                docRef = db.collection("Story").document(docID);
-                docRef.update("storyView", FieldValue.increment(1));
-            }
-        });
+    private void updateView(String id) {
+        Log.e("id", id);
+        docRef = db.collection("Story").document(id);
+        docRef.update("storyViews", FieldValue.increment(1));
     }
 
     public void checkAdminorUser() {
@@ -295,6 +272,6 @@ public class ReadStoryActivity extends AppCompatActivity {
         imbFav = findViewById(R.id.imbFav);
         imbCate = findViewById(R.id.imbCategory);
         lvChapter = findViewById(R.id.lvChapter);
-
+        linear = findViewById(R.id.linearDel);
     }
 }

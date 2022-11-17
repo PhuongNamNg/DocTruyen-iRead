@@ -50,6 +50,7 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
                 Intent intent = new Intent(mContext, ReadStoryActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
+                bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
                 intent.putExtra("story", bundle);
                 mContext.startActivity(intent);
             }

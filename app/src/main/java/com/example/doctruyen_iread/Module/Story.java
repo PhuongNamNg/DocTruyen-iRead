@@ -1,31 +1,36 @@
 package com.example.doctruyen_iread.Module;
 
 public class Story {
-    private Integer storyId;
+    private String storyId;
     private String storyTitle;
-    private String storyContent;
     private String authorsName;
     private String storyDatePost;
-    private Integer storyView;
+    private  String storyDescription;
+    private Integer storyViews;
+    private boolean storyCheck;
+    private Integer storyToken;
+    private String chapterId;
 
     public Story() {
     }
 
-    public Story(Integer storyId, String storyTitle, String storyContent,
-                 String authorsName, String storyDatePost, Integer storyView) {
+    public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, Integer storyViews, boolean storyCheck, Integer storyToken, String chapterId) {
         this.storyId = storyId;
         this.storyTitle = storyTitle;
-        this.storyContent = storyContent;
         this.authorsName = authorsName;
         this.storyDatePost = storyDatePost;
-        this.storyView = storyView;
+        this.storyDescription = storyDescription;
+        this.storyViews = storyViews;
+        this.storyCheck = storyCheck;
+        this.storyToken = storyToken;
+        this.chapterId = chapterId;
     }
 
-    public Integer getStoryId() {
+    public String getStoryId() {
         return storyId;
     }
 
-    public void setStoryId(Integer storyId) {
+    public void setStoryId(String storyId) {
         this.storyId = storyId;
     }
 
@@ -35,14 +40,6 @@ public class Story {
 
     public void setStoryTitle(String storyTitle) {
         this.storyTitle = storyTitle;
-    }
-
-    public String getStoryContent() {
-        return storyContent;
-    }
-
-    public void setStoryContent(String storyContent) {
-        this.storyContent = storyContent;
     }
 
     public String getAuthorsName() {
@@ -61,11 +58,43 @@ public class Story {
         this.storyDatePost = storyDatePost;
     }
 
-    public Integer getStoryView() {
-        return storyView;
+    public String getStoryDescription() {
+        return storyDescription;
     }
 
-    public void setStoryView(Integer storyView) {
-        this.storyView = storyView;
+    public void setStoryDescription(String storyDescription) {
+        this.storyDescription = storyDescription;
+    }
+
+    public Integer getStoryViews() {
+        return storyViews;
+    }
+
+    public void setStoryViews(Integer storyViews) {
+        this.storyViews = storyViews;
+    }
+
+    public boolean isStoryCheck() {
+        return storyCheck;
+    }
+
+    public void setStoryCheck(boolean storyCheck) {
+        this.storyCheck = storyCheck;
+    }
+
+    public Integer getStoryToken() {
+        return storyToken;
+    }
+
+    public void setStoryToken(Integer storyToken) {
+        this.storyToken = storyToken;
+    }
+
+    public String getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(String chapterId) {
+        this.chapterId = chapterId;
     }
 }
