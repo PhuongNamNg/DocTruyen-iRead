@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FragmentCaNhan.CaNhanFragment">
+    tools:context=".FragmentCaNhan.CaNhanFragment"
+    android:background="@color/black">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
@@ -14,13 +15,40 @@
 
     </de.hdodenhof.circleimageview.CircleImageView>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvThongKe"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:text="Thống Kê"/>
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center|fill_horizontal"
+        android:background="@drawable/round_border_3">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/pencil"
+            android:layout_marginStart="10dp">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvThongKe"
+            android:layout_marginLeft="10dp"
+            android:textSize="24sp"
+            android:text="Thống Kê"
+            android:textColor="@color/content_white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/content_white"
+                android:src="@drawable/bin"></ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
