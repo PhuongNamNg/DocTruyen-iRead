@@ -42,6 +42,8 @@
         app:endIconTint="@color/white"
         android:hint="Mật khẩu"
         android:textColorHint="@color/content_white"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -64,6 +66,8 @@
         android:layout_marginEnd="25dp"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         android:hint="Xác nhận mật khẩu"
         android:textColorHint="@color/content_white"
         app:layout_constraintEnd_toEndOf="parent"
