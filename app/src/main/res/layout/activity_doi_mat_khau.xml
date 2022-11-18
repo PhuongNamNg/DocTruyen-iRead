@@ -46,6 +46,8 @@
         android:background="@drawable/round_border_2"
         app:hintTextColor="@color/white"
         android:textColorHint="@color/content_white"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -68,6 +70,8 @@
         android:layout_marginEnd="25dp"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white"
+        app:hintTextColor="@color/white"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         android:hint="Xác nhận mật khẩu"
         app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         app:boxStrokeWidth="1dp"
