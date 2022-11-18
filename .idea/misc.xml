@@ -3,9 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_border.xml" value="0.192" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_border_2.xml" value="0.192" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_border_3.xml" value="0.192" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_button.xml" value="0.191" />
         <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.3625" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_read_story.xml" value="0.18385416666666668" />
         <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_sign_in.xml" value="0.3625" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_thong_ke.xml" value="0.28388746803069054" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_yeu_thich.xml" value="0.3625" />
         <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.3569230769230769" />
+        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/item_story.xml" value="0.3625" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border_2.xml" value="0.1875" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_add_story.xml" value="0.24375" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_dang_xuat.xml" value="0.24375" />

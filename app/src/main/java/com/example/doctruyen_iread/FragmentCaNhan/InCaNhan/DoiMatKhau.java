@@ -2,7 +2,9 @@ package com.example.doctruyen_iread.FragmentCaNhan.InCaNhan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.doctruyen_iread.FragmentCaNhan.CaNhanFragment;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 import  com.example.doctruyen_iread.R;
@@ -12,7 +14,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +26,7 @@ import android.widget.Toast;
 
 public class DoiMatKhau extends AppCompatActivity {
     private EditText doipasss,xacnhanpasss;
-    private Button doiMK;
+    private Button doiMK,quaylai;
     private ProgressDialog progressDialog;
 
     @Override
@@ -30,16 +34,34 @@ public class DoiMatKhau extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doi_mat_khau);
 
-
         progressDialog = new ProgressDialog(this);
         doipasss = findViewById(R.id.doipass);
         xacnhanpasss = findViewById(R.id.xacnhanpass);
         doiMK = findViewById(R.id.btn_doimatkhau);
+        quaylai = findViewById(R.id.btn_quaylai);
 
         doiMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickDoiMk();
+            }
+        });
+
+        quaylai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DoiMatKhau.this);
+                builder.setTitle("Thông Báo");
+                builder.setMessage("Bạn có muốn thoát không");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("NO",null);
+                builder.show();
+
             }
         });
     }
