@@ -6,19 +6,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.doctruyen_iread.Adapter.AdapterChapter;
 import com.example.doctruyen_iread.MainActivity;
+import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,18 +43,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadStoryActivity extends AppCompatActivity {
-    private TextView tvContent, tvAuthorsName, tvDatePost, tvView;
+    private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead;
     private ImageButton imbEdit, imbDelete, imbFav, imbCate;
     private Toolbar toolbar;
     private LinearLayout linear;
-    private ListView lvChapter;
+    private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
     private final CollectionReference colRefStory = db.collection("Story");
     private final CollectionReference colRefFav = db.collection("Favorite");
     private final CollectionReference colRefUser = db.collection("User");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private final ArrayList<String> listStoryName = new ArrayList<>();
+    private ArrayList<Chapter> listChapter = new ArrayList<Chapter>();
 
     final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         Intent intent = result.getData();
@@ -76,13 +80,6 @@ public class ReadStoryActivity extends AppCompatActivity {
 
         checkAdminorUser();
         getStory(title);
-//        ArrayList<String> listChapter = new ArrayList<String>();
-//        for (int i = 0; i < 6; i++) {
-//            listChapter.add("Chapter " + (i+1));
-//        }
-//        Log.e("list", listChapter.toString());
-//        AdapterLvChapter adapter = new AdapterLvChapter(this, listChapter);
-//        lvChapter.setAdapter(adapter);
 
         linear.setOnClickListener(v -> {
             Toast.makeText(this, "xóa", Toast.LENGTH_SHORT).show();
@@ -134,6 +131,18 @@ public class ReadStoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getUser();
             }
+        });
+
+        tvRead.setOnClickListener(v -> {
+            ViewGroup.LayoutParams layoutParams = tvDescript.getLayoutParams();
+            if (layoutParams.height == layoutParams.WRAP_CONTENT) {
+                layoutParams.height = 75;
+                tvDescript.setLayoutParams(layoutParams);
+            } else {
+                layoutParams.height = layoutParams.WRAP_CONTENT;
+                tvDescript.setLayoutParams(layoutParams);
+            }
+
         });
     }
 
@@ -230,6 +239,10 @@ public class ReadStoryActivity extends AppCompatActivity {
                     tvAuthorsName.setText("Tác Giả: " + docSnap.getString("authorsName"));
                     tvDatePost.setText(docSnap.getString("storyDatePost"));
                     tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
+                    tvDescript.setText(docSnap.getString("storyDescription"));
+                    String storyId = docSnap.getString("storyId");
+                    Log.e("Check1", storyId);
+                    setRecycleViewChapter(storyId);
                     updateView(docSnap.getString("storyId"));
                 }
             }
@@ -239,6 +252,27 @@ public class ReadStoryActivity extends AppCompatActivity {
                 Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setRecycleViewChapter(String id) {
+        CollectionReference colChapter = db.collection("Story").document(id).collection("Chapter");
+
+        colChapter.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
+                Chapter mChapter = docSnap.toObject(Chapter.class);
+                Log.e("checkObj", mChapter.toString());
+                listChapter.add(mChapter);
+            }
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            reviChapter.setLayoutManager(linearLayoutManager);
+
+            AdapterChapter adapterChapter = new AdapterChapter(this);
+            adapterChapter.getData(listChapter);
+
+            reviChapter.setAdapter(adapterChapter);
+        });
+
+        Log.e("CheckList", String.valueOf(listChapter.size()));
     }
 
     private void updateView(String id) {
@@ -263,15 +297,16 @@ public class ReadStoryActivity extends AppCompatActivity {
 
     public void findView() {
         toolbar = findViewById(R.id.toolbar);
-        tvContent = findViewById(R.id.tvContentRead);
         tvAuthorsName = findViewById(R.id.tvAuthorsNameRead);
         tvDatePost = findViewById(R.id.tvDatePostRead);
         tvView = findViewById(R.id.textView2);
+        tvDescript = findViewById(R.id.tvStoryDescript);
+        tvRead = findViewById(R.id.tvRead);
         imbEdit = findViewById(R.id.imbEdit);
         imbDelete = findViewById(R.id.imbDelete);
         imbFav = findViewById(R.id.imbFav);
         imbCate = findViewById(R.id.imbCategory);
-        lvChapter = findViewById(R.id.lvChapter);
         linear = findViewById(R.id.linearDel);
+        reviChapter = findViewById(R.id.revieChapter);
     }
 }

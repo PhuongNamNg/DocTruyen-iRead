@@ -14,6 +14,9 @@
         android:theme="@style/Theme.DocTruyeniRead"
         tools:targetApi="31">
         <activity
+            android:name=".FragmentTrangChu.AddStoryActivityNext"
+            android:exported="false" />
+        <activity
             android:name=".FragmentTrangChu.EditStoryActivity"
             android:exported="false" />
         <activity

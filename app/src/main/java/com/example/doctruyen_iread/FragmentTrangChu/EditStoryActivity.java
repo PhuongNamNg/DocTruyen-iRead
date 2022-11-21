@@ -36,9 +36,9 @@ public class EditStoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_story);
         etTitle = findViewById(R.id.etAddTitle);
-        etContent = findViewById(R.id.etAddContent);
-        btnSave = findViewById(R.id.btnEditSave);
-        btnCancel = findViewById(R.id.btnEditCancel);
+        etContent = findViewById(R.id.etAddDescription);
+        btnSave = findViewById(R.id.btnAddNext);
+        btnCancel = findViewById(R.id.btnAddCancel);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");

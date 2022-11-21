@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".FragmentTrangChu.AddStoryActivityNext">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,48 +18,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/anh2"
-                android:scaleType="fitXY">
-            </ImageView>
-        </androidx.cardview.widget.CardView>
-
-
         <EditText
-            android:id="@+id/etAddTitle"
+            android:id="@+id/etChapterTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Tên/Tiêu Đề Truyện"
-            android:textColorHint="@color/content_white"
+            android:hint="Tên/Tiêu đề Chapter"
             android:inputType="textPersonName"
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/content_white" />
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/etAddDescription"
+            android:id="@+id/etChapterDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="400dp"
+            android:maxHeight="200dp"
             android:layout_margin="8dp"
             android:ems="10"
             android:fadeScrollbars="true"
             android:gravity="center_horizontal|top"
-            android:hint="Nhập Miêu Tả Truyện"
-            android:textColorHint="@color/content_white"
+            android:hint="Nhập Miêu Tả"
             android:inputType="textMultiLine|textLongMessage"
             android:scrollbars="vertical"
-            android:textSize="18sp"
-            android:textColor="@color/content_white"/>
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/etChapterContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="450dp"
+            android:layout_margin="8dp"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:gravity="center_horizontal|top"
+            android:hint="Nhập Nội Dung"
+            android:inputType="textMultiLine|textLongMessage"
+            android:scrollbars="vertical"
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,25 +74,25 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnAddNext"
+                android:id="@+id/btnChapterSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="#FF9800"
+                android:backgroundTint="@color/yellow"
                 android:gravity="center"
-                android:text="Tiếp tục"
+                android:text="Lưu"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btnAddCancel"
+                android:id="@+id/btnChapterCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="#FF9800"
+                android:backgroundTint="@color/yellow"
                 android:gravity="center"
-                android:text="Quay Lại"
+                android:text="Hủy"
                 android:textSize="20sp" />
+
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

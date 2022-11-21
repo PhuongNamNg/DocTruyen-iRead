@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".FragmentCaNhan.CaNhanFragment"
     android:background="@color/black">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/anh1"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp">
 
     </de.hdodenhof.circleimageview.CircleImageView>
 
@@ -22,13 +24,17 @@
         android:layout_marginEnd="10dp"
         android:gravity="center|fill_horizontal"
         android:background="@drawable/round_border_3">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/pencil"
-            android:layout_marginStart="10dp">
 
-        </ImageView>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/pencil"
+                android:scaleType="fitXY"
+                android:layout_marginStart="10dp"
+                app:tint="@color/white"
+                >
+            </ImageView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,15 +43,19 @@
             android:textSize="24sp"
             android:text="Thống Kê"
             android:textColor="@color/content_white"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end">
+            android:gravity="end"
+            android:layout_marginEnd="10dp">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@color/content_white"
-                android:src="@drawable/bin"></ImageView>
+                android:background="@android:color/transparent"
+                android:src="@drawable/bin"
+                app:tint="@color/white">
+            </ImageView>
         </LinearLayout>
     </LinearLayout>
 
@@ -70,8 +80,5 @@
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Đăng Xuất"/>
-
-
-
 
 </LinearLayout>
