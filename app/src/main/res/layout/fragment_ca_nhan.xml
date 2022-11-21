@@ -5,80 +5,166 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".FragmentCaNhan.CaNhanFragment"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".FragmentCaNhan.CaNhanFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:src="@drawable/anh1"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp">
 
     </de.hdodenhof.circleimageview.CircleImageView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
         android:gravity="center|fill_horizontal"
         android:background="@drawable/round_border_3">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/pencil"
-                android:scaleType="fitXY"
-                android:layout_marginStart="10dp"
-                app:tint="@color/white"
-                >
-            </ImageView>
-
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/statistical"
+            app:tint="@color/white"
+            android:layout_marginStart="10dp">
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvThongKe"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:textSize="24sp"
             android:text="Thống Kê"
             android:textColor="@color/content_white"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_marginEnd="10dp">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/bin"
-                app:tint="@color/white">
+                app:tint="@color/white"
+                android:src="@drawable/arrow">
             </ImageView>
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvYeuThich"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:text="Yêu Thích"/>
-    <TextView
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:gravity="center|fill_horizontal"
+        android:background="@drawable/round_border_3"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/yeuthich"
+            app:tint="@color/white"
+            android:layout_marginStart="10dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvYeuThich"
+            android:layout_marginLeft="15dp"
+            android:textSize="24dp"
+            android:text="Yêu Thích"
+            android:textColor="@color/content_white"/>
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:tint="@color/white"
+                android:src="@drawable/arrow">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvDoiMK"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:text="Đổi Mật Khẩu"/>
-    <TextView
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:gravity="center|fill_horizontal"
+        android:background="@drawable/round_border_3"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            app:tint="@color/white"
+            android:src="@drawable/doimatkhauuu"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDoiMK"
+            android:layout_marginLeft="15dp"
+            android:textSize="24dp"
+            android:text="Đổi Mật Khẩu"
+            android:textColor="@color/content_white"/>
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:tint="@color/white"
+                android:src="@drawable/arrow">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvDangXuat"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:text="Đăng Xuất"/>
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:gravity="center|fill_horizontal"
+        android:background="@drawable/round_border_3"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/dangxuat"
+            app:tint="@color/white"
+            android:layout_marginStart="10dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDangXuat"
+            android:layout_marginLeft="15dp"
+            android:textSize="24dp"
+            android:textColor="@color/content_white"
+            android:text="Đăng Xuất"/>
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="182dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:tint="@color/white"
+                android:src="@drawable/arrow">
+            </ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>
