@@ -1,6 +1,5 @@
 package com.example.doctruyen_iread.FragmentTrangChu;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,35 +20,49 @@ import android.widget.Toast;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class AddStoryActivity extends AppCompatActivity {
-    private EditText etTitle, etContent, etAuthorName;
-    private Button btnSave, btnCancel;
+    private EditText etTitle, etDescription, etAuthorName;
+    private Button btnNext, btnCancel;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final DocumentReference noteRef = db.collection("Story").document("Story 1");
-    private final CollectionReference colRef = db.collection("Story");
-    private String storyDatePost, datePost;
+    private final CollectionReference colStory = db.collection("Story");
+    private final CollectionReference colUser = db.collection("User");
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String storyDatePost, datePost, userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story);
-        etTitle = findViewById(R.id.etAddTitle);
-        etContent = findViewById(R.id.etAddContent);
-        etAuthorName = findViewById(R.id.etAddAuthor);
-        btnSave = findViewById(R.id.btnEditSave);
-        btnCancel = findViewById(R.id.btnEditCancel);
 
-        btnSave.setEnabled(false);
+        etTitle = findViewById(R.id.etAddTitle);
+        etDescription = findViewById(R.id.etAddDescription);
+        btnNext = findViewById(R.id.btnAddNext);
+        btnCancel = findViewById(R.id.btnAddCancel);
+
+        etTitle.requestFocus();
+        etTitle.postDelayed(() -> {
+            //Hiện bàn phím tự động
+            InputMethodManager keyboard = (InputMethodManager) getSystemService(AddStoryActivity.this.INPUT_METHOD_SERVICE);
+            keyboard.showSoftInput(etTitle, 0);
+        }, 200);
+
+        btnNext.setEnabled(false);
+
+        getUserName();
 
         etTitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,26 +75,17 @@ public class AddStoryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                btnSave.setEnabled(!etTitle.getText().toString().isEmpty());
+                if (etTitle.getText().toString().length() > 10) {
+                    btnNext.setEnabled(true);
+                } else {
+                    btnNext.setEnabled(false);
+                }
             }
         });
 
-        etAuthorName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+        btnNext.setOnClickListener(v -> {
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                btnSave.setEnabled(!etTitle.getText().toString().isEmpty());
-            }
-        });
-
-        btnSave.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddStoryActivity.this);
             builder.setTitle("THÔNG BÁO!");
             builder.setMessage("Bạn chắc chắn muốn lưu?");
@@ -89,7 +95,8 @@ public class AddStoryActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     Story mStory = new Story();
                     mStory.setStoryTitle(etTitle.getText().toString().trim());
-                    mStory.setAuthorsName(etAuthorName.getText().toString());
+                    mStory.setAuthorsName(userName);
+                    mStory.setStoryDescription(etDescription.getText().toString());
                     mStory.setStoryViews(0);
 
                     SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
@@ -100,18 +107,16 @@ public class AddStoryActivity extends AppCompatActivity {
 
                     mStory.setStoryId(etTitle.getText().toString().trim() + datePost);
                     mStory.setStoryDatePost(storyDatePost);
-                    colRef.document(mStory.getStoryId()).set(mStory).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddStoryActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    colStory.document(mStory.getStoryId()).set(mStory).addOnSuccessListener(unused -> {
+                        Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddStoryActivity.this, AddStoryActivityNext.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("storyId",mStory.getStoryId());
+                        intent.putExtra("story", bundle);
+                        startActivity(intent);
+//                        startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
+                    }).addOnFailureListener(e ->
+                            Toast.makeText(AddStoryActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show());
                 }
             });
             builder.setNegativeButton("Cancel", null);
@@ -124,5 +129,19 @@ public class AddStoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void getUserName () {
+        if (user.getEmail() != null) {
+            colUser.whereEqualTo("userEmail",user.getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot doc:list) {
+                        userName = doc.getString("userName");
+                    }
+                }
+            });
+        }
     }
 }

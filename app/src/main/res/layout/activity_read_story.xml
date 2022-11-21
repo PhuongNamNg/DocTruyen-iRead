@@ -230,14 +230,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="12dp"
+                        android:layout_marginEnd="10dp"
                         android:text="Yêu Thích"
                         android:textColor="#e3e3e3"
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -254,30 +252,29 @@
                     android:textSize="16dp"
                     android:layout_marginBottom="8dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Basically, Pomodoro Technique breaks complex work into short intervals (usually 25 minutes of work + 5 minutes of rest). This method has been proven to help with focus and productivity!"
-                    android:textColor="@color/content_white"
-                    android:textSize="12dp"
-                    />
+                    <TextView
+                        android:id="@+id/tvStoryDescript"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textColor="@color/content_white"
+                        android:textSize="12dp"
+                        />
+                    <TextView
+                        android:id="@+id/tvRead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Đọc Tiếp"
+                        android:textColor="@color/yellow"
+                        android:textAlignment="center"/>
+
             </LinearLayout>
 
-            <ListView
-                android:id="@+id/lvChapter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp">
-
-            </ListView>
-            <TextView
-                android:id="@+id/tvContentRead"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/revieChapter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="TextView"
-                android:textColor="@color/content_white"
-                android:textSize="16sp" />
+                android:layout_marginTop="16dp">
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

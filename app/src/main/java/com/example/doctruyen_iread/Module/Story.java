@@ -1,20 +1,21 @@
 package com.example.doctruyen_iread.Module;
 
+import java.util.ArrayList;
+
 public class Story {
     private String storyId;
     private String storyTitle;
     private String authorsName;
     private String storyDatePost;
-    private  String storyDescription;
+    private String storyDescription;
     private Integer storyViews;
     private boolean storyCheck;
     private Integer storyToken;
-    private String chapterId;
 
     public Story() {
     }
 
-    public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, Integer storyViews, boolean storyCheck, Integer storyToken, String chapterId) {
+    public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, Integer storyViews, boolean storyCheck, Integer storyToken) {
         this.storyId = storyId;
         this.storyTitle = storyTitle;
         this.authorsName = authorsName;
@@ -23,7 +24,6 @@ public class Story {
         this.storyViews = storyViews;
         this.storyCheck = storyCheck;
         this.storyToken = storyToken;
-        this.chapterId = chapterId;
     }
 
     public String getStoryId() {
@@ -90,11 +90,4 @@ public class Story {
         this.storyToken = storyToken;
     }
 
-    public String getChapterId() {
-        return chapterId;
-    }
-
-    public void setChapterId(String chapterId) {
-        this.chapterId = chapterId;
-    }
 }

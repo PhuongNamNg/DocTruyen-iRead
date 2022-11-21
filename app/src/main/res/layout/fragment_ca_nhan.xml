@@ -15,8 +15,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp">
-    </de.hdodenhof.circleimageview.CircleImageView>
 
+    </de.hdodenhof.circleimageview.CircleImageView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -39,10 +39,12 @@
             android:textSize="24sp"
             android:text="Thống Kê"
             android:textColor="@color/content_white"/>
+
         <LinearLayout
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:gravity="end">
+            android:gravity="end"
+            android:layout_marginEnd="10dp">
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -163,9 +165,6 @@
             </ImageView>
         </LinearLayout>
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>
