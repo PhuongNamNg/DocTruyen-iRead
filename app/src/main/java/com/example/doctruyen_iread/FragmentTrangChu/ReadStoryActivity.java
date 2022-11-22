@@ -81,10 +81,6 @@ public class ReadStoryActivity extends AppCompatActivity {
         checkAdminorUser();
         getStory(title);
 
-        linear.setOnClickListener(v -> {
-            Toast.makeText(this, "xóa", Toast.LENGTH_SHORT).show();
-        });
-
         imbEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +93,7 @@ public class ReadStoryActivity extends AppCompatActivity {
             }
         });
 
-        imbDelete.setOnClickListener(new View.OnClickListener() {
+        linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ReadStoryActivity.this);

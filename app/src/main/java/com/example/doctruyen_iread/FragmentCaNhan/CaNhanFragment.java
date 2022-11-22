@@ -17,6 +17,7 @@ import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DangXuat;
 import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DoiMatKhau;
 import com.example.doctruyen_iread.FragmentCaNhan.ThongKe;
 import com.example.doctruyen_iread.FragmentCaNhan.YeuThich;
+import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 
@@ -26,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CaNhanFragment extends Fragment {
 
-    TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich;
+    TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen;
     public CaNhanFragment() {
     }
 
@@ -48,6 +49,11 @@ public class CaNhanFragment extends Fragment {
         tvYeuThich = view.findViewById(R.id.tvYeuThich);
         tvDoiMK = view.findViewById(R.id.tvDoiMK);
         tvDangXuat = view.findViewById(R.id.tvDangXuat);
+        tvThemTruyen = view.findViewById(R.id.tvThemTruyen);
+
+        tvThemTruyen.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AddStoryActivity.class));
+        });
 
         tvThongKe.setOnClickListener(new View.OnClickListener() {
             @Override
