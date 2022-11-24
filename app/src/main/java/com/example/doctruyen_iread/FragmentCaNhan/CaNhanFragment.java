@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DangXuat;
-import com.example.doctruyen_iread.FragmentCaNhan.InCaNhan.DoiMatKhau;
-import com.example.doctruyen_iread.FragmentCaNhan.ThongKe;
-import com.example.doctruyen_iread.FragmentCaNhan.YeuThich;
+import com.example.doctruyen_iread.FragmentThem.inCaNhan.DoiMatKhau;
+import com.example.doctruyen_iread.FragmentThem.ThongKe;
+import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
-import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 
 import com.example.doctruyen_iread.R;

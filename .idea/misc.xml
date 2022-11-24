@@ -16,11 +16,13 @@
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_read_story.xml" value="0.264" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sig_in.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_in_one_acticity.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up_one.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up_one.xml" value="0.176" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/dialog_new_list.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.264" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_the_loai.xml" value="0.264" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_them.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_trang_chu.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_bottom.xml" value="0.24895833333333334" />
