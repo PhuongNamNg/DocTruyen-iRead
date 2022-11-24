@@ -4,32 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border.xml" value="0.208" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_border_2.xml" value="0.192" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_border_3.xml" value="0.192" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/drawable/round_button.xml" value="0.191" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.3625" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_main.xml" value="0.3625" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_read_story.xml" value="0.18385416666666668" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_sign_in.xml" value="0.3625" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_thong_ke.xml" value="0.28388746803069054" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/activity_yeu_thich.xml" value="0.3625" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.3569230769230769" />
-        <entry key="..\:/Android- nang_cao/DocTruyen-iRead/app/src/main/res/layout/item_story.xml" value="0.3625" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border_2.xml" value="0.1875" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_border_3.xml" value="0.208" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/drawable/round_canhan.xml" value="0.208" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_add_story.xml" value="0.24375" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_add_story_next.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_dang_xuat.xml" value="0.24375" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.24375" />
-        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_main2.xml" value="0.2359375" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_read_story.xml" value="0.264" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sig_in.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up_one.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_splash.xml" value="0.25" />
-        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.36893203883495146" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/dialog_new_list.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.264" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_them.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_trang_chu.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_bottom.xml" value="0.24895833333333334" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_nav.xml" value="0.24895833333333334" />
@@ -38,20 +30,12 @@
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/drawable-v24/round_border_4.xml" value="0.291" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2705" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/drawable/round_border_2.xml" value="0.291" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/drawable/round_border_3.xml" value="0.3145" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_add_story.xml" value="0.3527027027027027" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_add_story_next.xml" value="0.54375" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.5432291666666667" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_edit_story.xml" value="0.23108108108108108" />
+        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_add_story.xml" value="0.34375" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_main.xml" value="0.54375" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_read_story.xml" value="0.3527027027027027" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_sign_up.xml" value="0.54375" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_thong_ke.xml" value="0.209375" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/dialog_new_list.xml" value="0.34791666666666665" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.5203703703703704" />
+        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/activity_read_story.xml" value="0.46296296296296297" />
+        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.54375" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/fragment_the_loai.xml" value="0.54375" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/fragment_trang_chu.xml" value="0.29635416666666664" />
-        <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/item_chapter.xml" value="0.5427083333333333" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/layout/item_story.xml" value="0.54375" />
         <entry key="..\:/DuAn1/DocTruyen-iRead/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2705" />
       </map>
