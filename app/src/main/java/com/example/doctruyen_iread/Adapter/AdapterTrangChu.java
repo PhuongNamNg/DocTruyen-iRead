@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.doctruyen_iread.FragmentTrangChu.ReadStoryActivity;
+import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
 
@@ -47,7 +47,7 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ReadStoryActivity.class);
+                Intent intent = new Intent(mContext, StoryDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
                 bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());

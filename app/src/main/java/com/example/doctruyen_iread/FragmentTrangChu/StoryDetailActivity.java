@@ -42,11 +42,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadStoryActivity extends AppCompatActivity {
+public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead;
     private ImageButton imbEdit, imbDelete, imbFav, imbCate;
     private Toolbar toolbar;
-    private LinearLayout linear;
+    private LinearLayout lineDel, lineEdit;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -65,7 +65,7 @@ public class ReadStoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read_story);
+        setContentView(R.layout.activity_story_detail);
         findView();
 
         Intent intent = getIntent();
@@ -84,7 +84,7 @@ public class ReadStoryActivity extends AppCompatActivity {
         imbEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(ReadStoryActivity.this, EditStoryActivity.class);
+                Intent intent1 = new Intent(StoryDetailActivity.this, EditStoryActivity.class);
                 Bundle bundle1 = new Bundle();
 //                bundle1.putInt("id",id);
                 bundle1.putString("content", tvContent.getText().toString());
@@ -93,10 +93,10 @@ public class ReadStoryActivity extends AppCompatActivity {
             }
         });
 
-        linear.setOnClickListener(new View.OnClickListener() {
+        lineDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ReadStoryActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(StoryDetailActivity.this);
                 builder.setTitle("THÔNG BÁO");
                 builder.setMessage("Bạn chắc chắn muốn xóa?");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -106,13 +106,13 @@ public class ReadStoryActivity extends AppCompatActivity {
                         docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(ReadStoryActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(ReadStoryActivity.this, MainActivity.class));
+                                Toast.makeText(StoryDetailActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(StoryDetailActivity.this, MainActivity.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -183,7 +183,7 @@ public class ReadStoryActivity extends AppCompatActivity {
                 colRefFav.document(docID).update("favListStoryID", FieldValue.arrayUnion(getSupportActionBar().getTitle())).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ReadStoryActivity.this, "Thêm truyện " + getSupportActionBar().getTitle() + " thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(StoryDetailActivity.this, "Thêm truyện " + getSupportActionBar().getTitle() + " thành công", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -212,7 +212,7 @@ public class ReadStoryActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -245,7 +245,7 @@ public class ReadStoryActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ReadStoryActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -264,6 +264,7 @@ public class ReadStoryActivity extends AppCompatActivity {
 
             AdapterChapter adapterChapter = new AdapterChapter(this);
             adapterChapter.getData(listChapter);
+            adapterChapter.getStoryId(id);
 
             reviChapter.setAdapter(adapterChapter);
         });
@@ -281,13 +282,13 @@ public class ReadStoryActivity extends AppCompatActivity {
         String email = user.getEmail();
         Log.e("user", email);
         if (email.equalsIgnoreCase("namsg19@gmail.com") || email.equalsIgnoreCase("sangnnph14292@gmail.com")) {
-            imbDelete.setVisibility(View.VISIBLE);
-            imbCate.setVisibility(View.VISIBLE);
-            imbEdit.setVisibility(View.VISIBLE);
+            lineDel.setVisibility(View.VISIBLE);
+//            imbCate.setVisibility(View.VISIBLE);
+            lineEdit.setVisibility(View.VISIBLE);
         } else {
-            imbDelete.setVisibility(View.INVISIBLE);
-            imbCate.setVisibility(View.INVISIBLE);
-            imbEdit.setVisibility(View.INVISIBLE);
+            lineDel.setVisibility(View.INVISIBLE);
+//            imbCate.setVisibility(View.INVISIBLE);
+            lineEdit.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -301,8 +302,9 @@ public class ReadStoryActivity extends AppCompatActivity {
         imbEdit = findViewById(R.id.imbEdit);
         imbDelete = findViewById(R.id.imbDelete);
         imbFav = findViewById(R.id.imbFav);
-        imbCate = findViewById(R.id.imbCategory);
-        linear = findViewById(R.id.linearDel);
+//        imbCate = findViewById(R.id.imbCategory);
+        lineDel = findViewById(R.id.linearDel);
         reviChapter = findViewById(R.id.revieChapter);
+        lineEdit = findViewById(R.id.linearEdit);
     }
 }
