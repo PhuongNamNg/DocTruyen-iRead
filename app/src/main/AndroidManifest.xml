@@ -27,16 +27,16 @@
             android:name=".FragmentTrangChu.EditStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".FragmentCaNhan.ThongKe"
+            android:name=".FragmentThem.ThongKe"
             android:exported="false" />
         <activity
             android:name=".FragmentCaNhan.InCaNhan.DangXuat"
             android:exported="false" />
         <activity
-            android:name=".FragmentCaNhan.InCaNhan.DoiMatKhau"
+            android:name=".FragmentThem.inCaNhan.DoiMatKhau"
             android:exported="false" />
         <activity
-            android:name=".FragmentCaNhan.YeuThich"
+            android:name=".FragmentThem.YeuThich"
             android:exported="false" />
         <activity
             android:name=".Splash"
@@ -55,6 +55,9 @@
             android:exported="false" />
         <activity
             android:name=".ManageAccount.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageAccount.SignUpOneActivity"
             android:exported="false" />
         <activity
             android:name=".FragmentTrangChu.AddStoryActivity"

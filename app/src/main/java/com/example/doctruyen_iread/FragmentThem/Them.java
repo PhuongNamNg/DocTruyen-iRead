@@ -1,4 +1,4 @@
-package com.example.doctruyen_iread.FragmentCaNhan;
+package com.example.doctruyen_iread.FragmentThem;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,34 +14,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.FragmentThem.inCaNhan.DoiMatKhau;
-import com.example.doctruyen_iread.FragmentThem.ThongKe;
-import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
-
 import com.example.doctruyen_iread.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+public class Them extends Fragment {
 
-public class CaNhanFragment extends Fragment {
 
     TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen;
-    public CaNhanFragment() {
+
+
+    public Them() {
+
     }
 
-    public static CaNhanFragment newInstance(String param1, String param2) {
-        CaNhanFragment fragment = new CaNhanFragment();
+
+    public static Them newInstance(String param1, String param2) {
+        Them fragment = new Them();
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_ca_nhan, container, false);
         tvThongKe = view.findViewById(R.id.tvThongKe);
         tvYeuThich = view.findViewById(R.id.tvYeuThich);
@@ -56,7 +60,7 @@ public class CaNhanFragment extends Fragment {
         tvThongKe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(getActivity(), ThongKe.class));
+                startActivity(new Intent(getActivity(), ThongKe.class));
             }
         });
         tvYeuThich.setOnClickListener(new View.OnClickListener() {

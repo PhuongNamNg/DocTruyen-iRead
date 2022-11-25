@@ -30,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final CollectionReference colRef = db.collection("User");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         initUi();
         initListener();
         cancel();
+
     }
     private void initUi(){
         progressDialog = new ProgressDialog(this);
@@ -47,21 +49,20 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btn_sign_up);
         btn_Cancel = findViewById(R.id.btn_Cancel);
         edtcheckpass = findViewById(R.id.edt_checkpass);
-
     }
     private void initListener(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        String name = bundle.getString("txtTen");
+        Integer tuoi = bundle.getInt("txtTuoi");
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickSigUp();
+                onClickSigUp(name,tuoi);
             }
         });
     }
-    private boolean onClickSigUp() {
-        String strUserName = edtUserName.getText().toString().trim();
-
-
-        Integer intTuoi = Integer.parseInt(edtTuoi.getText().toString().trim());
+    private boolean onClickSigUp(String strUserName,Integer intTuoi) {
         String strcheckpass = edtcheckpass.getText().toString().trim();
         String strEmail = edtEmail.getText().toString().trim();
         String strPassword = edtPassword.getText().toString().trim();

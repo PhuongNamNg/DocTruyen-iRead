@@ -1,10 +1,8 @@
-package com.example.doctruyen_iread.FragmentCaNhan.InCaNhan;
+package com.example.doctruyen_iread.FragmentThem.inCaNhan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.doctruyen_iread.FragmentCaNhan.CaNhanFragment;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 import  com.example.doctruyen_iread.R;
