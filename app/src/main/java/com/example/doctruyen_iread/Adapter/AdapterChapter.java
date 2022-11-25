@@ -1,14 +1,18 @@
 package com.example.doctruyen_iread.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doctruyen_iread.FragmentTrangChu.ReadChapterActivity;
 import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.R;
 
@@ -17,6 +21,7 @@ import java.util.ArrayList;
 public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     Context mContext;
     ArrayList<Chapter> listChapter = new ArrayList<>();
+    String storyId;
 
     public AdapterChapter(Context mContext) {
         this.mContext = mContext;
@@ -25,6 +30,10 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     public void getData(ArrayList<Chapter> listChapter) {
         this.listChapter = listChapter;
         notifyDataSetChanged();
+    }
+
+    public void getStoryId(String storyId) {
+        this.storyId = storyId;
     }
 
     @NonNull
@@ -37,6 +46,15 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.tvTitleChapter.setText("Chapter " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
+        String chapterId = listChapter.get(position).getChapterId();
+        holder.mCardView.setOnClickListener(v -> {
+            Intent mIntent = new Intent(mContext, ReadChapterActivity.class);
+            Bundle mBundle = new Bundle();
+            mBundle.putString("chapterId", chapterId);
+            mBundle.putString("storyId", storyId);
+            mIntent.putExtra("chapter", mBundle);
+            mContext.startActivity(mIntent);
+        });
     }
 
     @Override
@@ -46,9 +64,11 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
     public class Holder extends RecyclerView.ViewHolder {
         private TextView tvTitleChapter;
+        private CardView mCardView;
         public Holder(@NonNull View itemView) {
             super(itemView);
             tvTitleChapter = itemView.findViewById(R.id.tvTitleChapter);
+            mCardView= itemView.findViewById(R.id.cardView);
         }
     }
 }

@@ -70,7 +70,7 @@ public class EditStoryActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(EditStoryActivity.this, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                                        Intent intent1 = new Intent(EditStoryActivity.this, ReadStoryActivity.class);
+                                        Intent intent1 = new Intent(EditStoryActivity.this, StoryDetailActivity.class);
                                         intent1.putExtra("title", etTitle.getText().toString());
                                         setResult(RESULT_OK, intent1);
                                         finish();
@@ -95,7 +95,7 @@ public class EditStoryActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(EditStoryActivity.this, ReadStoryActivity.class);
+                Intent intent1 = new Intent(EditStoryActivity.this, StoryDetailActivity.class);
                 intent1.putExtra("title", etTitle.getText().toString());
                 setResult(RESULT_OK, intent1);
                 finish();
