@@ -33,7 +33,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/bin"
+                android:src="@drawable/arrow"
                 app:tint="@color/content_white">
             </ImageView>
         </LinearLayout>
