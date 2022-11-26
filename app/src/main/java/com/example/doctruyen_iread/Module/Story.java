@@ -12,7 +12,7 @@ public class Story {
     private boolean storyCheck;
     private Integer storyToken;
 
-    public Story() {
+    public Story(int anh1, String book) {
     }
 
     public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, Integer storyViews, boolean storyCheck, Integer storyToken) {
@@ -24,6 +24,10 @@ public class Story {
         this.storyViews = storyViews;
         this.storyCheck = storyCheck;
         this.storyToken = storyToken;
+    }
+
+    public Story() {
+
     }
 
     public String getStoryId() {
