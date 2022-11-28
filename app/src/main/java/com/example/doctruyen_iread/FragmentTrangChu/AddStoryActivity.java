@@ -13,10 +13,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.doctruyen_iread.Adapter.AdapterDropDownTheLoai;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
@@ -30,15 +32,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class AddStoryActivity extends AppCompatActivity {
     private EditText etTitle, etDescription, etAuthorName;
     private Button btnNext, btnCancel;
+    private AutoCompleteTextView autoCompleteTv;
+    private AdapterDropDownTheLoai adapterDropDown;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private final DocumentReference noteRef = db.collection("Story").document("Story 1");
     private final CollectionReference colStory = db.collection("Story");
+    private final CollectionReference colTheLoai = db.collection("TheLoai");
     private final CollectionReference colUser = db.collection("User");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String storyDatePost, datePost, userName;
@@ -52,6 +57,17 @@ public class AddStoryActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etAddDescription);
         btnNext = findViewById(R.id.btnAddNext);
         btnCancel = findViewById(R.id.btnAddCancel);
+        autoCompleteTv = findViewById(R.id.autoCompleteTheLoai);
+
+        colTheLoai.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            ArrayList<String> listTheLoai = new ArrayList<>();
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            for (DocumentSnapshot docSnap : list) {
+               listTheLoai.add(docSnap.getString("theloaiTen"));
+            }
+            adapterDropDown = new AdapterDropDownTheLoai(this, R.layout.item_dropdown_theloai, listTheLoai);
+            autoCompleteTv.setAdapter(adapterDropDown);
+        });
 
         etTitle.requestFocus();
         etTitle.postDelayed(() -> {
@@ -99,15 +115,19 @@ public class AddStoryActivity extends AppCompatActivity {
                     mStory.setStoryDescription(etDescription.getText().toString());
                     mStory.setStoryViews(0);
 
+
                     SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
                     storyDatePost = dateFormat.format(Calendar.getInstance().getTime());
 
                     SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy");
                     datePost = dateFormat2.format(Calendar.getInstance().getTime());
 
-                    mStory.setStoryId(etTitle.getText().toString().trim() + datePost);
+                    String id = etTitle.getText().toString().trim() + datePost;
+                    mStory.setStoryId(id);
+                    colTheLoai.document(autoCompleteTv.getText().toString()).update("storyId", id);
+
                     mStory.setStoryDatePost(storyDatePost);
-                    colStory.document(mStory.getStoryId()).set(mStory).addOnSuccessListener(unused -> {
+                    colStory.document(id).set(mStory).addOnSuccessListener(unused -> {
                         Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddStoryActivity.this, AddStoryActivityNext.class);
                         Bundle bundle = new Bundle();

@@ -30,45 +30,6 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="10dp"
-            android:src="@android:drawable/ic_input_add"
-            app:tint="@color/white"></ImageView>
-
-        <TextView
-            android:id="@+id/tvThemTruyen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Thêm Truyện"
-            android:textColor="@color/content_white"
-            android:textSize="24sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:gravity="end">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/arrow"
-                app:tint="@color/white"></ImageView>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_canhan"
-        android:gravity="center|fill_horizontal">
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/statistical"
             app:tint="@color/white"></ImageView>
 
@@ -201,6 +162,124 @@
             android:text="Đăng Xuất"
             android:textColor="@color/content_white"
             android:textSize="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow"
+                app:tint="@color/white"></ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_canhan"
+        android:gravity="center|fill_horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:src="@android:drawable/ic_input_add"
+            app:tint="@color/white"></ImageView>
+
+        <TextView
+            android:id="@+id/tvThemTruyen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Thêm Truyện"
+            android:textColor="@color/content_white"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow"
+                app:tint="@color/white"></ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_canhan"
+        android:gravity="center|fill_horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:src="@android:drawable/ic_input_add"
+            app:tint="@color/white"></ImageView>
+
+        <TextView
+            android:id="@+id/tvThemTheLoai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Thêm Thể Loại"
+            android:textColor="@color/content_white"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow"
+                app:tint="@color/white"></ImageView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_canhan"
+        android:gravity="center|fill_horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            app:srcCompat="@android:drawable/checkbox_on_background">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tvDuyetTruyen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Duyệt Truyện"
+            android:textColor="@color/content_white"
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
