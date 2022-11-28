@@ -46,7 +46,7 @@ public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead;
     private ImageButton imbEdit, imbDelete, imbFav, imbCate;
     private Toolbar toolbar;
-    private LinearLayout lineDel, lineEdit;
+    private LinearLayout lineDel, lineEdit, lineCheck;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -59,7 +59,7 @@ public class StoryDetailActivity extends AppCompatActivity {
     final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         Intent intent = result.getData();
         String title = intent.getStringExtra("title");
-        getStory(title);
+        getStory(title, true);
     });
 
     @Override
@@ -72,14 +72,24 @@ public class StoryDetailActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
         String id = bundle.getString("id");
+        Boolean check = bundle.getBoolean("check");
+
+        if (check == true) {
+            lineDel.setVisibility(View.GONE);
+            lineEdit.setVisibility(View.GONE);
+        } else if (check == false) {
+            lineDel.setVisibility(View.VISIBLE);
+            lineEdit.setVisibility(View.VISIBLE);
+            lineCheck.setVisibility(View.GONE);
+        }
 
         setSupportActionBar(toolbar);
 //        toolbar.setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
 
-        checkAdminorUser();
-        getStory(title);
+//        checkAdminorUser();
+        getStory(title, check);
 
         imbEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,7 +236,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void getStory(String title) {
+    private void getStory(String title, boolean check) {
         colRefStory.whereEqualTo("storyTitle", title).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -237,9 +247,8 @@ public class StoryDetailActivity extends AppCompatActivity {
                     tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
                     tvDescript.setText(docSnap.getString("storyDescription"));
                     String storyId = docSnap.getString("storyId");
-                    Log.e("Check1", storyId);
                     setRecycleViewChapter(storyId);
-                    updateView(docSnap.getString("storyId"));
+                    updateView(docSnap.getString("storyId"), check);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -272,10 +281,11 @@ public class StoryDetailActivity extends AppCompatActivity {
         Log.e("CheckList", String.valueOf(listChapter.size()));
     }
 
-    private void updateView(String id) {
-        Log.e("id", id);
-        docRef = db.collection("Story").document(id);
-        docRef.update("storyViews", FieldValue.increment(1));
+    private void updateView(String id, boolean check) {
+        if (check == false) {
+            docRef = db.collection("Story").document(id);
+            docRef.update("storyViews", FieldValue.increment(1));
+        }
     }
 
     public void checkAdminorUser() {
@@ -286,9 +296,9 @@ public class StoryDetailActivity extends AppCompatActivity {
 //            imbCate.setVisibility(View.VISIBLE);
             lineEdit.setVisibility(View.VISIBLE);
         } else {
-            lineDel.setVisibility(View.INVISIBLE);
-//            imbCate.setVisibility(View.INVISIBLE);
-            lineEdit.setVisibility(View.INVISIBLE);
+            lineDel.setVisibility(View.GONE);
+            lineEdit.setVisibility(View.GONE);
+            //            imbCate.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -306,5 +316,6 @@ public class StoryDetailActivity extends AppCompatActivity {
         lineDel = findViewById(R.id.linearDel);
         reviChapter = findViewById(R.id.revieChapter);
         lineEdit = findViewById(R.id.linearEdit);
+        lineCheck = findViewById(R.id.linearDuyetTruyen);
     }
 }

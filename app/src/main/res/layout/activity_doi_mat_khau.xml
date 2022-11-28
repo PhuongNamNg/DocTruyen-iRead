@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".FragmentThem.inCaNhan.DoiMatKhau">
+    tools:context=".FragmentThem.DoiMatKhau">
 
     <ImageView
         android:id="@+id/img_logo"

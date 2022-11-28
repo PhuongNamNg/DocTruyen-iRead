@@ -1,4 +1,4 @@
-package com.example.doctruyen_iread.FragmentThem.inCaNhan;
+package com.example.doctruyen_iread.FragmentThem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
