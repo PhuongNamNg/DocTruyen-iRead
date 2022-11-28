@@ -7,11 +7,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +23,19 @@ import com.example.doctruyen_iread.Module.TheLoai;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Them extends Fragment {
-    TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen, tvDuyetTruyen, tvThemTheLoai;
-    EditText etTen, etMieuTa;
-    Button btnThem, btnHuy;
+    private TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen, tvDuyetTruyen, tvThemTheLoai;
+    private EditText etTen, etMieuTa;
+    private Button btnThem, btnHuy;
+    private LinearLayout lineThemTruyen, lineThemTheLoai, lineDuyetTruyen;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colTheLoai = db.collection("TheLoai");
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     public Them() {}
 
     public static Them newInstance(String param1, String param2) {
@@ -54,6 +60,12 @@ public class Them extends Fragment {
         tvThemTruyen = view.findViewById(R.id.tvThemTruyen);
         tvThemTheLoai = view.findViewById(R.id.tvThemTheLoai);
         tvDuyetTruyen = view.findViewById(R.id.tvDuyetTruyen);
+        lineDuyetTruyen = view.findViewById(R.id.lineaDuyetTruyen);
+        lineThemTheLoai = view.findViewById(R.id.lineaThemTheLoai);
+        lineThemTruyen = view.findViewById(R.id.lineaThemTruyen);
+
+        checkAdminorUser();
+
 
         tvThemTruyen.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddStoryActivity.class));
@@ -126,5 +138,19 @@ public class Them extends Fragment {
         });
 
         return  view;
+    }
+
+    public void checkAdminorUser() {
+        String email = user.getEmail();
+        Log.e("user", email);
+        if (email.equalsIgnoreCase("namsg19@gmail.com") || email.equalsIgnoreCase("sangnnph14292@gmail.com")) {
+            lineThemTruyen.setVisibility(View.VISIBLE);
+            lineThemTheLoai.setVisibility(View.VISIBLE);
+            lineDuyetTruyen.setVisibility(View.VISIBLE);
+        } else {
+            lineThemTruyen.setVisibility(View.GONE);
+            lineThemTheLoai.setVisibility(View.GONE);
+            lineDuyetTruyen.setVisibility(View.GONE);
+        }
     }
 }

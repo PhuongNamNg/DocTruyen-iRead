@@ -178,6 +178,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lineaThemTruyen"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="5dp"
@@ -217,11 +218,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lineaThemTheLoai"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="3dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/round_canhan"
         android:gravity="center|fill_horizontal">
@@ -257,6 +259,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lineaDuyetTruyen"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="5dp"
