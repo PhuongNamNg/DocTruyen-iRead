@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm Thể Loại"
+        android:background="@drawable/round_dialog"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        />
+    <EditText
+        android:id="@+id/etTenTheLoai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/content_white"
+        android:textColorHint="@color/content_white"
+        android:hint="Nhập Tên Thể Loại"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+    <EditText
+        android:id="@+id/etMieuTaTheLoai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/content_white"
+        android:textColorHint="@color/content_white"
+        android:hint="Nhập Miêu Tả Cho Thể Loại"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:inputType="textMultiLine"/>
+    <LinearLayout
+        android:id="@+id/layout_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnThemTheLoai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"
+            android:text="Thêm"
+            android:textSize="24sp"/>
+        <Button
+            android:id="@+id/btnHuyTheLoai"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:textColor="@color/black"
+            android:text="Hủy"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+</LinearLayout>

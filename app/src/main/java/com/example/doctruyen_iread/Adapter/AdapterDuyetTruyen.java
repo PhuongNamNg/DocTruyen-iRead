@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
@@ -19,11 +20,11 @@ import com.example.doctruyen_iread.R;
 
 import java.util.ArrayList;
 
-public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder> {
+public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.Holder> {
     Context mContext;
     ArrayList<Story> stories = new ArrayList<>();
 
-    public AdapterTrangChu(Context mContext) {
+    public AdapterDuyetTruyen(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -35,7 +36,7 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_story, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_duyet_truyen, parent, false);
         return new Holder(view);
     }
 
@@ -43,18 +44,24 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.img.setImageResource(R.drawable.anh3);
         holder.name.setText(stories.get(position).getStoryTitle());
+        Boolean check = stories.get(position).isStoryCheck();
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, StoryDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
-                bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
-                bundle.putBoolean("check", false);
-                intent.putExtra("story", bundle);
-                mContext.startActivity(intent);
-            }
+        if (check == false) {
+            holder.status.setText("Chưa Duyệt");
+            holder.status.setTextColor(ContextCompat.getColor(mContext, R.color.red));
+        } else if (check == true) {
+            holder.status.setText("Đã Duyệt");
+            holder.status.setTextColor(ContextCompat.getColor(mContext, R.color.yellow));
+        }
+
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, StoryDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
+            bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
+            bundle.putBoolean("check", true);
+            intent.putExtra("story", bundle);
+            mContext.startActivity(intent);
         });
     }
 
@@ -67,12 +74,14 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
         private final CardView cardView;
         private final ImageView img;
         private final TextView name;
+        private final TextView status;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.imvItem);
-            name = itemView.findViewById(R.id.tvItem);
+            img = itemView.findViewById(R.id.imvItemDuyetTruyen);
+            name = itemView.findViewById(R.id.tvItemDuyetTruyen);
             cardView = itemView.findViewById(R.id.cardView);
+            status = itemView.findViewById(R.id.tvItemDuyetTruyenStatus);
         }
     }
 }

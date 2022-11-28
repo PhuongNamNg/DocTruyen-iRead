@@ -33,6 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TrangChuFragment extends Fragment {
 
@@ -72,7 +73,7 @@ public class TrangChuFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recvi);
         fab = view.findViewById(R.id.fab);
 
-        checkAdminorUser();
+//        checkAdminorUser();
         updateLVStories();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,42 +91,23 @@ public class TrangChuFragment extends Fragment {
         if (stories.size() > 0)
             stories.clear();
 
-        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    list.add(document.getId());
-//                    DocumentSnapshot doc = document;
-//                    Story story = doc.toObject(Story.class);
-//                    stories.add(story);
-                }
-                for (int i = 0; i < list.size(); i++) {
-                    docRef = db.collection("Story").document(list.get(i));
-                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Story mstory = documentSnapshot.toObject(Story.class);
-                            stories.add(mstory);
-
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                            recyclerView.setLayoutManager(linearLayoutManager);
-
-                            adapter = new AdapterTrangChu(getActivity());
-                            adapter.getData(stories);
-                            recyclerView.setAdapter(adapter);
-                        }
-
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), "Lỗi", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        colRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            for (DocumentSnapshot docSnap : list) {
+                if (docSnap.getBoolean("storyCheck") == true) {
+                    Story mstory = docSnap.toObject(Story.class);
+                    stories.add(mstory);
                 }
             }
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
 
+            adapter = new AdapterTrangChu(getActivity());
+            adapter.getData(stories);
+            recyclerView.setAdapter(adapter);
         });
     }
+
 
     public void checkAdminorUser() {
         String email = user.getEmail();
