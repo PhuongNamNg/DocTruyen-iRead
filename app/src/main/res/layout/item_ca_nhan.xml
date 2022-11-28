@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:backgroundTint="#00000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_border"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:textColor="@color/yellow"
+            android:textSize="24sp"
+            android:gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp">
+
+            <ImageView
+                android:id="@+id/imvStoryCaNhan"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/round_border"
+                android:clipToOutline="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/anh3" />
+            <TextView
+                android:id="@+id/tvViewCaNhan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/content_white"
+                android:text="Lượt xem:"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitleCaNhan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/linearEditCaNhan"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/round_border_2"
+                android:backgroundTint="@color/half_black"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:backgroundTint="#00000000"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/pencil"
+                    app:tint="#e3e3e3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
+                    android:text="Sửa"
+                    android:textColor="#e3e3e3"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
