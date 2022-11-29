@@ -3,7 +3,9 @@ package com.example.doctruyen_iread.ManageAccount;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.doctruyen_iread.FragmentThem.DoiMatKhau;
 import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("bundle");
         String name = bundle.getString("txtTen");
         Integer tuoi = bundle.getInt("txtTuoi");
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,12 +70,10 @@ public class SignUpActivity extends AppCompatActivity {
         String strcheckpass = edtcheckpass.getText().toString().trim();
         String strEmail = edtEmail.getText().toString().trim();
         String strPassword = edtPassword.getText().toString().trim();
+
         if (strEmail.isEmpty() || strPassword.isEmpty() || strUserName.isEmpty() || intTuoi.toString().isEmpty()) {
             Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
 
-        }
-        else if (intTuoi < 1 || intTuoi > 100) {
-            Toast.makeText(this, "Tuổi từ 1 đến 100", Toast.LENGTH_SHORT).show();
         }
         else if(strPassword.length()<6){
             Toast.makeText(this, "Mật khẩu phải trên 6 kí tự", Toast.LENGTH_SHORT).show();
@@ -85,11 +87,23 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressDialog.dismiss();
                             if (task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                                builder.setTitle("Đăng ký thành công");
+                                builder.setMessage("Chúc mừng bạn đã nhận được 300 xu");
+                                builder.setPositiveButton("Nhận", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(SignUpActivity.this,SignInActivity.class);
+                                        intent.putExtra("Email",strEmail);
+                                        startActivity(intent);
+                                        startActivity(intent);
+                                        finishAffinity();
+                                    }
+                                });
+                                builder.show();
+
                                 addUser(strEmail, strUserName, intTuoi);
-                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                                startActivity(intent);
-                                finishAffinity();
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại",
                                         Toast.LENGTH_SHORT).show();
@@ -111,12 +125,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
     private void addUser (String strEmail, String strUserName, int intTuoi) {
         UserObj user = new UserObj();
         user.setUserEmail(strEmail);
         user.setUserName(strUserName);
         user.setUserAge(intTuoi);
-
+        user.setUserToken(300);
         colRef.document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

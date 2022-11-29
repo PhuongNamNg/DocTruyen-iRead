@@ -6,16 +6,17 @@ public class UserObj {
     private String userName;
     private Integer userAge;
     private String usersFavorite;
+    private Integer userToken;
 
     public UserObj() {}
 
-    public UserObj(String userID, String userEmail, String userName,
-                   Integer userAge, String usersFavorite) {
+    public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken) {
         this.userID = userID;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userAge = userAge;
         this.usersFavorite = usersFavorite;
+        this.userToken = userToken;
     }
 
     public String getUserID() {
@@ -56,5 +57,13 @@ public class UserObj {
 
     public void setUsersFavorite(String usersFavorite) {
         this.usersFavorite = usersFavorite;
+    }
+
+    public Integer getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(Integer userToken) {
+        this.userToken = userToken;
     }
 }

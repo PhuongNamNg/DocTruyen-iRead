@@ -33,6 +33,8 @@ public class SignInActivity extends AppCompatActivity {
 
         iniUi();
         initListener();
+
+        edtEmail.setText(getIntent().getStringExtra("Email"));
     }
 
     private void iniUi(){
