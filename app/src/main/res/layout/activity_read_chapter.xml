@@ -39,7 +39,6 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imbDelete"
                 android:layout_width="40dp"
                 android:layout_height="35dp"
                 android:backgroundTint="#00000000"
@@ -102,7 +101,6 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imbEdit"
                 android:layout_width="40dp"
                 android:layout_height="35dp"
                 android:backgroundTint="#00000000"

@@ -78,7 +78,6 @@ public class CaNhanFragment extends Fragment {
             tvNameUser.setText(name);
         });
 
-
         adapter = new AdapterViewPagerCaNhan(getActivity());
         vp.setAdapter(adapter);
 
@@ -106,7 +105,11 @@ public class CaNhanFragment extends Fragment {
                 Story mStory = docSnap.toObject(Story.class);
                 stories.add(mStory);
             }
-            tvNumb.setText(String.valueOf(stories.size()));
+            if (stories.size() == 0) {
+                tvNumb.setText("Bạn chưa có truyện nào, hãy đăng truyện mới nhé");
+            } else {
+                tvNumb.setText(String.valueOf(stories.size()));
+            }
         });
     }
 }
