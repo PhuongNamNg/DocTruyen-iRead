@@ -121,7 +121,7 @@
             android:layout_marginLeft="50dp"
             android:textColor="@color/black"
             android:backgroundTint="@color/yellow"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"/>
     </LinearLayout>
 
 

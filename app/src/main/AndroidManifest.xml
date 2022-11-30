@@ -55,6 +55,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ManageAccount.SignUpOneActivity"
+            android:exported="false" />
+        <activity
             android:name=".ManageAccount.SignUpActivity"
             android:exported="false" />
         <activity

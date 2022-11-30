@@ -42,12 +42,19 @@
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sig_in.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_sign_up_one.xml" value="0.16757246376811594" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_thong_ke.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/activity_yeu_thich.xml" value="0.16757246376811594" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/dialog_new_list.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/dialog_them_theloai.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_ca_nhan.xml" value="0.36893203883495146" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_the_loai.xml" value="0.1" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_them.xml" value="0.2" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_trang_chu.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/fragment_your_story.xml" value="0.16757246376811594" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/item_dropdown_theloai.xml" value="0.25" />
+        <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/item_story.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/layout/item_thong_ke.xml" value="0.25" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_bottom.xml" value="0.24895833333333334" />
         <entry key="..\:/DocTruyen-iRead1/app/src/main/res/menu/menu_nav.xml" value="0.24895833333333334" />
