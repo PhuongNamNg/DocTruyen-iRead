@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -16,9 +17,13 @@ import android.widget.Toast;
 
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.List;
 
 public class ReadChapterActivity extends AppCompatActivity {
     private TextView tvContent, tvTitle;
@@ -27,6 +32,8 @@ public class ReadChapterActivity extends AppCompatActivity {
     private LinearLayout lineDel, lineEdit;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colChapter = db.collection("Story");
+    private CollectionReference colUser = db.collection("User");
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,21 @@ public class ReadChapterActivity extends AppCompatActivity {
         Bundle mBundle = mIntent.getBundleExtra("chapter");
         String chapterId = mBundle.getString("chapterId");
         String storyId = mBundle.getString("storyId");
+        String auhthorsName = mBundle.getString("authorsName");
+
+        String email = user.getEmail();
+
+        colUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            DocumentSnapshot docSnap = list.get(0);
+            if (auhthorsName == docSnap.getString("userName")) {
+                lineDel.setVisibility(View.VISIBLE);
+                lineEdit.setVisibility(View.VISIBLE);
+            } else {
+                lineDel.setVisibility(View.GONE);
+                lineEdit.setVisibility(View.GONE);
+            }
+        });
 
         getChapter(chapterId, storyId);
 

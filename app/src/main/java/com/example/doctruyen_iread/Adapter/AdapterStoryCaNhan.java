@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doctruyen_iread.FragmentTrangChu.EditStoryActivity;
 import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
@@ -63,7 +64,11 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
         });
 
         holder.imbEdit.setOnClickListener(v -> {
-            Toast.makeText(mContext, "Sửa", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mContext, EditStoryActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("content", stories.get(position).getStoryTitle());
+            intent.putExtra("story", bundle);
+            mContext.startActivity(intent);
         });
     }
 
