@@ -12,7 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="vertical">
-
+        <ImageButton
+            android:id="@+id/btnsearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/search"
+            android:background="@drawable/round_canhan"
+            />
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -43,5 +50,6 @@
         android:src="@android:drawable/ic_input_add"
         app:fabSize="auto"
         app:maxImageSize="32dp" />
+
 
 </FrameLayout>

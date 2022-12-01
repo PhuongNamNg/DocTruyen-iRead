@@ -6,7 +6,7 @@
     <string name="action_yeuthich">Yêu Thích</string>
     <string name="action_canhan">Cá Nhân</string>
     <string name="action_them">Thêm</string>
-
+    <string name="action_search">Search</string>
 
     <string name="nav_thongke">Thống kê</string>
     <string name="nav_lichsu">Lịch sử</string>
