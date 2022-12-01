@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterTrangChu;
@@ -46,6 +47,7 @@ public class TrangChuFragment extends Fragment {
     private final ArrayList<Story> stories = new ArrayList<>();
     private final ArrayList<String> list = new ArrayList<>();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private ImageButton search;
 
     public TrangChuFragment() {
         // Required empty public constructor
@@ -72,7 +74,7 @@ public class TrangChuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recvi);
         fab = view.findViewById(R.id.fab);
-
+        search = view.findViewById(R.id.btnsearch);
 //        checkAdminorUser();
         updateLVStories();
 
@@ -82,7 +84,14 @@ public class TrangChuFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AddStoryActivity.class));
             }
         });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),SearchActivity.class));
+            }
+        });
     }
+
 
     private void updateLVStories() {
         if (list.size() > 0)
