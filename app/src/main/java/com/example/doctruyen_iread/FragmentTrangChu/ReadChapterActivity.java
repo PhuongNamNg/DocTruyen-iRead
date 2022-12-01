@@ -53,12 +53,16 @@ public class ReadChapterActivity extends AppCompatActivity {
         colUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
             DocumentSnapshot docSnap = list.get(0);
-            if (auhthorsName == docSnap.getString("userName")) {
+            String authors = docSnap.getString("userName");
+
+            if (auhthorsName.equals(authors)) {
+                Log.e("check", "check");
                 lineDel.setVisibility(View.VISIBLE);
                 lineEdit.setVisibility(View.VISIBLE);
             } else {
-                lineDel.setVisibility(View.GONE);
-                lineEdit.setVisibility(View.GONE);
+                Log.e("check", "check1");
+                lineDel.setVisibility(View.INVISIBLE);
+                lineEdit.setVisibility(View.INVISIBLE);
             }
         });
 

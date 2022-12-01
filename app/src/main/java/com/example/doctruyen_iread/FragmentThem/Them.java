@@ -64,7 +64,7 @@ public class Them extends Fragment {
         lineThemTheLoai = view.findViewById(R.id.lineaThemTheLoai);
         lineThemTruyen = view.findViewById(R.id.lineaThemTruyen);
 
-//        checkAdminorUser();
+        checkAdminorUser();
 
 
         tvThemTruyen.setOnClickListener(v -> {
@@ -140,17 +140,17 @@ public class Them extends Fragment {
         return  view;
     }
 
-//    public void checkAdminorUser() {
-//        String email = user.getEmail();
-//        Log.e("user", email);
-//        if (email.equalsIgnoreCase("namsg19@gmail.com") || email.equalsIgnoreCase("sangnnph14292@gmail.com")) {
-//            lineThemTruyen.setVisibility(View.VISIBLE);
-//            lineThemTheLoai.setVisibility(View.VISIBLE);
-//            lineDuyetTruyen.setVisibility(View.VISIBLE);
-//        } else {
-//            lineThemTruyen.setVisibility(View.GONE);
-//            lineThemTheLoai.setVisibility(View.GONE);
-//            lineDuyetTruyen.setVisibility(View.GONE);
-//        }
-//    }
+    public void checkAdminorUser() {
+        String email = user.getEmail();
+        Log.e("user", email);
+        if (email.equalsIgnoreCase("namsg19@gmail.com") || email.equalsIgnoreCase("sangnnph14292@gmail.com")) {
+            lineThemTruyen.setVisibility(View.VISIBLE);
+            lineThemTheLoai.setVisibility(View.VISIBLE);
+            lineDuyetTruyen.setVisibility(View.VISIBLE);
+        } else {
+            lineThemTruyen.setVisibility(View.GONE);
+            lineThemTheLoai.setVisibility(View.GONE);
+            lineDuyetTruyen.setVisibility(View.GONE);
+        }
+    }
 }
