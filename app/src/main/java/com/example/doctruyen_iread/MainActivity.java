@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.FragmentCaNhan.CaNhanFragment;
-import com.example.doctruyen_iread.FragmentTheLoai.TheLoai;
+import com.example.doctruyen_iread.FragmentTheLoai.TheLoaiFrament;
 import com.example.doctruyen_iread.FragmentThem.Them;
 import com.example.doctruyen_iread.FragmentTrangChu.TrangChuFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_TheLoai:
                         Toast.makeText(MainActivity.this, "Thể Loại", Toast.LENGTH_SHORT).show();
                         mBottomNavigationView.getMenu().findItem(R.id.action_TheLoai).setChecked(true);
-                        TheLoai theloai = new TheLoai();
+                        TheLoaiFrament theloai = new TheLoaiFrament();
                         fragmentManager.beginTransaction().replace(R.id.frameContent,theloai).commit();
                         break;
                     case R.id.action_CaNhan:

@@ -28,7 +28,10 @@ public class AdapterTheLoai extends RecyclerView.Adapter<AdapterTheLoai.Holder> 
         this.theLoais = theLoais;
         notifyDataSetChanged();
     }
-
+    public  void setDatatruyen(ArrayList<Story> stories){
+        this.stories = stories;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -53,6 +56,7 @@ public class AdapterTheLoai extends RecyclerView.Adapter<AdapterTheLoai.Holder> 
         return theLoais.size();
     }
 
+
     public class Holder extends RecyclerView.ViewHolder {
     private final TextView textViewTl;
     private final RecyclerView recyclerViewTl;
@@ -62,4 +66,5 @@ public class AdapterTheLoai extends RecyclerView.Adapter<AdapterTheLoai.Holder> 
             recyclerViewTl = itemView.findViewById(R.id.item_recvi);
         }
     }
+
 }
