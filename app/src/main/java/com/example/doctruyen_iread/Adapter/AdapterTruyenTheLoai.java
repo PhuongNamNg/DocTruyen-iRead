@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class AdapterTruyenTheLoai extends RecyclerView.Adapter<AdapterTruyenTheLoai.Holder> {
     Context mcontext;
     ArrayList<Story> stories = new ArrayList<>();
-
+    String storyId;
     public AdapterTruyenTheLoai(Context mcontext) {
         this.mcontext = mcontext;
     }
@@ -38,6 +38,9 @@ public class AdapterTruyenTheLoai extends RecyclerView.Adapter<AdapterTruyenTheL
     public void setData(ArrayList<Story> stories){
         this.stories = stories;
         notifyDataSetChanged();
+    }
+    public void getStoryId(String storyId) {
+        this.storyId = storyId;
     }
 
     @NonNull

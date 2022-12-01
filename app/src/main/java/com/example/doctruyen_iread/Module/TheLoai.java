@@ -6,15 +6,14 @@ public class TheLoai {
     private String theloaiId;
     private String theloaiTen;
     private String theloaiMieuTa;
-    private ArrayList<String> storyId;
 
     public TheLoai () {}
 
-    public TheLoai(String theloaiId, String theloaiTen, String theloaiMieuTa, ArrayList<String> storyId) {
+    public TheLoai(String theloaiId, String theloaiTen, String theloaiMieuTa) {
         this.theloaiId = theloaiId;
         this.theloaiTen = theloaiTen;
         this.theloaiMieuTa = theloaiMieuTa;
-        this.storyId = storyId;
+
     }
 
     public String getTheloaiId() {
@@ -41,11 +40,4 @@ public class TheLoai {
         this.theloaiMieuTa = theloaiMieuTa;
     }
 
-    public ArrayList<String> getStoryId() {
-        return storyId;
-    }
-
-    public void setStoryId(ArrayList<String> storyId) {
-        this.storyId = storyId;
-    }
 }
