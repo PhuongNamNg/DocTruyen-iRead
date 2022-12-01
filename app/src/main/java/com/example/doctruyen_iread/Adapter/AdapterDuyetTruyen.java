@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +21,12 @@ import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.Holder> {
+public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.Holder> implements Filterable {
     Context mContext;
     ArrayList<Story> stories = new ArrayList<>();
+    ArrayList<Story> storiesss = new ArrayList<>();
 
     public AdapterDuyetTruyen(Context mContext) {
         this.mContext = mContext;
@@ -30,6 +34,7 @@ public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.
 
     public void getData(ArrayList<Story> stories) {
         this.stories = stories;
+        this.storiesss = stories;
         notifyDataSetChanged();
     }
 
@@ -70,6 +75,8 @@ public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.
         return stories.size();
     }
 
+
+
     public class Holder extends RecyclerView.ViewHolder {
         private final CardView cardView;
         private final ImageView img;
@@ -83,5 +90,34 @@ public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.
             cardView = itemView.findViewById(R.id.cardView);
             status = itemView.findViewById(R.id.tvItemDuyetTruyenStatus);
         }
+    }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch = constraint.toString();
+                if (strSearch.isEmpty()) {
+                    stories = storiesss;
+                } else {
+                    List<Story> list = new ArrayList<>();
+                    for (Story story : storiesss) {
+                        if (story.getStoryTitle().toLowerCase().contains(strSearch.toLowerCase())) {
+                            list.add(story);
+                        }
+                    }
+                    stories = (ArrayList<Story>) list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = stories;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                stories = (ArrayList<Story>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
