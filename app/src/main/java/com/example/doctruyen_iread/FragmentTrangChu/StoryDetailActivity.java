@@ -229,12 +229,19 @@ public class StoryDetailActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                 for (DocumentSnapshot docSnap : list) {
-                    tvAuthorsName.setText("Tác Giả: " + docSnap.getString("authorsName"));
+                    String authorsName = docSnap.getString("authorsName");
+                    tvAuthorsName.setText("Tác Giả: " + authorsName);
                     tvDatePost.setText(docSnap.getString("storyDatePost"));
                     tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
-                    tvDescript.setText(docSnap.getString("storyDescription"));
+                    String descript = docSnap.getString("storyDescription");
+                    if (descript.equals("")) {
+                        tvRead.setVisibility(View.GONE);
+                        tvDescript.setText("Truyện này không có miêu tả");
+                    } else {
+                        tvDescript.setText(descript);
+                    }
                     String storyId = docSnap.getString("storyId");
-                    setRecycleViewChapter(storyId);
+                    setRecycleViewChapter(storyId, authorsName);
                     updateView(docSnap.getString("storyId"), check);
                 }
             }
@@ -246,7 +253,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void setRecycleViewChapter(String id) {
+    private void setRecycleViewChapter(String id, String authorsName) {
         CollectionReference colChapter = db.collection("Story").document(id).collection("Chapter");
 
         colChapter.get().addOnSuccessListener(queryDocumentSnapshots -> {
@@ -263,11 +270,12 @@ public class StoryDetailActivity extends AppCompatActivity {
                 AdapterChapter adapterChapter = new AdapterChapter(this);
                 adapterChapter.getData(listChapter);
                 adapterChapter.getStoryId(id);
+                adapterChapter.getAuthorsName(authorsName);
 
                 reviChapter.setAdapter(adapterChapter);
             } else {
-                tvNoti.setText("Chưa có truyện nào :(");
                 tvNoti.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                tvNoti.setText("Chưa có truyện nào :(");
             }
 
         });

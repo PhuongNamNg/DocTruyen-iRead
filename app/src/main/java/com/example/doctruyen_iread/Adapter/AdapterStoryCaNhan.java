@@ -66,7 +66,9 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
         holder.imbEdit.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, EditStoryActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("content", stories.get(position).getStoryTitle());
+            bundle.putString("title", stories.get(position).getStoryTitle());
+            bundle.putString("descript", stories.get(position).getStoryDescription());
+            bundle.putString("id", stories.get(position).getStoryId());
             intent.putExtra("story", bundle);
             mContext.startActivity(intent);
         });
