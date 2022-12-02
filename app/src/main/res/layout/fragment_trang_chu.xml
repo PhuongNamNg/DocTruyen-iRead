@@ -13,6 +13,16 @@
         android:layout_margin="8dp"
         android:orientation="vertical">
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"/>
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/circle_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"/>
         <LinearLayout
             android:id="@+id/btnsearch"
             android:layout_width="match_parent"
@@ -46,6 +56,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recvi"
