@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentCaNhan.YourStoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,11 +13,37 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+        <LinearLayout
+            android:id="@+id/linearThemTruyen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/round_timkiem"
+            android:padding="4dp">
+
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_input_add"
+                android:background="@android:color/transparent"
+                app:tint="@color/black" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:text="Thêm Truyện"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recviTruyenCaNhan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"/>
         <TextView
             android:id="@+id/tvView"
             android:layout_width="match_parent"

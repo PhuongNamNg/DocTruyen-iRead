@@ -174,7 +174,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lineaThemTruyen"
+        android:id="@+id/lineaQLTK"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
@@ -187,17 +187,17 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="10dp"
-            android:src="@android:drawable/ic_input_add"
+            app:srcCompat="@android:drawable/ic_menu_manage"
             app:tint="@color/white"></ImageView>
 
         <TextView
-            android:id="@+id/tvThemTruyen"
+            android:id="@+id/tvQLTK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="Thêm Truyện"
+            android:text="Quản Lý Tài Khoản Người Dùng"
             android:textColor="@color/content_white"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

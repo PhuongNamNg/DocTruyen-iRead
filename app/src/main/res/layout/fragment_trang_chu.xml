@@ -7,67 +7,72 @@
     android:background="@color/black"
     tools:context=".FragmentTrangChu.TrangChuFragment">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/btnsearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal"
-            android:background="@drawable/round_timkiem">
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/search"
-                android:background="@android:color/transparent"
-                />
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btnsearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/round_timkiem"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/search" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Tìm Kiếm"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tất Cả Truyện"
+                android:textColor="@color/yellow"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recvi1"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Tìm Kiếm"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:gravity="center_vertical"
-                />
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Truyện đang Hot"
+                android:textColor="@color/yellow"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recvi2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp" />
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tất Cả Truyện"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recvi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            />
-
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        app:backgroundTint="@color/yellow"
-        android:clickable="true"
-        app:tint="@android:color/white"
-        android:src="@android:drawable/ic_input_add"
-        app:fabSize="auto"
-        app:maxImageSize="32dp" />
-
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
