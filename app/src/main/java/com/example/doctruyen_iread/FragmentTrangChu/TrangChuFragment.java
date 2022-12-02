@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterTrangChu;
@@ -47,7 +48,7 @@ public class TrangChuFragment extends Fragment {
     private final ArrayList<Story> stories = new ArrayList<>();
     private final ArrayList<String> list = new ArrayList<>();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private ImageButton search;
+    private LinearLayout search;
 
     public TrangChuFragment() {
         // Required empty public constructor

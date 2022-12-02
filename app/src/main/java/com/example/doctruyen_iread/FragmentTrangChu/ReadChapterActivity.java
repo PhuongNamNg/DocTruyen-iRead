@@ -1,5 +1,6 @@
 package com.example.doctruyen_iread.FragmentTrangChu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,6 +35,7 @@ public class ReadChapterActivity extends AppCompatActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colChapter = db.collection("Story");
     private CollectionReference colUser = db.collection("User");
+    private DocumentReference docChapter;
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -47,24 +50,10 @@ public class ReadChapterActivity extends AppCompatActivity {
         String chapterId = mBundle.getString("chapterId");
         String storyId = mBundle.getString("storyId");
         String auhthorsName = mBundle.getString("authorsName");
+        String storyTitle = mBundle.getString("storyTitle");
 
-        String email = user.getEmail();
 
-        colUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
-            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-            DocumentSnapshot docSnap = list.get(0);
-            String authors = docSnap.getString("userName");
-
-            if (auhthorsName.equals(authors)) {
-                Log.e("check", "check");
-                lineDel.setVisibility(View.VISIBLE);
-                lineEdit.setVisibility(View.VISIBLE);
-            } else {
-                Log.e("check", "check1");
-                lineDel.setVisibility(View.INVISIBLE);
-                lineEdit.setVisibility(View.INVISIBLE);
-            }
-        });
+        checkAuthors(auhthorsName);
 
         getChapter(chapterId, storyId);
 
@@ -118,6 +107,44 @@ public class ReadChapterActivity extends AppCompatActivity {
             changeEditText(etSize);
         });
 
+        lineDel.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("THÔNG BÁO");
+            builder.setMessage("Bạn chắc chắn muốn xóa?");
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                docChapter = db.collection("Story").document(storyId).collection("Chapter").document(chapterId);
+                docChapter.delete().addOnSuccessListener(unused -> {
+                    Toast.makeText(this, "Xóa", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, StoryDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", storyTitle);
+                    bundle.putBoolean("check", false);
+                    intent.putExtra("story", bundle);
+                    startActivity(intent);
+                }).addOnFailureListener(e -> Toast.makeText(this, "Lỗi", Toast.LENGTH_SHORT).show());
+            });
+            builder.setNegativeButton("No", null);
+            builder.show();
+        });
+
+    }
+
+    private void checkAuthors(String auhthorsName) {
+        String email = user.getEmail();
+
+        colUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            DocumentSnapshot docSnap = list.get(0);
+            String authors = docSnap.getString("userName");
+
+            if (auhthorsName.equals(authors)) {
+                lineDel.setVisibility(View.VISIBLE);
+                lineEdit.setVisibility(View.VISIBLE);
+            } else {
+                lineDel.setVisibility(View.INVISIBLE);
+                lineEdit.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void getChapter(String chapterId, String storyId) {

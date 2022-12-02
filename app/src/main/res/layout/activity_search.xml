@@ -8,8 +8,6 @@
     android:background="@color/black"
     tools:context=".FragmentTrangChu.SearchActivity">
 
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,9 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/toobar_ve"
+            android:background="@color/yellow"
             />
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"

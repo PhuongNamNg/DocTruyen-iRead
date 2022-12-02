@@ -31,7 +31,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FragmentTrangChu.AddStoryActivityNext"
+            android:name=".FragmentTrangChu.AddChapterActivity"
             android:exported="false" />
         <activity
             android:name=".FragmentTrangChu.EditStoryActivity"
