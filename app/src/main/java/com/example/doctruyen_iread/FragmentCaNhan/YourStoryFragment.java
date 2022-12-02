@@ -1,5 +1,6 @@
 package com.example.doctruyen_iread.FragmentCaNhan;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.doctruyen_iread.Adapter.AdapterStoryCaNhan;
+import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +32,7 @@ import java.util.List;
 public class YourStoryFragment extends Fragment {
     private TextView tvView;
     private RecyclerView recyclerView;
+    private LinearLayout linearThemTruyen;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colStory = db.collection("Story");
     private CollectionReference colUser = db.collection("User");
@@ -40,6 +44,11 @@ public class YourStoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_your_story, container, false);
         tvView = view.findViewById(R.id.tvView);
         recyclerView = view.findViewById(R.id.recviTruyenCaNhan);
+        linearThemTruyen = view.findViewById(R.id.linearThemTruyen);
+
+        linearThemTruyen.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AddStoryActivity.class));
+        });
 
         String email = user.getEmail();
 
@@ -51,7 +60,7 @@ public class YourStoryFragment extends Fragment {
         return view;
     }
 
-    private void getStory (String name) {
+    private void getStory(String name) {
         colStory.whereEqualTo("authorsName", name).get().addOnSuccessListener(queryDocumentSnapshots -> {
             ArrayList<Story> stories = new ArrayList<>();
             Integer count = 0;
@@ -63,7 +72,7 @@ public class YourStoryFragment extends Fragment {
             }
             tvView.setText("Tổng Lượt Xem: " + count);
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false));
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
             AdapterStoryCaNhan adapter = new AdapterStoryCaNhan(getActivity());
             adapter.getData(stories);

@@ -17,11 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
 import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 import com.example.doctruyen_iread.Module.TheLoai;
 import com.example.doctruyen_iread.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -57,19 +55,14 @@ public class Them extends Fragment {
         tvYeuThich = view.findViewById(R.id.tvYeuThich);
         tvDoiMK = view.findViewById(R.id.tvDoiMK);
         tvDangXuat = view.findViewById(R.id.tvDangXuat);
-        tvThemTruyen = view.findViewById(R.id.tvThemTruyen);
+        tvThemTruyen = view.findViewById(R.id.tvQLTK);
         tvThemTheLoai = view.findViewById(R.id.tvThemTheLoai);
         tvDuyetTruyen = view.findViewById(R.id.tvDuyetTruyen);
         lineDuyetTruyen = view.findViewById(R.id.lineaDuyetTruyen);
         lineThemTheLoai = view.findViewById(R.id.lineaThemTheLoai);
-        lineThemTruyen = view.findViewById(R.id.lineaThemTruyen);
+        lineThemTruyen = view.findViewById(R.id.lineaQLTK);
 
         checkAdminorUser();
-
-
-        tvThemTruyen.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AddStoryActivity.class));
-        });
 
         tvThongKe.setOnClickListener(new View.OnClickListener() {
             @Override
