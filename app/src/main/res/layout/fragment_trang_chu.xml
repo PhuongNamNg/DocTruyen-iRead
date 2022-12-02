@@ -12,14 +12,32 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="vertical">
-        <ImageButton
+
+        <LinearLayout
             android:id="@+id/btnsearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:src="@drawable/search"
-            android:background="@drawable/round_canhan"
-            />
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_timkiem">
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/search"
+                android:background="@android:color/transparent"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Tìm Kiếm"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:gravity="center_vertical"
+                />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"

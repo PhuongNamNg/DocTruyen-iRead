@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     Context mContext;
     ArrayList<Chapter> listChapter = new ArrayList<>();
-    String storyId, authorsName;
+    String storyId, authorsName, storyTitle;
 
     public AdapterChapter(Context mContext) {
         this.mContext = mContext;
@@ -37,6 +37,10 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     }
 
     public void getAuthorsName(String authorsName) {this.authorsName = authorsName;}
+
+    public void getTitleName(String storyTitle) {
+        this.storyTitle = storyTitle;
+    }
 
     @NonNull
     @Override
@@ -55,6 +59,7 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
             mBundle.putString("chapterId", chapterId);
             mBundle.putString("storyId", storyId);
             mBundle.putString("authorsName", authorsName);
+            mBundle.putString("storyTitle", storyTitle);
             mIntent.putExtra("chapter", mBundle);
             mContext.startActivity(mIntent);
         });
@@ -64,6 +69,8 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     public int getItemCount() {
         return listChapter.size();
     }
+
+
 
     public class Holder extends RecyclerView.ViewHolder {
         private TextView tvTitleChapter;

@@ -5,16 +5,18 @@ public class Chapter {
     private String chapterTitle;
     private String chapterDescription;
     private String chapterContent;
+    private Integer chapterIndex;
     private Integer chapterToken;
 
     public Chapter(){}
 
-    public Chapter(String chapterId, String chapterTitle, String chapterDescription, String chapterContent, Integer chapterToken) {
+    public Chapter(String chapterId, String chapterTitle, String chapterDescription, String chapterContent, Integer chapterToken, Integer chapterIndex) {
         this.chapterId = chapterId;
         this.chapterTitle = chapterTitle;
         this.chapterDescription = chapterDescription;
         this.chapterContent = chapterContent;
         this.chapterToken = chapterToken;
+        this.chapterIndex = chapterIndex;
     }
 
     public String getChapterId() {
@@ -55,6 +57,14 @@ public class Chapter {
 
     public void setChapterTitle(String chapterTitle) {
         this.chapterTitle = chapterTitle;
+    }
+
+    public Integer getChapterIndex() {
+        return chapterIndex;
+    }
+
+    public void setChapterIndex(Integer chapterIndex) {
+        this.chapterIndex = chapterIndex;
     }
 
     @Override

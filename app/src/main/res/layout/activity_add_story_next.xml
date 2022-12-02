@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".FragmentTrangChu.AddStoryActivityNext">
+    tools:context=".FragmentTrangChu.AddChapterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +31,22 @@
             android:textColorHint="@color/content_white"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etChapterIndex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:gravity="center_horizontal|top"
+            android:hint="Chapter này là chapter thứ mấy?"
+            android:inputType="textMultiLine|textLongMessage"
+            android:maxHeight="200dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etChapterDescription"
