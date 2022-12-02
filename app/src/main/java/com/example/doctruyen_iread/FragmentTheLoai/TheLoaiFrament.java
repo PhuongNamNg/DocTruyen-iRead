@@ -7,7 +7,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterTheLoai;
+import com.example.doctruyen_iread.Adapter.PhotoAdapter;
 import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
+import com.example.doctruyen_iread.Module.Photo;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.Module.TheLoai;
 import com.example.doctruyen_iread.R;
@@ -31,6 +36,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class TheLoaiFrament extends Fragment {
 
@@ -43,6 +52,12 @@ public class TheLoaiFrament extends Fragment {
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private final ArrayList<String> list = new ArrayList<>();
     private final CollectionReference colRefStory = db.collection("Story");
+
+    private ViewPager viewPager;
+    private CircleIndicator circleIndicator;
+    private PhotoAdapter photoAdapter;
+    private List<Photo> mListPhoto;
+    private Timer mTimer;
 
     public  static TheLoaiFrament newInstance(){
         TheLoaiFrament fragament = new TheLoaiFrament();
@@ -65,6 +80,18 @@ public class TheLoaiFrament extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rcv_category);
+
+        viewPager = view.findViewById(R.id.viewpager);
+        circleIndicator = view.findViewById(R.id.circle_indicator);
+
+        mListPhoto = getListPhoto();
+        photoAdapter = new PhotoAdapter(getActivity(),getListPhoto());
+        viewPager.setAdapter(photoAdapter);
+
+        circleIndicator.setViewPager(viewPager);
+        photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+        autoSlideImages();
+
         updateTheLoai();
 
     }
@@ -83,6 +110,51 @@ public class TheLoaiFrament extends Fragment {
 //        });
 //        return   theLoaiList;
 //    }
+    private List<Photo> getListPhoto(){
+        List<Photo> list = new ArrayList<>();
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+
+        return list;
+    }
+    private void autoSlideImages(){
+        if (mListPhoto == null || mListPhoto.isEmpty() || viewPager == null){
+            return;
+        }
+
+        if (mTimer == null){
+            mTimer = new Timer();
+        }
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int currentItem = viewPager.getCurrentItem();
+                        int totalItem = mListPhoto.size() - 1;
+                        if (currentItem < totalItem){
+                            currentItem ++;
+                            viewPager.setCurrentItem(currentItem);
+                        }else {
+                            viewPager.setCurrentItem(0);
+                        }
+                    }
+                });
+            }
+        },500,2000);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mTimer != null){
+            mTimer.cancel();
+            mTimer = null;
+        }
+    }
 
     private  void updateTheLoai(){
         if (list.size()>0){

@@ -8,7 +8,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterTrangChu;
+import com.example.doctruyen_iread.Adapter.PhotoAdapter;
+import com.example.doctruyen_iread.Module.Photo;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +41,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class TrangChuFragment extends Fragment {
 
@@ -49,6 +58,12 @@ public class TrangChuFragment extends Fragment {
     private final ArrayList<String> list = new ArrayList<>();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private LinearLayout search;
+
+    private ViewPager viewPager;
+    private CircleIndicator circleIndicator;
+    private PhotoAdapter photoAdapter;
+    private List<Photo> mListPhoto;
+    private Timer mTimer;
 
     public TrangChuFragment() {
         // Required empty public constructor
@@ -73,6 +88,19 @@ public class TrangChuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        viewPager = view.findViewById(R.id.viewpager);
+        circleIndicator = view.findViewById(R.id.circle_indicator);
+
+        mListPhoto = getListPhoto();
+        photoAdapter = new PhotoAdapter(getActivity(),mListPhoto);
+        viewPager.setAdapter(photoAdapter);
+
+        circleIndicator.setViewPager(viewPager);
+        photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+
+        autoSlideImages();
+
         recyclerView = view.findViewById(R.id.recvi);
         fab = view.findViewById(R.id.fab);
         search = view.findViewById(R.id.btnsearch);
@@ -93,6 +121,51 @@ public class TrangChuFragment extends Fragment {
         });
     }
 
+    private List<Photo> getListPhoto(){
+        List<Photo> list = new ArrayList<>();
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+
+        return list;
+    }
+    private void autoSlideImages(){
+        if (mListPhoto == null || mListPhoto.isEmpty() || viewPager == null){
+            return;
+        }
+
+        if (mTimer == null){
+            mTimer = new Timer();
+        }
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int currentItem = viewPager.getCurrentItem();
+                        int totalItem = mListPhoto.size() - 1;
+                        if (currentItem < totalItem){
+                            currentItem ++;
+                            viewPager.setCurrentItem(currentItem);
+                        }else {
+                            viewPager.setCurrentItem(0);
+                        }
+                    }
+                });
+            }
+        },500,2000);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mTimer != null){
+            mTimer.cancel();
+            mTimer = null;
+        }
+    }
 
     private void updateLVStories() {
         if (list.size() > 0)
