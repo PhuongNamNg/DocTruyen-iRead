@@ -9,7 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,8 @@ import android.widget.LinearLayout;
 
 import com.example.doctruyen_iread.Adapter.AdapterStoryViews;
 import com.example.doctruyen_iread.Adapter.AdapterTrangChu;
+import com.example.doctruyen_iread.Adapter.PhotoAdapter;
+import com.example.doctruyen_iread.Module.Photo;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +35,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class TrangChuFragment extends Fragment {
 
@@ -42,6 +52,12 @@ public class TrangChuFragment extends Fragment {
     private final ArrayList<String> list = new ArrayList<>();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private LinearLayout search;
+
+    private ViewPager viewPager;
+    private CircleIndicator circleIndicator;
+    private PhotoAdapter photoAdapter;
+    private List<Photo> mListPhoto;
+    private Timer mTimer;
 
     public TrangChuFragment() {
         // Required empty public constructor
@@ -68,6 +84,18 @@ public class TrangChuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView1 = view.findViewById(R.id.recvi1);
         recyclerView2 = view.findViewById(R.id.recvi2);
+
+        viewPager = view.findViewById(R.id.viewpager);
+        circleIndicator = view.findViewById(R.id.circle_indicator);
+
+        mListPhoto = getListPhoto();
+        photoAdapter = new PhotoAdapter(getActivity(),mListPhoto);
+        viewPager.setAdapter(photoAdapter);
+
+        circleIndicator.setViewPager(viewPager);
+        photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+
+        autoSlideImages();
         search = view.findViewById(R.id.btnsearch);
         updateLVStories();
 
@@ -79,6 +107,51 @@ public class TrangChuFragment extends Fragment {
         });
     }
 
+    private List<Photo> getListPhoto(){
+        List<Photo> list = new ArrayList<>();
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+        list.add(new Photo(R.drawable.anh2));
+        list.add(new Photo(R.drawable.anh3));
+
+        return list;
+    }
+    private void autoSlideImages(){
+        if (mListPhoto == null || mListPhoto.isEmpty() || viewPager == null){
+            return;
+        }
+
+        if (mTimer == null){
+            mTimer = new Timer();
+        }
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int currentItem = viewPager.getCurrentItem();
+                        int totalItem = mListPhoto.size() - 1;
+                        if (currentItem < totalItem){
+                            currentItem ++;
+                            viewPager.setCurrentItem(currentItem);
+                        }else {
+                            viewPager.setCurrentItem(0);
+                        }
+                    }
+                });
+            }
+        },500,2000);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mTimer != null){
+            mTimer.cancel();
+            mTimer = null;
+        }
+    }
 
     private void updateLVStories() {
         if (list.size() > 0)
