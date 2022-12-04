@@ -16,7 +16,7 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Tên Chapter"
+        android:text="Tên Chương"
         android:textColor="@color/content_white"
         android:textColorHint="@color/content_white"
         android:textSize="24sp"
