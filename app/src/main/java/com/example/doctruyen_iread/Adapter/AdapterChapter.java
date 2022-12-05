@@ -51,7 +51,7 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.tvTitleChapter.setText("Chapter " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
+        holder.tvTitleChapter.setText("Chương " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
         String chapterId = listChapter.get(position).getChapterId();
         holder.mCardView.setOnClickListener(v -> {
             Intent mIntent = new Intent(mContext, ReadChapterActivity.class);

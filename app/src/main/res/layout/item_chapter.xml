@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textSize="24sp"
-            android:text="Chapter"
+            android:text="Chương"
             android:textColor="@color/content_white"/>
 
         <LinearLayout
