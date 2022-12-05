@@ -106,7 +106,7 @@ public class CaNhanFragment extends Fragment {
                 stories.add(mStory);
             }
             if (stories.size() == 0) {
-                tvNumb.setText("Bạn chưa có truyện nào, hãy đăng truyện mới nhé");
+                tvNumb.setText("0");
             } else {
                 tvNumb.setText(String.valueOf(stories.size()));
             }

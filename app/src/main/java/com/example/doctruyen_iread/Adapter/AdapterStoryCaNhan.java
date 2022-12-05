@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctruyen_iread.FragmentTrangChu.EditStoryActivity;
@@ -57,6 +58,17 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
         holder.name.setText(stories.get(position).getStoryTitle());
         holder.index.setText((position + 1) + ".");
         holder.views.setText("Lượt xem: " + stories.get(position).getStoryViews());
+        Boolean check = stories.get(position).isStoryCheck();
+
+        if (check == true) {
+            holder.check.setText("Đã Duyệt");
+            holder.check.setTextColor(ContextCompat.getColor(mContext, R.color.yellow));
+        } else if (check == false) {
+            holder.check.setText("Chưa Duyệt");
+            holder.check.setTextColor(ContextCompat.getColor(mContext, R.color.red));
+        } else {
+            return;
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +122,7 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
         private final TextView name;
         private final TextView index;
         private final TextView views;
+        private final TextView check;
         private final LinearLayout imbEdit;
 
         public Holder(@NonNull View itemView) {
@@ -120,6 +133,7 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
             views = itemView.findViewById(R.id.tvViewCaNhan);
             imbEdit = itemView.findViewById(R.id.linearEditCaNhan);
             index = itemView.findViewById(R.id.tvIndex);
+            check = itemView.findViewById(R.id.tvCheckCaNhan);
         }
     }
 }
