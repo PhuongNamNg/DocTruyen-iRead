@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/iconapp"
+        android:icon="@mipmap/gamee_hay"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/iconapp_foreground"
+        android:roundIcon="@mipmap/gamee_hay_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DocTruyeniRead"
         tools:targetApi="31">
