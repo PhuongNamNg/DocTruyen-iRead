@@ -1,5 +1,7 @@
 package com.example.doctruyen_iread.Module;
 
+import java.util.ArrayList;
+
 public class UserObj {
     private String userID;
     private String userEmail;
@@ -9,6 +11,7 @@ public class UserObj {
     private Integer userToken;
 
     public UserObj() {}
+
 
     public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken) {
         this.userID = userID;
@@ -66,4 +69,5 @@ public class UserObj {
     public void setUserToken(Integer userToken) {
         this.userToken = userToken;
     }
+
 }

@@ -131,6 +131,7 @@ public class TheLoaiFrament extends Fragment {
                         for (DocumentSnapshot docSnap : list) {
                             Story mstory = docSnap.toObject(Story.class);
                             stories.add(mstory);
+                            Log.e("ra roi",idtruyen);
                         }
                         adapterTheLoai.setDatatruyen(stories);
                     }

@@ -171,6 +171,7 @@
                         app:tint="#e3e3e3" />
 
                     <TextView
+                        android:id="@+id/yeuthich"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
