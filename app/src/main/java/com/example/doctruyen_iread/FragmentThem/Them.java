@@ -29,7 +29,7 @@ public class Them extends Fragment {
     private TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen, tvDuyetTruyen, tvThemTheLoai;
     private EditText etTen, etMieuTa;
     private Button btnThem, btnHuy;
-    private LinearLayout lineThemTruyen, lineThemTheLoai, lineDuyetTruyen;
+    private LinearLayout lineThemTruyen, lineThemTheLoai, lineDuyetTruyen, linearThongke,linearYeuthich,linearDoimatkhau,linearDangxuat;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colTheLoai = db.collection("TheLoai");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -61,22 +61,26 @@ public class Them extends Fragment {
         lineDuyetTruyen = view.findViewById(R.id.lineaDuyetTruyen);
         lineThemTheLoai = view.findViewById(R.id.lineaThemTheLoai);
         lineThemTruyen = view.findViewById(R.id.lineaQLTK);
+        linearThongke = view.findViewById(R.id.linearThong_ke);
+        linearYeuthich = view .findViewById(R.id.linearYeu_thich);
+        linearDoimatkhau = view.findViewById(R.id.linearDoi_mat_khau);
+        linearDangxuat= view.findViewById(R.id.linearDang_xuat);
 
         checkAdminorUser();
 
-        tvThongKe.setOnClickListener(new View.OnClickListener() {
+        linearThongke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), ThongKe.class));
             }
         });
-        tvYeuThich.setOnClickListener(new View.OnClickListener() {
+        linearYeuthich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), YeuThich.class));
             }
         });
-        tvDangXuat.setOnClickListener(new View.OnClickListener() {
+        linearDangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -95,7 +99,7 @@ public class Them extends Fragment {
                 builder.show();
             }
         });
-        tvDoiMK.setOnClickListener(new View.OnClickListener() {
+        linearDoimatkhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), DoiMatKhau.class));

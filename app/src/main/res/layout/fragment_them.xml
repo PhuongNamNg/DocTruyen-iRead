@@ -22,6 +22,7 @@
                 android:scaleType="fitXY"/>
 
             <LinearLayout
+                android:id="@+id/linearThong_ke"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
@@ -60,6 +61,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearYeu_thich"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
@@ -100,6 +102,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearDoi_mat_khau"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
@@ -141,6 +144,7 @@
 
 
             <LinearLayout
+                android:id="@+id/linearDang_xuat"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
