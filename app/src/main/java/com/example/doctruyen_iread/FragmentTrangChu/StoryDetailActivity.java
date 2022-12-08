@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
 import com.example.doctruyen_iread.Module.Chapter;
+import com.example.doctruyen_iread.Module.Favorite;
+import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,16 +42,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StoryDetailActivity extends AppCompatActivity {
-    private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti;
+    private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti , tvYeuthich;
     private Toolbar toolbar;
     private LinearLayout lineaShare, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
     private final CollectionReference colRefStory = db.collection("Story");
+    private final FirebaseUser story = FirebaseAuth.getInstance().getCurrentUser();
     private final CollectionReference colRefFav = db.collection("Favorite");
     private final CollectionReference colRefUser = db.collection("User");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     private ArrayList<Chapter> listChapter = new ArrayList<Chapter>();
 
 //    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -63,6 +67,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_detail);
         findView();
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
@@ -82,6 +87,13 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         getStory(title, check);
 
+        tvYeuthich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getUser(id);
+
+            }
+        });
 //        imbEdit.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -124,35 +136,12 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-//    private void createDBFav(String docID) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("THÔNG BÁO");
-//        View view = LayoutInflater.from(this).inflate(R.layout.dialog_new_list, null);
-//        EditText etNameList = view.findViewById(R.id.etDiaNameLst);
-//        builder.setView(view);
-//        builder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Favorite fav = new Favorite();
-//                fav.setFavoriteName(etNameList.getText().toString().trim());
-//                fav.setFavListStoryID(listStoryName);
-//                colRefFav.document().set(fav).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        updateFav(etNameList.getText().toString().trim());
-//                        updateUserFav(docID, etNameList.getText().toString().trim());
-//                    }
-//                });
-//
-//            }
-//        });
-//        builder.setNegativeButton("Hủy", null);
-//        builder.show();
-//    }
+    private void createDBFav() {
+        Favorite fav = new Favorite();
+        String id = user.getEmail().toString().trim();
+        fav.setFavoriteName(id);
 
-    public void updateFav(String favName) {
-//        listStoryName.add(tvTitle.getText().toString());
-        colRefFav.whereEqualTo("favoriteName", favName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        colRefUser.whereEqualTo("userEmail", id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             String docID;
 
             @Override
@@ -161,7 +150,37 @@ public class StoryDetailActivity extends AppCompatActivity {
                     DocumentSnapshot doc = docSnap;
                     docID = doc.getId();
                 }
-                colRefFav.document(docID).update("favListStoryID", FieldValue.arrayUnion(getSupportActionBar().getTitle())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                colRefUser.document(docID).update("usersFavorite",fav.getFavoriteName());
+            }
+        });
+
+        colRefFav.document().set(fav).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.i("","Them yeu thich");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("","That bai");
+            }
+        });
+        Toast.makeText(this, "co bam", Toast.LENGTH_SHORT).show();
+    }
+
+    public void updateFav(String favName , String id) {
+
+        colRefFav.whereEqualTo("favoriteName", favName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {//1
+            String docID;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docSnap : task.getResult()) {
+                    DocumentSnapshot doc = docSnap;
+                    docID = doc.getId();
+                    Log.e("check", docID);
+                }
+                colRefFav.document(docID).update("favListStoryID", FieldValue.arrayUnion(id)).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(StoryDetailActivity.this, "Thêm truyện " + getSupportActionBar().getTitle() + " thành công", Toast.LENGTH_SHORT).show();
@@ -171,23 +190,23 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void getUser() {
+    public void getUser(String id) {
         Log.e("user", String.valueOf(user));
         colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             UserObj user;
-            String docID;
 
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot docSnap : task.getResult()) {
                     DocumentSnapshot doc = docSnap;
                     user = doc.toObject(UserObj.class);
-                    docID = doc.getId();
+                    // lay thong tin nguoi dung
                 }
                 if (user.getUsersFavorite() == null) {
-//                    createDBFav(docID);
+                    createDBFav();
                 } else {
-                    updateFav(user.getUsersFavorite());
+                    updateFav(user.getUsersFavorite().toString(),id);
+
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -312,7 +331,8 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvRead = findViewById(R.id.tvRead);
         tvNoti = findViewById(R.id.tvNotiListStory);
         reviChapter = findViewById(R.id.revieChapter);
-        linearCheck = findViewById(R.id.linearDuyetTruyen);
+        lineCheck = findViewById(R.id.linearDuyetTruyen);
+        tvYeuthich= findViewById(R.id.yeuthich);
         linearAddChapter = findViewById(R.id.linearAddChapter);
     }
 }

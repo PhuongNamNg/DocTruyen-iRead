@@ -160,6 +160,13 @@
                         android:id="@+id/linearShare"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
+                        android:backgroundTint="#00000000"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/yeuthich"
+                        app:tint="#e3e3e3" />
+
+                    <TextView
+                        android:id="@+id/yeuthich"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/round_border_2"
                         android:backgroundTint="@color/half_black"

@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentCaNhan.EditProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentCaNhan.EditProfileFragment"
+    android:orientation="vertical"
+    android:background="@color/black">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="edit"
-        android:textColor="@color/yellow"/>
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:hint="Đổi tên"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+        android:textColorHint="@color/content_white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_ten_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:hint="Tuổi"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+        android:textColorHint="@color/content_white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_tuoi_thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp">
+
+        <Button
+            android:id="@+id/btn_thongtin_sua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
+            android:layout_marginTop="30dp" />
+        <Button
+            android:id="@+id/btn_Cancell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quay Lại"
+            android:layout_marginLeft="50dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
