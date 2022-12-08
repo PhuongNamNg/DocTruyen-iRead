@@ -157,8 +157,6 @@
                             android:textSize="15sp" />
                     </LinearLayout>
 
-
-
                     <LinearLayout
                         android:id="@+id/linearFav"
                         android:layout_width="wrap_content"
@@ -178,6 +176,7 @@
                             app:tint="#e3e3e3" />
 
                         <TextView
+                            android:id="@+id/tv_yeuthich"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

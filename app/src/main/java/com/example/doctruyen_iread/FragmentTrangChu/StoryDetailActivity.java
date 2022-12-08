@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
+import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.Module.Favorite;
 import com.example.doctruyen_iread.Module.Story;
@@ -44,7 +45,7 @@ import java.util.List;
 public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti , tvYeuthich,tvtheodoi;
     private Toolbar toolbar;
-    private LinearLayout linearFav, linearCheck, linearAddChapter;
+    private LinearLayout lineFav, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -87,6 +88,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
 
         getStory(title, check);
+        DaYeuThich(id);
 
         checkFollow(author);
 
@@ -117,7 +119,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             });
         });
 
-        linearFav.setOnClickListener(new View.OnClickListener() {
+        lineFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getUser(id);
@@ -164,6 +166,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     private void checkFollow(String author) {
@@ -375,6 +378,43 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        }
 //    }
 
+    public void DaYeuThich(String id) {
+        colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            UserObj userObj;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docnap : task.getResult()) {
+                    DocumentSnapshot doc = docnap;
+                    userObj = doc.toObject(UserObj.class);
+                }
+                ArrayList<Story> stories = new ArrayList<>();
+                colRefFav.whereEqualTo("favoriteName", userObj.getUsersFavorite()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    Favorite fav = new Favorite();
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot docnap : task.getResult()) {
+                            DocumentSnapshot doc = docnap;
+                            fav = doc.toObject(Favorite.class);
+                        }
+                        ArrayList<String> list = fav.getFavListStoryID();
+                        for (String daYeuthich:list) {
+                            if (daYeuthich.equals(id)){
+                                Toast.makeText(StoryDetailActivity.this, "Đã yêu thích", Toast.LENGTH_SHORT).show();
+                                tvYeuthich.setText("Đã Yêu Thích");
+                                lineFav.setEnabled(false);
+                            }
+
+                        }
+
+                    }
+
+                });
+
+            }
+        });
+    }
     public void findView() {
         toolbar = findViewById(R.id.toolbar);
         tvAuthorsName = findViewById(R.id.tvAuthorsNameRead);
@@ -384,10 +424,10 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvRead = findViewById(R.id.tvRead);
         tvNoti = findViewById(R.id.tvNotiListStory);
         reviChapter = findViewById(R.id.revieChapter);
-        linearFav= findViewById(R.id.linearFav);
+        lineFav = findViewById(R.id.linearFav);
+        tvYeuthich = findViewById(R.id.tv_yeuthich);
         linearAddChapter = findViewById(R.id.linearAddChapter);
         linearCheck = findViewById(R.id.linearDuyetTruyen);
         tvtheodoi = findViewById(R.id.tvtheodoi);
-
     }
 }
