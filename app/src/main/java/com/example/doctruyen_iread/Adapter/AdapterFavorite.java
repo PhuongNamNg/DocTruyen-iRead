@@ -46,12 +46,18 @@ AdapterFavorite extends RecyclerView.Adapter<AdapterFavorite.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.imgUser.setImageResource(R.drawable.anh1);
-        holder.tvName.setText( "Tên truyện : " +stories.get(position).getStoryTitle());
-        holder.tvview.setText("Lượt xem :" +stories.get(position).getStoryViews().toString());
+        holder.tvName.setText(stories.get(position).getStoryTitle());
+        holder.tvview.setText("Lượt xem: " +stories.get(position).getStoryViews().toString());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, StoryDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
+                bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
+                bundle.putString("author", stories.get(holder.getAdapterPosition()).getAuthorsName());
+                bundle.putBoolean("check", false);
+                intent.putExtra("story", bundle);
                 mContext.startActivity(intent);
             }
         });
