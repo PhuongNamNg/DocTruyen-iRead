@@ -44,7 +44,7 @@ import java.util.List;
 public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti , tvYeuthich;
     private Toolbar toolbar;
-    private LinearLayout lineaShare, linearCheck, linearAddChapter;
+    private LinearLayout linearFav, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -72,7 +72,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
-        String storyId = bundle.getString("id");
+        String id = bundle.getString("id");
         Boolean check = bundle.getBoolean("check");
 
         if (check == true) {
@@ -87,7 +87,7 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         getStory(title, check);
 
-        tvYeuthich.setOnClickListener(new View.OnClickListener() {
+        linearFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getUser(id);
@@ -107,7 +107,7 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        });
 
         linearCheck.setOnClickListener(v -> {
-            docRef = colRefStory.document(storyId);
+            docRef = colRefStory.document(id);
             docRef.update("storyCheck", true).addOnSuccessListener(unused -> {
                 Toast.makeText(this, "Duyệt truyện thành công", Toast.LENGTH_SHORT).show();
             });
@@ -117,7 +117,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             Intent mIntent = new Intent(this, AddChapterActivity.class);
             Bundle mBundle = new Bundle();
             mBundle.putString("title", title);
-            mBundle.putString("storyId", storyId);
+            mBundle.putString("storyId", id);
             mBundle.putBoolean("check", true);
             mIntent.putExtra("story", mBundle);
             startActivity(mIntent);
@@ -217,14 +217,6 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUserFav(String docID, String favName) {
-        colRefUser.document(docID).update("usersFavorite", favName).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-//                            Toast.makeText(ReadStoryActivity.this, "Thêm truyện " + tvTitle.getText().toString() + " thành công", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     private void getStory(String title, boolean check) {
         colRefStory.whereEqualTo("storyTitle", title).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -331,8 +323,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvRead = findViewById(R.id.tvRead);
         tvNoti = findViewById(R.id.tvNotiListStory);
         reviChapter = findViewById(R.id.revieChapter);
-        lineCheck = findViewById(R.id.linearDuyetTruyen);
-        tvYeuthich= findViewById(R.id.yeuthich);
+        linearFav= findViewById(R.id.linearFav);
         linearAddChapter = findViewById(R.id.linearAddChapter);
     }
 }
