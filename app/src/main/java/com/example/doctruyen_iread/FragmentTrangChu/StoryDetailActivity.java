@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
+import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.Module.Favorite;
 import com.example.doctruyen_iread.Module.Story;
@@ -44,7 +45,7 @@ import java.util.List;
 public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti , tvYeuthich;
     private Toolbar toolbar;
-    private LinearLayout lineaShare, linearCheck, linearAddChapter;
+    private LinearLayout lineFav, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -72,7 +73,7 @@ public class StoryDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
-        String storyId = bundle.getString("id");
+        String id = bundle.getString("id");
         Boolean check = bundle.getBoolean("check");
 
         if (check == true) {
@@ -86,8 +87,8 @@ public class StoryDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
 
         getStory(title, check);
-
-        tvYeuthich.setOnClickListener(new View.OnClickListener() {
+        DaYeuThich(id);
+        lineFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getUser(id);
@@ -107,7 +108,7 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        });
 
         linearCheck.setOnClickListener(v -> {
-            docRef = colRefStory.document(storyId);
+            docRef = colRefStory.document(id);
             docRef.update("storyCheck", true).addOnSuccessListener(unused -> {
                 Toast.makeText(this, "Duyệt truyện thành công", Toast.LENGTH_SHORT).show();
             });
@@ -117,7 +118,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             Intent mIntent = new Intent(this, AddChapterActivity.class);
             Bundle mBundle = new Bundle();
             mBundle.putString("title", title);
-            mBundle.putString("storyId", storyId);
+            mBundle.putString("storyId", id);
             mBundle.putBoolean("check", true);
             mIntent.putExtra("story", mBundle);
             startActivity(mIntent);
@@ -134,6 +135,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     private void createDBFav() {
@@ -322,6 +324,43 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        }
 //    }
 
+    public void DaYeuThich(String id) {
+        colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            UserObj userObj;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docnap : task.getResult()) {
+                    DocumentSnapshot doc = docnap;
+                    userObj = doc.toObject(UserObj.class);
+                }
+                ArrayList<Story> stories = new ArrayList<>();
+                colRefFav.whereEqualTo("favoriteName", userObj.getUsersFavorite()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    Favorite fav = new Favorite();
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot docnap : task.getResult()) {
+                            DocumentSnapshot doc = docnap;
+                            fav = doc.toObject(Favorite.class);
+                        }
+                        ArrayList<String> list = fav.getFavListStoryID();
+                        for (String daYeuthich:list) {
+                            if (daYeuthich.equals(id)){
+                                Toast.makeText(StoryDetailActivity.this, "Đã yêu thích", Toast.LENGTH_SHORT).show();
+                                tvYeuthich.setText("Đã Yêu Thích");
+                                lineFav.setEnabled(false);
+                            }
+
+                        }
+
+                    }
+
+                });
+
+            }
+        });
+    }
     public void findView() {
         toolbar = findViewById(R.id.toolbar);
         tvAuthorsName = findViewById(R.id.tvAuthorsNameRead);
@@ -331,8 +370,9 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvRead = findViewById(R.id.tvRead);
         tvNoti = findViewById(R.id.tvNotiListStory);
         reviChapter = findViewById(R.id.revieChapter);
-        lineCheck = findViewById(R.id.linearDuyetTruyen);
-        tvYeuthich= findViewById(R.id.yeuthich);
+        linearCheck = findViewById(R.id.linearDuyetTruyen);
         linearAddChapter = findViewById(R.id.linearAddChapter);
+        lineFav = findViewById(R.id.linearFav);
+        tvYeuthich = findViewById(R.id.tv_yeuthich);
     }
 }

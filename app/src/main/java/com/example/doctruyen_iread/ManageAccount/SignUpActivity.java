@@ -133,7 +133,6 @@ public class SignUpActivity extends AppCompatActivity {
         user.setUserAge(intTuoi);
         user.setUserToken(300);
         user.setUserID(strUserName);
-        user.setUsersFavorite(strEmail);
 
         colRef.document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
