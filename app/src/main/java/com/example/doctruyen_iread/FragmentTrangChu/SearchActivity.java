@@ -3,6 +3,7 @@ package com.example.doctruyen_iread.FragmentTrangChu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,8 +69,8 @@ public class SearchActivity extends AppCompatActivity {
                     stories.add(mstory);
                 }
             }
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchActivity.this, LinearLayoutManager.VERTICAL, false);
-            recyclerView.setLayoutManager(linearLayoutManager);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+            recyclerView.setLayoutManager(gridLayoutManager);
 
             adapter = new AdapterTrangChu(SearchActivity.this);
             adapter.getData(stories);

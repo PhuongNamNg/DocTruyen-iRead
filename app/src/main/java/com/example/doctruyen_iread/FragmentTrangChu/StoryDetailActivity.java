@@ -1,27 +1,21 @@
 package com.example.doctruyen_iread.FragmentTrangChu;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
-import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.Module.Favorite;
 import com.example.doctruyen_iread.Module.Story;
@@ -41,13 +35,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class StoryDetailActivity extends AppCompatActivity {
     private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti , tvYeuthich;
     private Toolbar toolbar;
-    private LinearLayout lineaShare, lineCheck;
+    private LinearLayout lineaShare, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
@@ -59,11 +56,11 @@ public class StoryDetailActivity extends AppCompatActivity {
 
     private ArrayList<Chapter> listChapter = new ArrayList<Chapter>();
 
-    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-        Intent intent = result.getData();
-        String title = intent.getStringExtra("title");
-        getStory(title, true);
-    });
+//    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+//        Intent intent = result.getData();
+//        String title = intent.getStringExtra("title");
+//        getStory(title, true);
+//    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +72,13 @@ public class StoryDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
-        String id = bundle.getString("id");
+        String storyId = bundle.getString("id");
         Boolean check = bundle.getBoolean("check");
 
         if (check == true) {
-            lineCheck.setVisibility(View.VISIBLE);
+            linearCheck.setVisibility(View.VISIBLE);
         } else if (check == false) {
-            lineCheck.setVisibility(View.GONE);
+            linearCheck.setVisibility(View.GONE);
         }
 
         setSupportActionBar(toolbar);
@@ -109,34 +106,22 @@ public class StoryDetailActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        lineDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(StoryDetailActivity.this);
-//                builder.setTitle("THÔNG BÁO");
-//                builder.setMessage("Bạn chắc chắn muốn xóa?");
-//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        docRef = db.collection("Story").document(id);
-//                        docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(StoryDetailActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(StoryDetailActivity.this, MainActivity.class));
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
-//                });
-//                builder.setNegativeButton("No", null);
-//                builder.show();
-//            }
-//        });
+        linearCheck.setOnClickListener(v -> {
+            docRef = colRefStory.document(storyId);
+            docRef.update("storyCheck", true).addOnSuccessListener(unused -> {
+                Toast.makeText(this, "Duyệt truyện thành công", Toast.LENGTH_SHORT).show();
+            });
+        });
+
+        linearAddChapter.setOnClickListener(v -> {
+            Intent mIntent = new Intent(this, AddChapterActivity.class);
+            Bundle mBundle = new Bundle();
+            mBundle.putString("title", title);
+            mBundle.putString("storyId", storyId);
+            mBundle.putBoolean("check", true);
+            mIntent.putExtra("story", mBundle);
+            startActivity(mIntent);
+        });
 
         tvRead.setOnClickListener(v -> {
             ViewGroup.LayoutParams layoutParams = tvDescript.getLayoutParams();
@@ -164,7 +149,6 @@ public class StoryDetailActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot docSnap : task.getResult()) {
                     DocumentSnapshot doc = docSnap;
                     docID = doc.getId();
-                    Log.e("check", docID);
                 }
                 colRefUser.document(docID).update("usersFavorite",fav.getFavoriteName());
             }
@@ -253,14 +237,15 @@ public class StoryDetailActivity extends AppCompatActivity {
                     tvDatePost.setText(docSnap.getString("storyDatePost"));
                     tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
                     String descript = docSnap.getString("storyDescription");
-                    if (descript.equals("")) {
+                    if (descript.equals("") || descript == null) {
                         tvRead.setVisibility(View.GONE);
                         tvDescript.setText("Truyện này không có miêu tả");
                     } else {
                         tvDescript.setText(descript);
                     }
+                    checkAuthors(authorsName);
                     String storyId = docSnap.getString("storyId");
-                    setRecycleViewChapter(storyId, authorsName);
+                    setRecycleViewChapter(storyId, authorsName, title);
                     updateView(docSnap.getString("storyId"), check);
                 }
             }
@@ -272,14 +257,31 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void setRecycleViewChapter(String id, String authorsName) {
+    private void checkAuthors(String authorsName) {
+        String email = user.getEmail();
+
+        colRefUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            DocumentSnapshot docSnap = list.get(0);
+            if (authorsName.equals(docSnap.getString("userName"))) {
+                linearAddChapter.setVisibility(View.VISIBLE);
+            } else {
+                linearAddChapter.setVisibility(View.GONE);
+            }
+        });
+
+
+
+    }
+
+    private void setRecycleViewChapter(String id, String authorsName, String title) {
         CollectionReference colChapter = db.collection("Story").document(id).collection("Chapter");
 
         colChapter.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
                 Chapter mChapter = docSnap.toObject(Chapter.class);
-                Log.e("checkObj", mChapter.toString());
                 listChapter.add(mChapter);
+//                Collections.sort(listChapter, (o1, o2) -> (Integer) (o1.getChapterIndex() - o2.getChapterIndex()));
             }
 
             if (listChapter.size() > 0) {
@@ -290,6 +292,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                 adapterChapter.getData(listChapter);
                 adapterChapter.getStoryId(id);
                 adapterChapter.getAuthorsName(authorsName);
+                adapterChapter.getTitleName(title);
 
                 reviChapter.setAdapter(adapterChapter);
             } else {
@@ -298,8 +301,6 @@ public class StoryDetailActivity extends AppCompatActivity {
             }
 
         });
-
-        Log.e("CheckList", String.valueOf(listChapter.size()));
     }
 
     private void updateView(String id, boolean check) {
@@ -332,5 +333,6 @@ public class StoryDetailActivity extends AppCompatActivity {
         reviChapter = findViewById(R.id.revieChapter);
         lineCheck = findViewById(R.id.linearDuyetTruyen);
         tvYeuthich= findViewById(R.id.yeuthich);
+        linearAddChapter = findViewById(R.id.linearAddChapter);
     }
 }

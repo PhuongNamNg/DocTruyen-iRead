@@ -72,7 +72,7 @@
             android:ems="10"
             android:fadeScrollbars="true"
             android:gravity="center_horizontal|top"
-            android:hint="Nhập Miêu Tả Truyện"
+            android:hint="Nhập Mô Tả Truyện"
             android:textColorHint="@color/content_white"
             android:inputType="textMultiLine|textLongMessage"
             android:scrollbars="vertical"

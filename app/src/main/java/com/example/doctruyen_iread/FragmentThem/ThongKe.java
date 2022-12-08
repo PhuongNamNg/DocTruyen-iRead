@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctruyen_iread.Adapter.AdapterThongKe;
+import com.example.doctruyen_iread.Adapter.AdapterTrangChu;
 import com.example.doctruyen_iread.MainActivity;
 import com.example.doctruyen_iread.Module.Story;
 import  com.example.doctruyen_iread.R;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ThongKe extends AppCompatActivity {
     Toolbar toolbar ;
@@ -51,27 +53,20 @@ public class ThongKe extends AppCompatActivity {
         if (stories.size() > 0)
             stories.clear();
 
-        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    DocumentSnapshot doc = document;
-                    Story story = doc.toObject(Story.class);
-                    stories.add(story);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ThongKe.this, LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(linearLayoutManager);
-
-                    adapter.getData(stories);
-                    recyclerView.setAdapter(adapter);
+        colRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            for (DocumentSnapshot docSnap : list) {
+                if (docSnap.getBoolean("storyCheck") == true) {
+                    Story mstory = docSnap.toObject(Story.class);
+                    stories.add(mstory);
                 }
             }
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ThongKe.this, LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(linearLayoutManager);
 
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ThongKe.this, "Lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
+            adapter.getData(stories);
+            recyclerView.setAdapter(adapter);
+        }).addOnFailureListener(e -> Toast.makeText(ThongKe.this, "Lỗi", Toast.LENGTH_SHORT).show());
     }
 
 }

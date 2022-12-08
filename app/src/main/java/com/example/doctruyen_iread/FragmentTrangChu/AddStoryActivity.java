@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
@@ -26,7 +25,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -129,9 +127,10 @@ public class AddStoryActivity extends AppCompatActivity {
                     mStory.setStoryDatePost(storyDatePost);
                     colStory.document(id).set(mStory).addOnSuccessListener(unused -> {
                         Toast.makeText(AddStoryActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddStoryActivity.this, AddStoryActivityNext.class);
+                        Intent intent = new Intent(AddStoryActivity.this, AddChapterActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("storyId",mStory.getStoryId());
+                        bundle.putBoolean("check", false);
                         intent.putExtra("story", bundle);
                         startActivity(intent);
 //                        startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
@@ -145,7 +144,7 @@ public class AddStoryActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddStoryActivity.this, MainActivity.class));
+                finish();
             }
         });
 

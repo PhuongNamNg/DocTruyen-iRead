@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".FragmentTrangChu.AddStoryActivityNext">
+    tools:context=".FragmentTrangChu.AddChapterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +25,28 @@
             android:layout_margin="8dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="Tên/Tiêu đề Chapter"
+            android:hint="Tên/Tiêu đề Chương"
             android:inputType="textPersonName"
             android:textColor="@color/content_white"
             android:textColorHint="@color/content_white"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etChapterIndex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:gravity="center_horizontal|top"
+            android:hint="Chương này là chương thứ mấy?"
+            android:inputType="textMultiLine|textLongMessage"
+            android:maxHeight="200dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etChapterDescription"
@@ -41,7 +57,7 @@
             android:ems="10"
             android:fadeScrollbars="true"
             android:gravity="center_horizontal|top"
-            android:hint="Nhập Miêu Tả"
+            android:hint="Nhập Mô Tả"
             android:inputType="textMultiLine|textLongMessage"
             android:scrollbars="vertical"
             android:textColor="@color/content_white"

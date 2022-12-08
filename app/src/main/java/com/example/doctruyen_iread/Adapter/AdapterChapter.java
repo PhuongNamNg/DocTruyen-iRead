@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     Context mContext;
     ArrayList<Chapter> listChapter = new ArrayList<>();
-    String storyId, authorsName;
+    String storyId, authorsName, storyTitle;
 
     public AdapterChapter(Context mContext) {
         this.mContext = mContext;
@@ -38,6 +38,10 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
     public void getAuthorsName(String authorsName) {this.authorsName = authorsName;}
 
+    public void getTitleName(String storyTitle) {
+        this.storyTitle = storyTitle;
+    }
+
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,7 +51,7 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.tvTitleChapter.setText("Chapter " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
+        holder.tvTitleChapter.setText("Chương " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
         String chapterId = listChapter.get(position).getChapterId();
         holder.mCardView.setOnClickListener(v -> {
             Intent mIntent = new Intent(mContext, ReadChapterActivity.class);
@@ -55,6 +59,7 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
             mBundle.putString("chapterId", chapterId);
             mBundle.putString("storyId", storyId);
             mBundle.putString("authorsName", authorsName);
+            mBundle.putString("storyTitle", storyTitle);
             mIntent.putExtra("chapter", mBundle);
             mContext.startActivity(mIntent);
         });
@@ -64,6 +69,8 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
     public int getItemCount() {
         return listChapter.size();
     }
+
+
 
     public class Holder extends RecyclerView.ViewHolder {
         private TextView tvTitleChapter;

@@ -119,51 +119,46 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/linearShare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="@drawable/round_border_2"
-                    android:backgroundTint="@color/half_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageButton
-                        android:layout_width="40dp"
-                        android:layout_height="35dp"
-                        android:backgroundTint="#00000000"
-                        android:scaleType="fitXY"
-                        app:srcCompat="?attr/actionModeShareDrawable"
-                        app:tint="#e3e3e3" />
-
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/linearAddChapter"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:text="Chia Sẻ"
-                        android:textColor="#e3e3e3"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/round_border_2"
+                        android:backgroundTint="@color/half_black"
+                        android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/linearFav"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="4dp"
-                    android:background="@drawable/round_border_2"
-                    android:backgroundTint="@color/half_black"
-                    android:orientation="horizontal">
+                        <ImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="#00000000"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@android:drawable/ic_input_add"
+                            app:tint="#e3e3e3" />
 
-                    <ImageButton
-                        android:id="@+id/imbFav"
-                        android:layout_width="40dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:text="Thêm Chapter"
+                            android:textColor="#e3e3e3"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearShare"
+                        android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:backgroundTint="#00000000"
                         android:scaleType="fitXY"
@@ -172,70 +167,115 @@
 
                     <TextView
                         android:id="@+id/yeuthich"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/round_border_2"
+                        android:backgroundTint="@color/half_black"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="#00000000"
+                            android:scaleType="fitXY"
+                            app:srcCompat="?attr/actionModeShareDrawable"
+                            app:tint="#e3e3e3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:text="Chia Sẻ"
+                            android:textColor="#e3e3e3"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearFav"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:text="Yêu Thích"
-                        android:textColor="#e3e3e3"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearDuyetTruyen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@drawable/round_border_2"
-                    android:backgroundTint="@color/half_black"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:layout_width="40dp"
                         android:layout_height="35dp"
-                        android:backgroundTint="#00000000"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@android:drawable/checkbox_on_background" />
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/round_border_2"
+                        android:backgroundTint="@color/half_black"
+                        android:orientation="horizontal">
 
-                    <TextView
+                        <ImageButton
+                            android:id="@+id/imbFav"
+                            android:layout_width="40dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="#00000000"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/yeuthich"
+                            app:tint="#e3e3e3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:text="Yêu Thích"
+                            android:textColor="#e3e3e3"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearDuyetTruyen"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:text="Duyệt"
-                        android:textColor="#e3e3e3"
-                        android:textSize="15sp" />
+                        android:layout_height="35dp"
+                        android:background="@drawable/round_border_2"
+                        android:backgroundTint="@color/half_black"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:layout_width="40dp"
+                            android:layout_height="35dp"
+                            android:backgroundTint="#00000000"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@android:drawable/checkbox_on_background" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="10dp"
+                            android:text="Duyệt"
+                            android:textColor="#e3e3e3"
+                            android:textSize="15sp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </HorizontalScrollView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/round_border_4"
-                android:padding="8dp"
                 android:orientation="vertical"
-                android:layout_marginTop="8dp">
+                android:padding="8dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Miêu Tả"
+                    android:layout_marginBottom="8dp"
+                    android:text="Mô Tả"
                     android:textColor="@color/content_white"
-                    android:textSize="16dp"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="16dp" />
 
-                    <TextView
-                        android:id="@+id/tvStoryDescript"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:textColor="@color/content_white"
-                        android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/tvStoryDescript"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="@color/content_white"
+                    android:textSize="12dp" />
 
-                    <TextView
-                        android:id="@+id/tvRead"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Đọc Tiếp"
-                        android:textColor="@color/yellow"
-                        android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/tvRead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Đọc Tiếp"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow" />
 
             </LinearLayout>
 
@@ -243,19 +283,17 @@
                 android:id="@+id/tvNotiListStory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Danh Sách Truyện:"
-                android:textColor="@color/yellow"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="5dp"
-                />
+                android:layout_marginTop="8dp"
+                android:text="Danh Sách Chương:"
+                android:textColor="@color/yellow"
+                android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/revieChapter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

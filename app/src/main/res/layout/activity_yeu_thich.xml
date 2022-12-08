@@ -12,6 +12,7 @@
         android:layout_height="53dp">
 
         <androidx.appcompat.widget.Toolbar
+            android:background="@color/yellow"
             android:id="@+id/toobar_ve"
             android:layout_width="wrap_content"
             android:layout_height="50dp" />
