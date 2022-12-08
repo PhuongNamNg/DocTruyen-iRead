@@ -40,13 +40,19 @@ public class SignUpOneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String txtTen = txtName.getText().toString().trim();
-                Integer txttuoi = Integer.valueOf(txtTuoi.getText().toString().trim());
-                Intent intent = new Intent(SignUpOneActivity.this,SignUpActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("txtTen",txtTen);
-                bundle.putInt("txtTuoi",txttuoi);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                String txttuoi =  txtTuoi.getText().toString().trim();
+                if (txtTen.isEmpty() || txttuoi.isEmpty()) {
+                    Toast.makeText(SignUpOneActivity.this, "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else if (Integer.valueOf(txttuoi) < 1){
+                    Toast.makeText(SignUpOneActivity.this, "Tuổi không nhỏ hơn 1", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(SignUpOneActivity.this,SignUpActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("txtTen",txtTen);
+                    bundle.putInt("txtTuoi",Integer.valueOf(txttuoi));
+                    intent.putExtra("bundle",bundle);
+                    startActivity(intent);
+                }
             }
         });
         btncancel.setOnClickListener(new View.OnClickListener() {

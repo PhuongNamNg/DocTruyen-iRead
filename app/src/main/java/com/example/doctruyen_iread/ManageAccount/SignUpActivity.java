@@ -26,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class SignUpActivity extends AppCompatActivity {
     private EditText edtEmail,edtPassword,edtcheckpass, edtUserName, edtTuoi;
     private Button btnSignUp;
@@ -73,7 +76,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (strEmail.isEmpty() || strPassword.isEmpty() || strUserName.isEmpty() || intTuoi.toString().isEmpty()) {
             Toast.makeText(this, "Không được để trống", Toast.LENGTH_SHORT).show();
-
         }
         else if(strPassword.length()<6){
             Toast.makeText(this, "Mật khẩu phải trên 6 kí tự", Toast.LENGTH_SHORT).show();
@@ -132,10 +134,13 @@ public class SignUpActivity extends AppCompatActivity {
         user.setUserName(strUserName);
         user.setUserAge(intTuoi);
         user.setUserToken(300);
-        user.setUserID(strUserName);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy");
+        String datePost = dateFormat2.format(Calendar.getInstance().getTime());
+        String userID = strUserName + datePost;
+        user.setUserID(userID);
         user.setUsersFavorite(strEmail);
 
-        colRef.document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        colRef.document(userID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.i("Check add user", "Thành Công");

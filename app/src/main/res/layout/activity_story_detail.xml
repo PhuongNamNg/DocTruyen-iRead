@@ -108,6 +108,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/tvtheodoi"
                     android:layout_width="75dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
