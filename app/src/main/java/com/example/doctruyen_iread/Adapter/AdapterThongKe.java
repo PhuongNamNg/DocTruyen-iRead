@@ -50,7 +50,10 @@ public class AdapterThongKe extends RecyclerView.Adapter<AdapterThongKe.Holder> 
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, StoryDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("chapter", stories.get(holder.getAdapterPosition()).getStoryTitle());
+                bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
+                bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
+                bundle.putString("author", stories.get(holder.getAdapterPosition()).getAuthorsName());
+                bundle.putBoolean("check", false);
                 intent.putExtra("story", bundle);
                 mContext.startActivity(intent);
             }
