@@ -41,8 +41,9 @@ public class ThongKe extends AppCompatActivity {
         setContentView(R.layout.activity_thong_ke);
 
         toolbar = findViewById(R.id.toobar_ve);
-
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Thống kê");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.rvThongKe);

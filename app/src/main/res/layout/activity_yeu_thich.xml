@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -9,13 +10,13 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp">
-
+        android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
-            android:background="@color/yellow"
             android:id="@+id/toobar_ve"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            app:title="Yêu Thích"
+            android:background="@color/yellow" />
 
     </com.google.android.material.appbar.AppBarLayout>
     <TextView
