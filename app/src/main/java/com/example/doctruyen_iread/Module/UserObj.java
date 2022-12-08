@@ -9,17 +9,19 @@ public class UserObj {
     private Integer userAge;
     private String usersFavorite;
     private Integer userToken;
+    private ArrayList<String> userFollow;
 
     public UserObj() {}
 
 
-    public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken) {
+    public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken, ArrayList<String> userFollow) {
         this.userID = userID;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userAge = userAge;
         this.usersFavorite = usersFavorite;
         this.userToken = userToken;
+        this.userFollow = userFollow;
     }
 
     public String getUserID() {
@@ -70,4 +72,11 @@ public class UserObj {
         this.userToken = userToken;
     }
 
+    public ArrayList<String> getUserFollow() {
+        return userFollow;
+    }
+
+    public void setUserFollow(ArrayList<String> userFollow) {
+        this.userFollow = userFollow;
+    }
 }
