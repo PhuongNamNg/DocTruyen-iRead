@@ -138,7 +138,6 @@ public class SignUpActivity extends AppCompatActivity {
         String datePost = dateFormat2.format(Calendar.getInstance().getTime());
         String userID = strUserName + datePost;
         user.setUserID(userID);
-        user.setUsersFavorite(strEmail);
 
         colRef.document(userID).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

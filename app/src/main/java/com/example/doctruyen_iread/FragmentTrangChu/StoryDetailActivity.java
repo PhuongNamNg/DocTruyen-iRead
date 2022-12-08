@@ -181,14 +181,15 @@ public class StoryDetailActivity extends AppCompatActivity {
                     // lay thong tin nguoi dung
                 }
                 ArrayList<String> theodoi = user.getUserFollow();
-                Log.e("user",String.valueOf(theodoi));
-                for(String follow : theodoi) {
-                    if (follow.equals(author)){
-                        tvtheodoi.setText("Đã Theo Dõi");
-                        tvtheodoi.setBackgroundResource(R.drawable.round_canhan);
-                        ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
-                        layoutParams.width = layoutParams.WRAP_CONTENT;
-                        tvtheodoi.setLayoutParams(layoutParams);
+                if (theodoi != null){
+                    for(String follow : theodoi) {
+                        if (follow.equals(author)){
+                            tvtheodoi.setText("Đã Theo Dõi");
+                            tvtheodoi.setBackgroundResource(R.drawable.round_canhan);
+                            ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
+                            layoutParams.width = layoutParams.WRAP_CONTENT;
+                            tvtheodoi.setLayoutParams(layoutParams);
+                        }
                     }
                 }
             }
