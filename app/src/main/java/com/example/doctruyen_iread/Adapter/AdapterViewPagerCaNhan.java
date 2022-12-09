@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.doctruyen_iread.FragmentCaNhan.EditProfileFragment;
-import com.example.doctruyen_iread.FragmentCaNhan.HistoryFragment;
+import com.example.doctruyen_iread.FragmentCaNhan.YeuThichFragment;
 import com.example.doctruyen_iread.FragmentCaNhan.YourStoryFragment;
 
 public class AdapterViewPagerCaNhan extends FragmentStateAdapter {
@@ -23,7 +23,7 @@ public class AdapterViewPagerCaNhan extends FragmentStateAdapter {
             case 1:
                 return new EditProfileFragment();
             case 2:
-                return new HistoryFragment();
+                return new YeuThichFragment();
             default:
                 return new YourStoryFragment();
         }

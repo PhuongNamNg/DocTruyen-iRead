@@ -9,18 +9,20 @@ public class UserObj {
     private Integer userAge;
     private String usersFavorite;
     private Integer userToken;
+    private Integer userFollowed;
     private ArrayList<String> userFollow;
 
     public UserObj() {}
 
 
-    public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken, ArrayList<String> userFollow) {
+    public UserObj(String userID, String userEmail, String userName, Integer userAge, String usersFavorite, Integer userToken, Integer userFollowed, ArrayList<String> userFollow) {
         this.userID = userID;
         this.userEmail = userEmail;
         this.userName = userName;
         this.userAge = userAge;
         this.usersFavorite = usersFavorite;
         this.userToken = userToken;
+        this.userFollowed = userFollowed;
         this.userFollow = userFollow;
     }
 
@@ -78,5 +80,13 @@ public class UserObj {
 
     public void setUserFollow(ArrayList<String> userFollow) {
         this.userFollow = userFollow;
+    }
+
+    public Integer getUserFollowed() {
+        return userFollowed;
+    }
+
+    public void setUserFollowed(Integer userFollowed) {
+        this.userFollowed = userFollowed;
     }
 }

@@ -15,38 +15,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
 import com.example.doctruyen_iread.Module.Story;
-import com.example.doctruyen_iread.Module.TheLoai;
 import com.example.doctruyen_iread.R;
-import com.google.firebase.firestore.CollectionReference;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
 public class AdapterTruyenTheLoai extends RecyclerView.Adapter<AdapterTruyenTheLoai.Holder> {
-    Context mcontext;
+    Context mContext;
     ArrayList<Story> stories = new ArrayList<>();
-    String storyId;
-    public AdapterTruyenTheLoai(Context mcontext) {
-        this.mcontext = mcontext;
+
+    public AdapterTruyenTheLoai(Context mContext) {
+        this.mContext = mContext;
     }
 
-    public AdapterTruyenTheLoai() {
-
-    }
-
-    public void setData(ArrayList<Story> stories){
+    public void setData(ArrayList<Story> stories) {
         this.stories = stories;
         notifyDataSetChanged();
     }
-    public void getStoryId(String storyId) {
-        this.storyId = storyId;
-    }
+
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_story,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_story, parent, false);
         return new Holder(view);
     }
 
@@ -58,12 +48,16 @@ public class AdapterTruyenTheLoai extends RecyclerView.Adapter<AdapterTruyenTheL
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mcontext, StoryDetailActivity.class);
-                mcontext.startActivity(intent);
+                Intent intent = new Intent(mContext, StoryDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", stories.get(holder.getAdapterPosition()).getStoryTitle());
+                bundle.putString("id", stories.get(holder.getAdapterPosition()).getStoryId());
+                bundle.putString("author", stories.get(holder.getAdapterPosition()).getAuthorsName());
+                bundle.putBoolean("check", false);
+                intent.putExtra("story", bundle);
+                mContext.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
@@ -73,8 +67,9 @@ public class AdapterTruyenTheLoai extends RecyclerView.Adapter<AdapterTruyenTheL
 
     public class Holder extends RecyclerView.ViewHolder {
         private final CardView cardView;
-        private  final ImageView img;
-        private  final TextView name;
+        private final ImageView img;
+        private final TextView name;
+
         public Holder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imvItem);
