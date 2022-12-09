@@ -50,7 +50,7 @@
             android:id="@+id/btnEditStoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:text="Sửa"
             android:textColor="@color/light_green"
             android:textSize="24sp" />
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:text="Hủy"
             android:textColor="@color/light_green"
             android:textSize="24sp" />

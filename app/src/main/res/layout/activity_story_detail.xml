@@ -109,15 +109,13 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-
-
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/tvtheodoi"
+                    android:id="@+id/tvTheoDoi"
                     android:layout_width="75dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -145,7 +143,7 @@
                         android:layout_height="35dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/yellow"
+                        android:backgroundTint="@color/dark_green"
                         android:orientation="horizontal">
 
                         <ImageButton
@@ -172,7 +170,7 @@
                         android:layout_height="35dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/yellow"
+                        android:backgroundTint="@color/dark_green"
                         android:orientation="horizontal">
 
                         <ImageButton
@@ -200,7 +198,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/yellow"
+                        android:backgroundTint="@color/dark_green"
                         android:orientation="horizontal">
 
                         <ImageButton

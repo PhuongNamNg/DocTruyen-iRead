@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
-import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.Module.Chapter;
 import com.example.doctruyen_iread.Module.Favorite;
 import com.example.doctruyen_iread.Module.Story;
@@ -36,10 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class StoryDetailActivity extends AppCompatActivity {
@@ -50,7 +46,6 @@ public class StoryDetailActivity extends AppCompatActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
     private final CollectionReference colRefStory = db.collection("Story");
-    private final FirebaseUser story = FirebaseAuth.getInstance().getCurrentUser();
     private final CollectionReference colRefFav = db.collection("Favorite");
     private final CollectionReference colRefUser = db.collection("User");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -123,7 +118,6 @@ public class StoryDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getUser(id);
-
             }
         });
 //        imbEdit.setOnClickListener(new View.OnClickListener() {
@@ -429,6 +423,6 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvYeuthich = findViewById(R.id.tv_yeuthich);
         linearAddChapter = findViewById(R.id.linearAddChapter);
         linearCheck = findViewById(R.id.linearDuyetTruyen);
-        tvtheodoi = findViewById(R.id.tvtheodoi);
+        tvtheodoi = findViewById(R.id.tvTheoDoi);
     }
 }

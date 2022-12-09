@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="@color/yellow"
+        android:backgroundTint="@color/dark_green"
         android:text="Quay Lại"
         android:textColor="@color/content_white"
         android:textSize="24sp"

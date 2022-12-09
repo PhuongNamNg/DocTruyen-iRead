@@ -37,18 +37,18 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Tên/Tiêu Đề Truyện"
-            android:textColorHint="@color/light_green"
+            android:textColorHint="@color/content_white"
             android:inputType="textPersonName"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@color/light_green" />
+            android:textColor="@color/content_white" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:endIconTint="@color/content_white"
+            app:endIconTint="@color/light_green"
             android:hint="Chọn Thể Loại"
             app:boxStrokeWidth="1dp"
             app:hintTextColor="@color/fairly_green"
@@ -93,10 +93,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/dark_green"
                 android:gravity="center"
                 android:text="Tiếp tục"
                 android:textSize="20sp"
+                android:textColor="@color/light_green"
                 />
 
             <Button
@@ -104,11 +105,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/dark_green"
                 android:gravity="center"
                 android:text="Quay Lại"
                 android:textSize="20sp"
-                android:textColor="@color/content_white"/>
+                android:textColor="@color/light_green"/>
         </LinearLayout>
     </LinearLayout>
 

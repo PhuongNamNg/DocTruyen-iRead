@@ -26,9 +26,9 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Tên/Tiêu đề Chương"
-            android:inputType="textPersonName"
-            android:textColor="@color/content_white"
-            android:textColorHint="@color/content_white"
+            android:inputType="number"
+            android:textColor="@color/light_green"
+            android:textColorHint="@color/light_green"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -94,20 +94,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/dark_green"
                 android:gravity="center"
                 android:text="Lưu"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/light_green"/>
 
             <Button
                 android:id="@+id/btnChapterCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/dark_green"
                 android:gravity="center"
                 android:text="Hủy"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/light_green"/>
 
         </LinearLayout>
     </LinearLayout>

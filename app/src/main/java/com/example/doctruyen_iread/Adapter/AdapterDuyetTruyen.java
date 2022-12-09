@@ -56,7 +56,7 @@ public class AdapterDuyetTruyen extends RecyclerView.Adapter<AdapterDuyetTruyen.
             holder.status.setTextColor(ContextCompat.getColor(mContext, R.color.red));
         } else if (check == true) {
             holder.status.setText("Đã Duyệt");
-            holder.status.setTextColor(ContextCompat.getColor(mContext, R.color.yellow));
+            holder.status.setTextColor(ContextCompat.getColor(mContext, R.color.light_green));
         }
 
         holder.cardView.setOnClickListener(v -> {
