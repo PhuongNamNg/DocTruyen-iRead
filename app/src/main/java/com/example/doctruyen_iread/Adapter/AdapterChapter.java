@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctruyen_iread.FragmentTrangChu.ReadChapterActivity;
@@ -51,7 +52,9 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.tvTitleChapter.setText("Chương " + (position + 1) + ": " + listChapter.get(position).getChapterTitle());
+        holder.tvIndexChapter.setText(" " + (position + 1) + ": ");
+        holder.tvTitleChapter.setText(listChapter.get(position).getChapterTitle());
+        holder.tvDescripChapter.setText(listChapter.get(position).getChapterDescription());
         String chapterId = listChapter.get(position).getChapterId();
         holder.mCardView.setOnClickListener(v -> {
             Intent mIntent = new Intent(mContext, ReadChapterActivity.class);
@@ -73,12 +76,16 @@ public class AdapterChapter extends RecyclerView.Adapter<AdapterChapter.Holder>{
 
 
     public class Holder extends RecyclerView.ViewHolder {
-        private TextView tvTitleChapter;
-        private CardView mCardView;
+        private final TextView tvTitleChapter;
+        private final TextView tvDescripChapter;
+        private final TextView tvIndexChapter;
+        private final CardView mCardView;
         public Holder(@NonNull View itemView) {
             super(itemView);
             tvTitleChapter = itemView.findViewById(R.id.tvTitleChapter);
+            tvDescripChapter = itemView.findViewById(R.id.tvDescripChapter);
             mCardView= itemView.findViewById(R.id.cardView);
+            tvIndexChapter = itemView.findViewById(R.id.tvIndexChapter);
         }
     }
 }

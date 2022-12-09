@@ -1,13 +1,10 @@
 package com.example.doctruyen_iread.FragmentTrangChu;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,20 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doctruyen_iread.Module.TheLoai;
 import com.example.doctruyen_iread.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class EditStoryActivity extends AppCompatActivity {
     private TextView tvEditStoryTitle, tvEditStoryDescript;
@@ -75,7 +64,7 @@ public class EditStoryActivity extends AppCompatActivity {
         dialog.setCancelable(false);
 
         linearEditName.setOnClickListener(v -> {
-            View mView2 = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_sheet_1, null);
+            View mView2 = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_sheet_story_title, null);
             BottomSheetDialog sheetDialog = new BottomSheetDialog(this);
             sheetDialog.setContentView(mView2);
             btnEditStoryName = mView2.findViewById(R.id.btnEditStoryName);
@@ -102,7 +91,7 @@ public class EditStoryActivity extends AppCompatActivity {
         });
 
         linearEditDescrpit.setOnClickListener(v -> {
-            View mView2 = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_sheet_2, null);
+            View mView2 = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_sheet_story_descript, null);
             BottomSheetDialog sheetDialog = new BottomSheetDialog(this);
             sheetDialog.setContentView(mView2);
             btnEditStoryDescript = mView2.findViewById(R.id.btnEditStoryDescript);

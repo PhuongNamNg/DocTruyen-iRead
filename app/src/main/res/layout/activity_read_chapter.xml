@@ -35,7 +35,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/half_black"
+            android:backgroundTint="@color/yellow"
             android:orientation="horizontal">
 
             <ImageButton
@@ -44,7 +44,7 @@
                 android:backgroundTint="#00000000"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/bin"
-                app:tint="#e3e3e3" />
+                app:tint="@color/light_green" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/half_black"
+            android:backgroundTint="@color/yellow"
             android:orientation="horizontal">
 
             <ImageButton
@@ -71,13 +71,13 @@
                 android:backgroundTint="#00000000"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/button_onoff_indicator_off"
-                app:tint="#e3e3e3" />
+                app:tint="@color/content_white" />
             <EditText
                 android:id="@+id/etTextSize"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:background="@color/yellow"
-                android:textColor="@color/content_white"
+                android:textColor="@color/light_green"
                 android:textAlignment="center"
                 />
 
@@ -86,7 +86,6 @@
                 android:layout_width="40dp"
                 android:layout_height="35dp"
                 android:backgroundTint="#00000000"
-                android:scaleType="fitXY"
                 android:src="@android:drawable/ic_input_add"
                 app:tint="#e3e3e3" />
         </LinearLayout>
@@ -97,7 +96,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/half_black"
+            android:backgroundTint="@color/yellow"
             android:orientation="horizontal">
 
             <ImageButton
@@ -106,7 +105,7 @@
                 android:backgroundTint="#00000000"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/pencil"
-                app:tint="#e3e3e3" />
+                app:tint="@color/light_green" />
 
             <TextView
                 android:layout_width="wrap_content"

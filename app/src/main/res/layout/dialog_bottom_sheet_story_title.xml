@@ -10,9 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Sửa Tên Truyện"
         android:textAlignment="center"
-        android:textColor="@color/yellow"
-        android:textSize="32sp"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="@color/light_green"
+        android:textSize="32sp" />
 
     <TextView
         android:id="@+id/tvEditStoryTitle"
@@ -53,7 +52,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/yellow"
             android:text="Sửa"
-            android:textColor="@color/black"
+            android:textColor="@color/light_green"
             android:textSize="24sp" />
 
         <Button
@@ -63,7 +62,7 @@
             android:layout_marginLeft="50dp"
             android:backgroundTint="@color/yellow"
             android:text="Hủy"
-            android:textColor="@color/black"
+            android:textColor="@color/light_green"
             android:textSize="24sp" />
     </LinearLayout>
 </LinearLayout>

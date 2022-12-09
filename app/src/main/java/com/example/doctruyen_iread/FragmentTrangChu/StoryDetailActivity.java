@@ -160,6 +160,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             if (layoutParams.height == layoutParams.WRAP_CONTENT) {
                 layoutParams.height = 75;
                 tvDescript.setLayoutParams(layoutParams);
+
             } else {
                 layoutParams.height = layoutParams.WRAP_CONTENT;
                 tvDescript.setLayoutParams(layoutParams);
@@ -354,7 +355,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                 reviChapter.setAdapter(adapterChapter);
             } else {
                 tvNoti.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                tvNoti.setText("Chưa có truyện nào :(");
+                tvNoti.setText("Chưa có chương nào :(");
             }
 
         });

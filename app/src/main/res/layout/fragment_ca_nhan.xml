@@ -11,39 +11,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:src="@drawable/anh1"></de.hdodenhof.circleimageview.CircleImageView>
 
             <TextView
                 android:id="@+id/tvNameUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:text="Tên của bạn"
-                android:textColor="@color/yellow"
+                android:textColor="@color/light_green"
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_textview"
                 android:orientation="vertical">
@@ -61,13 +64,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Truyện"
-                    android:textColor="@color/content_white"
-                    android:textSize="14sp" />
+                    android:text="Số Truyện"
+                    android:textColor="@color/light_green"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="110dp"
+                android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_textview"
                 android:orientation="vertical">
@@ -85,12 +88,12 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Người Theo Dõi"
-                    android:textColor="@color/content_white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/light_green"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="110dp"
+                android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="4dp">
@@ -108,8 +111,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Đang Theo Dõi"
-                    android:textColor="@color/content_white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/light_green"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -123,10 +126,10 @@
         android:background="@android:color/transparent"
         android:textAlignment="center"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorColor="@color/yellow"
+        app:tabIndicatorColor="@color/light_green"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/content_white"
-        app:tabTextColor="@color/semi_black"></com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="@color/fairly_green"></com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpCaNhan"

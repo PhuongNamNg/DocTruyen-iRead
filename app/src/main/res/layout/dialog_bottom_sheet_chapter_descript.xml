@@ -13,12 +13,11 @@
             android:layout_height="wrap_content"
             android:text="Sửa Miêu Tả"
             android:textAlignment="center"
-            android:textColor="@color/yellow"
-            android:textSize="32sp"
-            android:layout_marginBottom="16dp"/>
+            android:textColor="@color/light_green"
+            android:textSize="32sp"/>
 
         <TextView
-            android:id="@+id/tvEditStoryDescript"
+            android:id="@+id/tvEditChapterDescript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -30,7 +29,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/etEditStoryNewDescript"
+            android:id="@+id/etEditChapterNewDescript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -53,22 +52,22 @@
             android:padding="8dp">
 
             <Button
-                android:id="@+id/btnEditStoryDescript"
+                android:id="@+id/btnEditChapterDescript"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/yellow"
                 android:text="Sửa"
-                android:textColor="@color/black"
+                android:textColor="@color/light_green"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btnHuyEditStoryDescript"
+                android:id="@+id/btnHuyEditChapterDescript"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:backgroundTint="@color/yellow"
                 android:text="Hủy"
-                android:textColor="@color/black"
+                android:textColor="@color/light_green"
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>

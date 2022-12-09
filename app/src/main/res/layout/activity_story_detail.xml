@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="450dp"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-            app:contentScrim="@color/yellow"
+            app:contentScrim="@color/black"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="Lượt xem"
-                    android:textColor="@color/semi_black"
+                    android:textColor="@color/fairly_green"
                     android:textSize="13sp" />
 
                 <TextView
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Ngày đăng"
-                    android:textColor="@color/semi_black"
+                    android:textColor="@color/fairly_green"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -92,15 +92,24 @@
                     android:layout_height="50dp"
                     android:src="@drawable/anh1" />
 
-                <TextView
-                    android:id="@+id/tvAuthorsNameRead"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginStart="8dp"
-                    android:text="Tên Tác Giả"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:background="@drawable/round_border_3"
+                    android:layout_gravity="center"
+                    android:padding="8dp">
+                    <TextView
+                        android:id="@+id/tvAuthorsNameRead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Tên Tác Giả"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
 
                 <View
                     android:layout_width="0dp"
@@ -136,7 +145,7 @@
                         android:layout_height="35dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/half_black"
+                        android:backgroundTint="@color/yellow"
                         android:orientation="horizontal">
 
                         <ImageButton
@@ -145,7 +154,7 @@
                             android:backgroundTint="#00000000"
                             android:scaleType="fitXY"
                             app:srcCompat="@android:drawable/ic_input_add"
-                            app:tint="#e3e3e3" />
+                            app:tint="@color/light_green" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -153,17 +162,17 @@
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
                             android:text="Thêm Chapter"
-                            android:textColor="#e3e3e3"
+                            android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
-
+                    
                     <LinearLayout
                         android:id="@+id/linearFav"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_marginEnd="4dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/half_black"
+                        android:backgroundTint="@color/yellow"
                         android:orientation="horizontal">
 
                         <ImageButton
@@ -173,7 +182,7 @@
                             android:backgroundTint="#00000000"
                             android:scaleType="fitXY"
                             app:srcCompat="@drawable/yeuthich"
-                            app:tint="#e3e3e3" />
+                            app:tint="@color/light_green" />
 
                         <TextView
                             android:id="@+id/tv_yeuthich"
@@ -182,7 +191,7 @@
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
                             android:text="Yêu Thích"
-                            android:textColor="#e3e3e3"
+                            android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -191,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/half_black"
+                        android:backgroundTint="@color/yellow"
                         android:orientation="horizontal">
 
                         <ImageButton
@@ -199,7 +208,8 @@
                             android:layout_height="35dp"
                             android:backgroundTint="#00000000"
                             android:scaleType="fitXY"
-                            app:srcCompat="@android:drawable/checkbox_on_background" />
+                            app:srcCompat="@android:drawable/checkbox_on_background"
+                            app:tint="@color/light_green" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -207,7 +217,7 @@
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
                             android:text="Duyệt"
-                            android:textColor="#e3e3e3"
+                            android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -227,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Mô Tả"
-                    android:textColor="@color/content_white"
+                    android:textColor="@color/light_green"
                     android:textSize="16dp" />
 
                 <TextView
@@ -243,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:text="Đọc Tiếp"
                     android:textAlignment="center"
-                    android:textColor="@color/yellow" />
+                    android:textColor="@color/fairly_green" />
 
             </LinearLayout>
 
@@ -254,7 +264,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="8dp"
                 android:text="Danh Sách Chương:"
-                android:textColor="@color/yellow"
+                android:textColor="@color/fairly_green"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
