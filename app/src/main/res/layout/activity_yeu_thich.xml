@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -11,11 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toobar_ve"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/yellow"
-            android:id="@+id/toobar_ve"
-            />
+            app:title="Yêu Thích"
+            android:background="@color/yellow" />
+
     </com.google.android.material.appbar.AppBarLayout>
     <TextView
         android:id="@+id/tvNameList"
@@ -34,4 +36,12 @@
         android:layout_height="wrap_content" >
 
     </androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/tv_trong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Trống"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="20sp"/>
 </LinearLayout>

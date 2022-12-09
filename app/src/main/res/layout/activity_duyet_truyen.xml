@@ -14,6 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            app:title="Duyệt Truyện"
             android:background="@color/yellow"
             android:id="@+id/toobar_ve"
             />

@@ -16,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterChapter;
+import com.example.doctruyen_iread.FragmentThem.YeuThich;
 import com.example.doctruyen_iread.Module.Chapter;
+import com.example.doctruyen_iread.Module.Favorite;
+import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,16 +43,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StoryDetailActivity extends AppCompatActivity {
-    private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti;
+    private TextView tvContent, tvDescript, tvAuthorsName, tvDatePost, tvView, tvRead, tvNoti, tvYeuthich, tvtheodoi;
     private Toolbar toolbar;
-    private LinearLayout lineaShare, linearCheck, linearAddChapter;
+    private LinearLayout lineFav, linearCheck, linearAddChapter;
     private RecyclerView reviChapter;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docRef;
     private final CollectionReference colRefStory = db.collection("Story");
+    private final FirebaseUser story = FirebaseAuth.getInstance().getCurrentUser();
     private final CollectionReference colRefFav = db.collection("Favorite");
     private final CollectionReference colRefUser = db.collection("User");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     private ArrayList<Chapter> listChapter = new ArrayList<Chapter>();
 
 //    final private ActivityResultLauncher launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -64,10 +69,12 @@ public class StoryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story_detail);
         findView();
 
+
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("story");
         String title = bundle.getString("title");
-        String storyId = bundle.getString("id");
+        String id = bundle.getString("id");
+        String author = bundle.getString("author");
         Boolean check = bundle.getBoolean("check");
 
         if (check == true) {
@@ -81,7 +88,44 @@ public class StoryDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
 
         getStory(title, check);
+        DaYeuThich(id);
 
+        checkFollow(author);
+
+        tvtheodoi.setOnClickListener(v -> {
+            colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                UserObj user;
+
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (QueryDocumentSnapshot docSnap : task.getResult()) {
+                        DocumentSnapshot doc = docSnap;
+                        user = doc.toObject(UserObj.class);
+                        // lay thong tin nguoi dung
+                    }
+                    colRefUser.document(user.getUserID()).update("userFollow", FieldValue.arrayUnion(author)).addOnSuccessListener(unused -> {
+                        tvtheodoi.setText("Đã Theo Dõi");
+                        tvtheodoi.setBackgroundResource(R.drawable.round_canhan);
+                        ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
+                        layoutParams.width = layoutParams.WRAP_CONTENT;
+                        tvtheodoi.setLayoutParams(layoutParams);
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
+        lineFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getUser(id);
+
+            }
+        });
 //        imbEdit.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -95,7 +139,7 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        });
 
         linearCheck.setOnClickListener(v -> {
-            docRef = colRefStory.document(storyId);
+            docRef = colRefStory.document(id);
             docRef.update("storyCheck", true).addOnSuccessListener(unused -> {
                 Toast.makeText(this, "Duyệt truyện thành công", Toast.LENGTH_SHORT).show();
             });
@@ -105,7 +149,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             Intent mIntent = new Intent(this, AddChapterActivity.class);
             Bundle mBundle = new Bundle();
             mBundle.putString("title", title);
-            mBundle.putString("storyId", storyId);
+            mBundle.putString("storyId", id);
             mBundle.putBoolean("check", true);
             mIntent.putExtra("story", mBundle);
             startActivity(mIntent);
@@ -123,72 +167,31 @@ public class StoryDetailActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
-//    private void createDBFav(String docID) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("THÔNG BÁO");
-//        View view = LayoutInflater.from(this).inflate(R.layout.dialog_new_list, null);
-//        EditText etNameList = view.findViewById(R.id.etDiaNameLst);
-//        builder.setView(view);
-//        builder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Favorite fav = new Favorite();
-//                fav.setFavoriteName(etNameList.getText().toString().trim());
-//                fav.setFavListStoryID(listStoryName);
-//                colRefFav.document().set(fav).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        updateFav(etNameList.getText().toString().trim());
-//                        updateUserFav(docID, etNameList.getText().toString().trim());
-//                    }
-//                });
-//
-//            }
-//        });
-//        builder.setNegativeButton("Hủy", null);
-//        builder.show();
-//    }
-
-    public void updateFav(String favName) {
-//        listStoryName.add(tvTitle.getText().toString());
-        colRefFav.whereEqualTo("favoriteName", favName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            String docID;
-
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot docSnap : task.getResult()) {
-                    DocumentSnapshot doc = docSnap;
-                    docID = doc.getId();
-                }
-                colRefFav.document(docID).update("favListStoryID", FieldValue.arrayUnion(getSupportActionBar().getTitle())).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(StoryDetailActivity.this, "Thêm truyện " + getSupportActionBar().getTitle() + " thành công", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-    }
-
-    public void getUser() {
-        Log.e("user", String.valueOf(user));
+    private void checkFollow(String author) {
         colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             UserObj user;
-            String docID;
 
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot docSnap : task.getResult()) {
                     DocumentSnapshot doc = docSnap;
                     user = doc.toObject(UserObj.class);
-                    docID = doc.getId();
+                    // lay thong tin nguoi dung
                 }
-                if (user.getUsersFavorite() == null) {
-//                    createDBFav(docID);
-                } else {
-                    updateFav(user.getUsersFavorite());
+                ArrayList<String> theodoi = user.getUserFollow();
+                if (theodoi != null) {
+                    for (String follow : theodoi) {
+                        if (follow.equals(author)) {
+                            tvtheodoi.setText("Đã Theo Dõi");
+                            tvtheodoi.setBackgroundResource(R.drawable.round_canhan);
+                            ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
+                            layoutParams.width = layoutParams.WRAP_CONTENT;
+                            tvtheodoi.setLayoutParams(layoutParams);
+                        }
+                    }
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -199,14 +202,88 @@ public class StoryDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUserFav(String docID, String favName) {
-        colRefUser.document(docID).update("usersFavorite", favName).addOnSuccessListener(new OnSuccessListener<Void>() {
+    private void createDBFav() {
+        Favorite fav = new Favorite();
+        String id = user.getEmail().toString().trim();
+        fav.setFavoriteName(id);
+
+        colRefUser.whereEqualTo("userEmail", id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            String docID;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docSnap : task.getResult()) {
+                    DocumentSnapshot doc = docSnap;
+                    docID = doc.getId();
+                }
+                colRefUser.document(docID).update("usersFavorite", fav.getFavoriteName());
+            }
+        });
+
+        colRefFav.document().set(fav).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-//                            Toast.makeText(ReadStoryActivity.this, "Thêm truyện " + tvTitle.getText().toString() + " thành công", Toast.LENGTH_SHORT).show();
+                Log.i("", "Them yeu thich");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("", "That bai");
             }
         });
     }
+
+    public void updateFav(String favName, String id) {
+
+        colRefFav.whereEqualTo("favoriteName", favName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {//1
+            String docID;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docSnap : task.getResult()) {
+                    DocumentSnapshot doc = docSnap;
+                    docID = doc.getId();
+                    Log.e("check", docID);
+                }
+                colRefFav.document(docID).update("favListStoryID", FieldValue.arrayUnion(id)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        tvYeuthich.setText("Đã Yêu Thích");
+                        lineFav.setEnabled(false);
+                        Toast.makeText(StoryDetailActivity.this, "Yêu Thích Truyện " + getSupportActionBar().getTitle() + " thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    public void getUser(String id) {
+        Log.e("user", String.valueOf(user));
+        colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            UserObj user;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docSnap : task.getResult()) {
+                    DocumentSnapshot doc = docSnap;
+                    user = doc.toObject(UserObj.class);
+                    // lay thong tin nguoi dung
+                }
+                if (user.getUsersFavorite() == null) {
+                    createDBFav();
+                } else {
+                    updateFav(user.getUsersFavorite().toString(), id);
+
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(StoryDetailActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void getStory(String title, boolean check) {
         colRefStory.whereEqualTo("storyTitle", title).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -251,7 +328,6 @@ public class StoryDetailActivity extends AppCompatActivity {
                 linearAddChapter.setVisibility(View.GONE);
             }
         });
-
 
 
     }
@@ -304,6 +380,42 @@ public class StoryDetailActivity extends AppCompatActivity {
 //        }
 //    }
 
+    public void DaYeuThich(String id) {
+        colRefUser.whereEqualTo("userEmail", user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            UserObj userObj;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot docnap : task.getResult()) {
+                    DocumentSnapshot doc = docnap;
+                    userObj = doc.toObject(UserObj.class);
+                }
+                ArrayList<Story> stories = new ArrayList<>();
+                colRefFav.whereEqualTo("favoriteName", userObj.getUsersFavorite()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    Favorite fav = new Favorite();
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot docnap : task.getResult()) {
+                            DocumentSnapshot doc = docnap;
+                            fav = doc.toObject(Favorite.class);
+                        }
+                        ArrayList<String> list = fav.getFavListStoryID();
+                        if (list != null) {
+                            for (String daYeuthich : list) {
+                                if (daYeuthich.equals(id)) {
+                                    tvYeuthich.setText("Đã Yêu Thích");
+                                    lineFav.setEnabled(false);
+                                }
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+
     public void findView() {
         toolbar = findViewById(R.id.toolbar);
         tvAuthorsName = findViewById(R.id.tvAuthorsNameRead);
@@ -313,7 +425,10 @@ public class StoryDetailActivity extends AppCompatActivity {
         tvRead = findViewById(R.id.tvRead);
         tvNoti = findViewById(R.id.tvNotiListStory);
         reviChapter = findViewById(R.id.revieChapter);
-        linearCheck = findViewById(R.id.linearDuyetTruyen);
+        lineFav = findViewById(R.id.linearFav);
+        tvYeuthich = findViewById(R.id.tv_yeuthich);
         linearAddChapter = findViewById(R.id.linearAddChapter);
+        linearCheck = findViewById(R.id.linearDuyetTruyen);
+        tvtheodoi = findViewById(R.id.tvtheodoi);
     }
 }

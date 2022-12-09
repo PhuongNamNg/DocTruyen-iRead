@@ -117,6 +117,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/tvtheodoi"
                     android:layout_width="75dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -164,34 +165,7 @@
                             android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearShare"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/yellow"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:layout_width="40dp"
-                            android:layout_height="35dp"
-                            android:backgroundTint="#00000000"
-                            android:scaleType="fitXY"
-                            app:srcCompat="?attr/actionModeShareDrawable"
-                            app:tint="@color/light_green" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:text="Chia Sẻ"
-                            android:textColor="@color/content_white"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                    
                     <LinearLayout
                         android:id="@+id/linearFav"
                         android:layout_width="wrap_content"
@@ -211,6 +185,7 @@
                             app:tint="@color/light_green" />
 
                         <TextView
+                            android:id="@+id/tv_yeuthich"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
