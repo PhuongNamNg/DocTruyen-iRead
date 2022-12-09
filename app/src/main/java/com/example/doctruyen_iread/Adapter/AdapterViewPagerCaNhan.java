@@ -21,9 +21,9 @@ public class AdapterViewPagerCaNhan extends FragmentStateAdapter {
             case 0:
                 return new YourStoryFragment();
             case 1:
-                return new EditProfileFragment();
-            case 2:
                 return new YeuThichFragment();
+            case 2:
+                return new EditProfileFragment();
             default:
                 return new YourStoryFragment();
         }

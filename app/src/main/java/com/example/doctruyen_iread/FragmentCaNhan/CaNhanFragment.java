@@ -95,10 +95,10 @@ public class CaNhanFragment extends Fragment {
                     tab.setText("Danh Sách Truyện");
                     break;
                 case 1:
-                    tab.setText("Sửa Thông Tin");
+                    tab.setText("Yêu Thích");
                     break;
                 case 2:
-                    tab.setText("Yêu Thích");
+                    tab.setText("Sửa Thông Tin");
                     break;
             }
         }).attach();

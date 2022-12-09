@@ -61,47 +61,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearYeu_thich"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/round_canhan"
-                android:gravity="center|fill_horizontal"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/yeuthich"
-                    app:tint="@color/light_green"></ImageView>
-
-                <TextView
-                    android:id="@+id/tvYeuThich"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="Yêu Thích"
-                    android:textColor="@color/content_white"
-                    android:textSize="24dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="end">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/arrow"
-                        app:tint="@color/fairly_green"></ImageView>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/linearDoi_mat_khau"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"

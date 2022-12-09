@@ -26,20 +26,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Them extends Fragment {
-    private TextView tvThongKe,tvDangXuat,tvDoiMK,tvYeuThich, tvThemTruyen, tvDuyetTruyen, tvThemTheLoai;
+    private TextView tvThongKe, tvDangXuat, tvDoiMK, tvThemTruyen, tvDuyetTruyen, tvThemTheLoai;
     private EditText etTen, etMieuTa;
     private Button btnThem, btnHuy;
-    private LinearLayout lineThemTruyen, lineThemTheLoai, lineDuyetTruyen, linearThongke,linearYeuthich,linearDoimatkhau,linearDangxuat;
+    private LinearLayout lineThemTruyen, lineThemTheLoai, lineDuyetTruyen, linearThongke, linearDoimatkhau, linearDangxuat, lineaQLTK;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference colTheLoai = db.collection("TheLoai");
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    public Them() {}
-
-    public static Them newInstance(String param1, String param2) {
-        Them fragment = new Them();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +45,6 @@ public class Them extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_them, container, false);
         tvThongKe = view.findViewById(R.id.tvThongKe);
-        tvYeuThich = view.findViewById(R.id.tvYeuThich);
         tvDoiMK = view.findViewById(R.id.tvDoiMK);
         tvDangXuat = view.findViewById(R.id.tvDangXuat);
         tvThemTruyen = view.findViewById(R.id.tvQLTK);
@@ -62,9 +54,9 @@ public class Them extends Fragment {
         lineThemTheLoai = view.findViewById(R.id.lineaThemTheLoai);
         lineThemTruyen = view.findViewById(R.id.lineaQLTK);
         linearThongke = view.findViewById(R.id.linearThong_ke);
-        linearYeuthich = view .findViewById(R.id.linearYeu_thich);
         linearDoimatkhau = view.findViewById(R.id.linearDoi_mat_khau);
-        linearDangxuat= view.findViewById(R.id.linearDang_xuat);
+        linearDangxuat = view.findViewById(R.id.linearDang_xuat);
+        lineaQLTK = view.findViewById(R.id.lineaQLTK);
 
         checkAdminorUser();
 
@@ -74,12 +66,7 @@ public class Them extends Fragment {
                 startActivity(new Intent(getActivity(), ThongKe.class));
             }
         });
-        linearYeuthich.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), YeuThich.class));
-            }
-        });
+
         linearDangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +122,11 @@ public class Them extends Fragment {
             startActivity(new Intent(getContext(), DuyetTruyenActivity.class));
         });
 
-        return  view;
+        lineaQLTK.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), QuanLyTaiKhoanActivity.class));
+        });
+
+        return view;
     }
 
     public void checkAdminorUser() {
@@ -145,10 +136,12 @@ public class Them extends Fragment {
             lineThemTruyen.setVisibility(View.VISIBLE);
             lineThemTheLoai.setVisibility(View.VISIBLE);
             lineDuyetTruyen.setVisibility(View.VISIBLE);
+            lineaQLTK.setVisibility(View.VISIBLE);
         } else {
             lineThemTruyen.setVisibility(View.GONE);
             lineThemTheLoai.setVisibility(View.GONE);
             lineDuyetTruyen.setVisibility(View.GONE);
+            lineaQLTK.setVisibility(View.GONE);
         }
     }
 }

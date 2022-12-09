@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".FragmentThem.YeuThich">
+    tools:context=".FragmentThem.QuanLyTaiKhoanActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toobar_ve"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:title="Yêu Thích"
-            app:titleTextColor="@color/light_green"
-            android:background="@color/dark_green" />
-
+            android:background="@color/dark_green"
+            app:title="Quản Lý Tài Khoản Người Dùng"
+            app:titleTextColor="@color/light_green" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_list"
+        android:id="@+id/rvQLTK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp" />
 
-    </androidx.recyclerview.widget.RecyclerView>
     <TextView
-        android:id="@+id/tv_trong"
+        android:id="@+id/tvTrongQLTK"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Trống"
-        android:textColor="@color/content_white"
-        android:gravity="center"
-        android:textSize="24sp"/>
+        android:layout_height="wrap_content"
+        android:text="Không có người dùng nào"
+        android:textColor="@color/light_green"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
 </LinearLayout>
