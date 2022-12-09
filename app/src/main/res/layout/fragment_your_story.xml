@@ -19,22 +19,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/round_timkiem"
-            android:padding="4dp">
+            android:padding="8dp">
 
             <ImageButton
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@android:drawable/ic_input_add"
                 android:background="@android:color/transparent"
-                app:tint="@color/black" />
+                app:tint="@color/light_green" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="8dp"
                 android:text="Thêm Truyện"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:textColor="@color/content_white"
                 />
         </LinearLayout>
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Tổng Lượt Xem:"
             android:textSize="20sp"
-            android:textColor="@color/content_white"
+            android:textColor="@color/light_green"
             android:textAlignment="center"
             />
     </LinearLayout>

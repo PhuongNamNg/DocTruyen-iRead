@@ -8,11 +8,10 @@
     tools:context=".FragmentTrangChu.TrangChuFragment">
 
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,7 +30,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/search" />
+                    android:src="@drawable/search"
+                    app:tint="@color/light_green" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                     android:gravity="center_vertical"
                     android:text="Tìm Kiếm"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/light_green"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -48,17 +48,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"/>
+                    android:layout_height="220dp" />
 
                 <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/circle_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    app:ci_drawable="@drawable/color_circle_indicator"
+                    />
             </LinearLayout>
 
             <TextView
@@ -66,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Tất Cả Truyện"
-                android:textColor="@color/yellow"
+                android:textColor="@color/light_green"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -81,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Truyện đang Hot"
-                android:textColor="@color/yellow"
+                android:textColor="@color/light_green"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 

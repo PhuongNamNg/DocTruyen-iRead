@@ -127,6 +127,15 @@ public class ReadChapterActivity extends AppCompatActivity {
             builder.show();
         });
 
+        lineEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(this, EditChapterActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("storyId", storyId);
+            bundle.putString("chapterId", chapterId);
+            intent.putExtra("chapter", bundle);
+            startActivity(intent);
+        });
+
     }
 
     private void checkAuthors(String auhthorsName) {

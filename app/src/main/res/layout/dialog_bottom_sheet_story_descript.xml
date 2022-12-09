@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sửa Miêu Tả"
+            android:textAlignment="center"
+            android:textColor="@color/light_green"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/tvEditStoryDescript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_canhan"
+            android:padding="8dp"
+            android:text="Miêu tả hiện tại"
+            android:textAlignment="center"
+            android:textColor="@color/content_white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etEditStoryNewDescript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_canhan"
+            android:hint="Nhập miêu tả mới"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textColor="@color/content_white"
+            android:textColorHint="@color/content_white"
+            android:textSize="20sp"
+            android:inputType="textMultiLine"
+            android:ems="10"/>
+
+        <LinearLayout
+            android:id="@+id/layout_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btnEditStoryDescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/yellow"
+                android:text="Sửa"
+                android:textColor="@color/light_green"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnHuyEditStoryDescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:backgroundTint="@color/yellow"
+                android:text="Hủy"
+                android:textColor="@color/light_green"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

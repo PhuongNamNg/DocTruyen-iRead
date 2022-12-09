@@ -3,6 +3,7 @@ package com.example.doctruyen_iread.FragmentTrangChu;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -91,6 +92,7 @@ public class AddStoryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (etTitle.getText().toString().length() > 10) {
                     btnNext.setEnabled(true);
+                    btnNext.setTextColor(ContextCompat.getColor(AddStoryActivity.this, R.color.content_white));
                 } else {
                     btnNext.setEnabled(false);
                 }

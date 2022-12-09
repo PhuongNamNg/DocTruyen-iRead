@@ -59,7 +59,9 @@ public class AdapterStoryViews extends RecyclerView.Adapter<AdapterStoryViews.Ho
 
     @Override
     public int getItemCount() {
-        return 5;
+        if (stories.size() >= 6){
+            return 6;
+        } else return stories.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {

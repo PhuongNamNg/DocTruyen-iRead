@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sửa Tên Chương"
+        android:textAlignment="center"
+        android:textColor="@color/light_green"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/tvEditChapterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/round_canhan"
+        android:padding="8dp"
+        android:text="Tên Chương"
+        android:textAlignment="center"
+        android:textColor="@color/content_white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etEditChapterNewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/round_canhan"
+        android:hint="Nhập tên mới"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/content_white"
+        android:textColorHint="@color/content_white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/layout_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnEditChapterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:text="Sửa"
+            android:textColor="@color/light_green"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnHuyEditChapterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:backgroundTint="@color/yellow"
+            android:text="Hủy"
+            android:textColor="@color/light_green"
+            android:textSize="24sp" />
+    </LinearLayout>
+</LinearLayout>

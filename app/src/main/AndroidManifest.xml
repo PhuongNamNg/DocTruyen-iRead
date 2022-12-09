@@ -14,6 +14,20 @@
         android:theme="@style/Theme.DocTruyeniRead"
         tools:targetApi="31">
         <activity
+            android:name=".FragmentTrangChu.EditChapterContentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".FragmentTrangChu.EditChapterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FragmentTrangChu.SearchActivity"
             android:exported="false" />
         <activity

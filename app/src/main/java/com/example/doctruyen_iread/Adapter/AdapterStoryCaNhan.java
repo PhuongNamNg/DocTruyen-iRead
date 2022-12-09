@@ -1,13 +1,11 @@
 package com.example.doctruyen_iread.Adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,8 +21,6 @@ import com.example.doctruyen_iread.FragmentTrangChu.EditStoryActivity;
 import com.example.doctruyen_iread.FragmentTrangChu.StoryDetailActivity;
 import com.example.doctruyen_iread.Module.Story;
 import com.example.doctruyen_iread.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,7 +58,7 @@ public class AdapterStoryCaNhan extends RecyclerView.Adapter<AdapterStoryCaNhan.
 
         if (check == true) {
             holder.check.setText("Đã Duyệt");
-            holder.check.setTextColor(ContextCompat.getColor(mContext, R.color.yellow));
+            holder.check.setTextColor(ContextCompat.getColor(mContext, R.color.light_green));
         } else if (check == false) {
             holder.check.setText("Chưa Duyệt");
             holder.check.setTextColor(ContextCompat.getColor(mContext, R.color.red));

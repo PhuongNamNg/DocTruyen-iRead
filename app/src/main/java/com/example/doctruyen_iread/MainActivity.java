@@ -41,24 +41,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_Truyen:
-                        Toast.makeText(MainActivity.this, "Truyện", Toast.LENGTH_SHORT).show();
                         mBottomNavigationView.getMenu().findItem(R.id.action_Truyen).setChecked(true);
                         fragmentManager.beginTransaction().replace(R.id.frameContent,trangChuFragment).commit();
                         break;
                     case R.id.action_TheLoai:
-                        Toast.makeText(MainActivity.this, "Thể Loại", Toast.LENGTH_SHORT).show();
                         mBottomNavigationView.getMenu().findItem(R.id.action_TheLoai).setChecked(true);
                         TheLoaiFrament theloai = new TheLoaiFrament();
                         fragmentManager.beginTransaction().replace(R.id.frameContent,theloai).commit();
                         break;
                     case R.id.action_CaNhan:
-                        Toast.makeText(MainActivity.this, "Cá Nhân", Toast.LENGTH_SHORT).show();
                         mBottomNavigationView.getMenu().findItem(R.id.action_CaNhan).setChecked(true);
                         CaNhanFragment canhan = new CaNhanFragment();
                         fragmentManager.beginTransaction().replace(R.id.frameContent,canhan).commit();
                         break;
                     case R.id.action_Them:
-                        Toast.makeText(MainActivity.this, "Thêm", Toast.LENGTH_SHORT).show();
                         mBottomNavigationView.getMenu().findItem(R.id.action_Them).setChecked(true);
                         Them them = new Them();
                         fragmentManager.beginTransaction().replace(R.id.frameContent,them).commit();
