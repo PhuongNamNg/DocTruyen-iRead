@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sửa"
-            android:textColor="@color/black"
+            android:textColor="@color/light_green"
             android:backgroundTint="@color/dark_green"
             android:layout_marginTop="30dp" />
         <Button
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:text="Quay Lại"
             android:layout_marginLeft="50dp"
-            android:textColor="@color/black"
+            android:textColor="@color/light_green"
             android:backgroundTint="@color/dark_green"
             android:layout_marginTop="30dp"/>
     </LinearLayout>
