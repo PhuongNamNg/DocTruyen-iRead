@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="1"
-            android:textColor="@color/fairly_green"
+            android:textColor="@color/content_white"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:background="@drawable/round_border_2"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/dark_green"
                 android:orientation="horizontal">
 
                 <ImageButton

@@ -35,7 +35,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:orientation="horizontal">
 
             <ImageButton
@@ -61,7 +61,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:orientation="horizontal">
 
             <ImageButton
@@ -76,7 +76,7 @@
                 android:id="@+id/etTextSize"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:background="@color/yellow"
+                android:background="@color/dark_green"
                 android:textColor="@color/light_green"
                 android:textAlignment="center"
                 />
@@ -96,7 +96,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/round_border_2"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:orientation="horizontal">
 
             <ImageButton

@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="Sửa"
             android:textColor="@color/black"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:layout_marginTop="30dp" />
         <Button
             android:id="@+id/btn_Cancell"
@@ -76,7 +76,7 @@
             android:text="Quay Lại"
             android:layout_marginLeft="50dp"
             android:textColor="@color/black"
-            android:backgroundTint="@color/yellow"
+            android:backgroundTint="@color/dark_green"
             android:layout_marginTop="30dp"/>
     </LinearLayout>
 

@@ -16,24 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:title="Yêu Thích"
-            android:background="@color/yellow" />
+            app:titleTextColor="@color/light_green"
+            android:background="@color/dark_green" />
 
     </com.google.android.material.appbar.AppBarLayout>
-    <TextView
-        android:id="@+id/tvNameList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Yêu Thích"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
     </androidx.recyclerview.widget.RecyclerView>
     <TextView
@@ -41,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Trống"
-        android:textColor="@color/white"
+        android:textColor="@color/content_white"
         android:gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="24sp"/>
 </LinearLayout>

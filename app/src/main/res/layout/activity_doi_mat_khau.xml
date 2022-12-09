@@ -4,31 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".FragmentThem.DoiMatKhau">
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/anhlogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fitsSystemWindows="true"
+        android:src="@drawable/anhlogo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Đổi mật khẩu"
-        android:textSize="20dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:textColorHint="@color/content_white"
-        android:textStyle="bold"/>
+        android:layout_marginTop="8dp"
+        android:hint="Đổi mật khẩu"
+        android:textColorHint="@color/light_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,27 +33,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/white"
-        android:hint="Mật khẩu"
-        app:boxStrokeWidth="1dp"
         android:background="@drawable/round_border_2"
-        app:hintTextColor="@color/content_white"
+        android:hint="Mật khẩu"
         android:textColorHint="@color/content_white"
         app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+        app:boxStrokeWidth="1dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/light_green"
+        app:hintTextColor="@color/content_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/doipass"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:inputType="textPassword"
+            android:textColor="@color/content_white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,54 +60,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
-        app:endIconMode="password_toggle"
-        app:endIconTint="@color/white"
-        app:hintTextColor="@color/content_white"
+        android:background="@drawable/round_border_2"
         android:hint="Xác nhận mật khẩu"
+        android:textColorHint="@color/content_white"
         app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
         app:boxStrokeWidth="1dp"
-        android:background="@drawable/round_border_2"
-        android:textColorHint="@color/content_white"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/light_green"
+        app:hintTextColor="@color/content_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/xacnhanpass"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:inputType="textPassword"
+            android:textColor="@color/content_white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:id="@+id/layout_sign_up"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp">
 
         <Button
             android:id="@+id/btn_doimatkhau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/yellow"
-            android:textColor="@color/black"
-            android:text="Đổi mật khẩu" />
+            android:backgroundTint="@color/dark_green"
+            android:text="Đổi mật khẩu"
+            android:textColor="@color/light_green" />
+
         <Button
             android:id="@+id/btn_quaylai"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/yellow"
-            android:textColor="@color/black"
-            android:text="Quay Lại" />
+            android:layout_marginLeft="50dp"
+            android:backgroundTint="@color/dark_green"
+            android:text="Quay Lại"
+            android:textColor="@color/light_green" />
     </LinearLayout>
-
 
 
 </LinearLayout>

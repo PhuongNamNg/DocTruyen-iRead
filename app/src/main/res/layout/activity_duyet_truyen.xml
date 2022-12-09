@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:title="Duyệt Truyện"
-            android:background="@color/yellow"
+            app:titleTextColor="@color/light_green"
+            android:background="@color/dark_green"
             android:id="@+id/toobar_ve"
             />
     </com.google.android.material.appbar.AppBarLayout>

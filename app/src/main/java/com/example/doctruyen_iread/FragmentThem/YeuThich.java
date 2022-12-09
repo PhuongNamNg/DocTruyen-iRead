@@ -81,28 +81,32 @@ public class YeuThich extends AppCompatActivity {
                     fav = doc.toObject(Favorite.class);
                 }
                 ArrayList<String> list = fav.getFavListStoryID();
-                for (int i = 0; i < list.size(); i++) {
-                    colRefStory.whereEqualTo("storyId", list.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                if (list != null) {
+                    tvTrong.setVisibility(View.GONE);
+                    for (int i = 0; i < list.size(); i++) {
+                        colRefStory.whereEqualTo("storyId", list.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            List<DocumentSnapshot> list1 = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot docnap : list1) {
-                                Story mstory = docnap.toObject(Story.class);
-                                storyId = mstory.getStoryId();
-                                stories.add(mstory);
-                                adapterFavorite.setData(stories);
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                List<DocumentSnapshot> list1 = queryDocumentSnapshots.getDocuments();
+                                for (DocumentSnapshot docnap : list1) {
+                                    Story mstory = docnap.toObject(Story.class);
+                                    storyId = mstory.getStoryId();
+                                    stories.add(mstory);
+                                    adapterFavorite.setData(stories);
+                                }
+
                             }
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(YeuThich.this, "loi", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(YeuThich.this, "loi", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                } else {
+                    tvTrong.setVisibility(View.VISIBLE);
                 }
-
             }
         });
     }
@@ -118,8 +122,8 @@ public class YeuThich extends AppCompatActivity {
                     userObj = doc.toObject(UserObj.class);
                 }
                 if (userObj.getUsersFavorite() == null) {
+                    return;
                 } else {
-                    tvTrong.setVisibility(View.GONE);
                     hienthi(userObj.getUsersFavorite().toString());
                 }
             }

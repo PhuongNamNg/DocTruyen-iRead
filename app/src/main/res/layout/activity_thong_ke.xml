@@ -13,23 +13,13 @@
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:background="@color/yellow"
+            android:background="@color/dark_green"
             app:title="Thống Kê"
+            app:titleTextColor="@color/light_green"
             android:layout_height="50dp"
             android:id="@+id/toobar_ve"
             />
     </com.google.android.material.appbar.AppBarLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="Thống Kê"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvThongKe"

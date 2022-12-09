@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
     tools:context=".FragmentTrangChu.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toobar_ve"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/dark_green"
             app:title="Tìm Kiếm"
-            android:id="@+id/toobar_ve"
-            android:background="@color/yellow"
-            />
+            app:titleTextColor="@color/light_green" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -28,5 +29,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
 </LinearLayout>
