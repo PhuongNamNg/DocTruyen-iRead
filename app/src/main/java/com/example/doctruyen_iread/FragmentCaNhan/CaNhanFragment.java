@@ -1,11 +1,8 @@
 package com.example.doctruyen_iread.FragmentCaNhan;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -13,16 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.doctruyen_iread.Adapter.AdapterViewPagerCaNhan;
-import com.example.doctruyen_iread.FragmentThem.DoiMatKhau;
-import com.example.doctruyen_iread.FragmentThem.ThongKe;
-import com.example.doctruyen_iread.FragmentThem.YeuThich;
-import com.example.doctruyen_iread.FragmentTrangChu.AddStoryActivity;
-import com.example.doctruyen_iread.ManageAccount.SignInActivity;
 
 import com.example.doctruyen_iread.Module.Story;
+import com.example.doctruyen_iread.Module.UserObj;
 import com.example.doctruyen_iread.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -37,7 +29,7 @@ import java.util.List;
 
 
 public class CaNhanFragment extends Fragment {
-    TextView tvThongKe, tvDangXuat, tvDoiMK, tvYeuThich, tvThemTruyen, tvNumb, tvNameUser;
+    TextView tvFollows, tvNumbStory, tvNameUser, tvFollowed;
     private TabLayout tab;
     private ViewPager2 vp;
     private AdapterViewPagerCaNhan adapter;
@@ -65,15 +57,31 @@ public class CaNhanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ca_nhan, container, false);
         tab = view.findViewById(R.id.tablayoutCaNhan);
         vp = view.findViewById(R.id.vpCaNhan);
-        tvNumb = view.findViewById(R.id.tvNumOfStory);
+        tvNumbStory = view.findViewById(R.id.tvNumOfStory);
         tvNameUser = view.findViewById(R.id.tvNameUser);
+        tvFollows = view.findViewById(R.id.tvFollows);
+        tvFollowed = view.findViewById(R.id.tvFollowed);
 
         String email = user.getEmail();
 
         colUser.whereEqualTo("userEmail", email).get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
             DocumentSnapshot docSnap = list.get(0);
-            String name = docSnap.getString("userName");
+            UserObj user = docSnap.toObject(UserObj.class);
+            String name = user.getUserName();
+            Integer followed = user.getUserFollowed();
+
+            if (followed == 0 || followed == null) {
+                tvFollowed.setText("0");
+            } else tvFollowed.setText(String.valueOf(user.getUserFollowed()));
+
+            ArrayList<String> listFollows = user.getUserFollow();
+            if (listFollows == null || listFollows.size() == 0) {
+                tvFollows.setText("0");
+            } else {
+                tvFollows.setText(String.valueOf(listFollows.size()));
+            }
+
             getStory(name);
             tvNameUser.setText(name);
         });
@@ -90,7 +98,7 @@ public class CaNhanFragment extends Fragment {
                     tab.setText("Sửa Thông Tin");
                     break;
                 case 2:
-                    tab.setText("Lịch Sử");
+                    tab.setText("Yêu Thích");
                     break;
             }
         }).attach();
@@ -106,9 +114,9 @@ public class CaNhanFragment extends Fragment {
                 stories.add(mStory);
             }
             if (stories.size() == 0) {
-                tvNumb.setText("0");
+                tvNumbStory.setText("0");
             } else {
-                tvNumb.setText(String.valueOf(stories.size()));
+                tvNumbStory.setText(String.valueOf(stories.size()));
             }
         });
     }

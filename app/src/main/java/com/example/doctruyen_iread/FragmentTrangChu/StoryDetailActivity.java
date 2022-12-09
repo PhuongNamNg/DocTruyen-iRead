@@ -104,6 +104,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
                         layoutParams.width = layoutParams.WRAP_CONTENT;
                         tvtheodoi.setLayoutParams(layoutParams);
+                        updateFollowed(author);
                     });
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -162,6 +163,15 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void updateFollowed(String author) {
+        colRefUser.whereEqualTo("userName", author).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+            DocumentSnapshot docSnap = list.get(0);
+            UserObj user = docSnap.toObject(UserObj.class);
+            colRefUser.document(user.getUserID()).update("userFollowed", FieldValue.increment(1));
+        });
     }
 
     private void checkFollow(String author) {

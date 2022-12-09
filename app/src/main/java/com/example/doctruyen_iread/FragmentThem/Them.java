@@ -122,6 +122,7 @@ public class Them extends Fragment {
                 theLoai.setTheloaiMieuTa(etMieuTa.getText().toString().trim());
                 colTheLoai.document(etTen.getText().toString().trim()).set(theLoai).addOnSuccessListener(unused -> {
                     Toast.makeText(getActivity(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 });
             });
 

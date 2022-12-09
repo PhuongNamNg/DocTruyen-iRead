@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
     android:gravity="center"
     tools:context=".Splash">
 
 
     <ImageView
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"

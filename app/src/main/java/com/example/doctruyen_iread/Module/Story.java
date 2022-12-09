@@ -1,33 +1,30 @@
 package com.example.doctruyen_iread.Module;
 
-import java.util.ArrayList;
-
 public class Story {
     private String storyId;
     private String storyTitle;
     private String authorsName;
     private String storyDatePost;
     private String storyDescription;
+    private String storyCategory;
     private Integer storyViews;
     private boolean storyCheck;
     private Integer storyToken;
 
-    public Story(int anh1, String book) {
+    public Story() {
+
     }
 
-    public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, Integer storyViews, boolean storyCheck, Integer storyToken) {
+    public Story(String storyId, String storyTitle, String authorsName, String storyDatePost, String storyDescription, String storyCategory, Integer storyViews, boolean storyCheck, Integer storyToken) {
         this.storyId = storyId;
         this.storyTitle = storyTitle;
         this.authorsName = authorsName;
         this.storyDatePost = storyDatePost;
         this.storyDescription = storyDescription;
+        this.storyCategory = storyCategory;
         this.storyViews = storyViews;
         this.storyCheck = storyCheck;
         this.storyToken = storyToken;
-    }
-
-    public Story() {
-
     }
 
     public String getStoryId() {
@@ -94,5 +91,11 @@ public class Story {
         this.storyToken = storyToken;
     }
 
+    public String getStoryCategory() {
+        return storyCategory;
+    }
 
+    public void setStoryCategory(String storyCategory) {
+        this.storyCategory = storyCategory;
+    }
 }

@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -115,7 +116,6 @@ public class AddStoryActivity extends AppCompatActivity {
                     mStory.setStoryDescription(etDescription.getText().toString());
                     mStory.setStoryViews(0);
 
-
                     SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
                     storyDatePost = dateFormat.format(Calendar.getInstance().getTime());
 
@@ -124,7 +124,9 @@ public class AddStoryActivity extends AppCompatActivity {
 
                     String id = etTitle.getText().toString().trim() + datePost;
                     mStory.setStoryId(id);
-                    colTheLoai.document(autoCompleteTv.getText().toString()).update("storyId", id);
+
+                    String theLoai = autoCompleteTv.getText().toString().trim();
+                    mStory.setStoryCategory(theLoai);
 
                     mStory.setStoryDatePost(storyDatePost);
                     colStory.document(id).set(mStory).addOnSuccessListener(unused -> {

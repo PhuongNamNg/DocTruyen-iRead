@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Tất Cả Truyện"
-                android:textColor="@color/light_green"
+                android:textColor="@color/content_white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Truyện đang Hot"
-                android:textColor="@color/light_green"
+                android:textColor="@color/content_white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
