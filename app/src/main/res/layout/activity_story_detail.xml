@@ -95,10 +95,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/round_border_3"
-                    android:layout_gravity="center"
                     android:padding="8dp">
+
                     <TextView
                         android:id="@+id/tvAuthorsNameRead"
                         android:layout_width="wrap_content"
@@ -113,6 +114,34 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/linearDuyetTruyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/round_border_2"
+                    android:backgroundTint="@color/dark_green"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:backgroundTint="#00000000"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/check_icon"
+                        app:tint="@color/light_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:text="Duyệt"
+                        android:textColor="@color/content_white"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvTheoDoi"
@@ -163,7 +192,7 @@
                             android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:id="@+id/linearFav"
                         android:layout_width="wrap_content"
@@ -189,32 +218,6 @@
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
                             android:text="Yêu Thích"
-                            android:textColor="@color/content_white"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearDuyetTruyen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:background="@drawable/round_border_2"
-                        android:backgroundTint="@color/dark_green"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:layout_width="40dp"
-                            android:layout_height="35dp"
-                            android:backgroundTint="#00000000"
-                            android:scaleType="fitXY"
-                            app:srcCompat="@android:drawable/checkbox_on_background"
-                            app:tint="@color/light_green" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:text="Duyệt"
                             android:textColor="@color/content_white"
                             android:textSize="15sp" />
                     </LinearLayout>
