@@ -93,7 +93,7 @@ public class Them extends Fragment {
             }
         });
 
-        tvThemTheLoai.setOnClickListener(v -> {
+        lineThemTheLoai.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             View mView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_them_theloai, null, false);
             etTen = mView.findViewById(R.id.etTenTheLoai);
@@ -118,7 +118,7 @@ public class Them extends Fragment {
             });
         });
 
-        tvDuyetTruyen.setOnClickListener(v -> {
+        lineDuyetTruyen.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), DuyetTruyenActivity.class));
         });
 
