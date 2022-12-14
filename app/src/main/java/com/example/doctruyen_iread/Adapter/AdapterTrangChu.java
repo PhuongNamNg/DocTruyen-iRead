@@ -47,7 +47,7 @@ public class AdapterTrangChu extends RecyclerView.Adapter<AdapterTrangChu.Holder
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.img.setImageResource(R.drawable.anh3);
+        holder.img.setImageResource(R.drawable.anh2);
         holder.name.setText(stories.get(position).getStoryTitle());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

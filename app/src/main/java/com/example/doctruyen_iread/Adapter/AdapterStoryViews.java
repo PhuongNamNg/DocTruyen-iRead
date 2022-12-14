@@ -40,7 +40,7 @@ public class AdapterStoryViews extends RecyclerView.Adapter<AdapterStoryViews.Ho
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.img.setImageResource(R.drawable.anh3);
+        holder.img.setImageResource(R.drawable.anh1);
         holder.name.setText(stories.get(position).getStoryTitle());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
