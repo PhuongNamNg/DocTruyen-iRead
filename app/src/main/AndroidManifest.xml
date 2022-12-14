@@ -64,9 +64,6 @@
             android:name=".FragmentThem.DoiMatKhau"
             android:exported="false" />
         <activity
-            android:name=".FragmentThem.YeuThich"
-            android:exported="false" />
-        <activity
             android:name=".Splash"
             android:exported="true">
             <intent-filter>
