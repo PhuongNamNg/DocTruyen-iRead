@@ -71,7 +71,9 @@ public class CaNhanFragment extends Fragment {
             String name = user.getUserName();
             Integer followed = user.getUserFollowed();
 
-            if (followed == 0 || followed == null) {
+            if (followed == null) {
+                tvFollowed.setText("0");
+            } else if (followed == 0) {
                 tvFollowed.setText("0");
             } else tvFollowed.setText(String.valueOf(user.getUserFollowed()));
 

@@ -104,6 +104,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                         ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
                         layoutParams.width = layoutParams.WRAP_CONTENT;
                         tvtheodoi.setLayoutParams(layoutParams);
+                        tvtheodoi.setEnabled(false);
                         updateFollowed(author);
                     });
                 }
@@ -194,6 +195,7 @@ public class StoryDetailActivity extends AppCompatActivity {
                             ViewGroup.LayoutParams layoutParams = tvtheodoi.getLayoutParams();
                             layoutParams.width = layoutParams.WRAP_CONTENT;
                             tvtheodoi.setLayoutParams(layoutParams);
+                            tvtheodoi.setEnabled(false);
                         }
                     }
                 }
