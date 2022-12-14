@@ -146,7 +146,7 @@
                 <TextView
                     android:id="@+id/tvTheoDoi"
                     android:layout_width="75dp"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:background="@drawable/round_border_3"
                     android:gravity="center"
