@@ -53,7 +53,7 @@ public class AddChapterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (etChapterTitle.getText().toString().length() > 10) {
+                if (etChapterTitle.getText().toString().length() > 5) {
                     btnChapterSave.setEnabled(true);
                 } else {
                     btnChapterSave.setEnabled(false);

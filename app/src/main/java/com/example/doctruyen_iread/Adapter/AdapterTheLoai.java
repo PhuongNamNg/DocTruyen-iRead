@@ -63,8 +63,10 @@ public class AdapterTheLoai extends RecyclerView.Adapter<AdapterTheLoai.Holder> 
             ArrayList<Story> stories = new ArrayList<>();
             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
             for (DocumentSnapshot docSnap : list) {
-                Story mStory = docSnap.toObject(Story.class);
-                stories.add(mStory);
+                if (docSnap.getBoolean("storyCheck") == true) {
+                    Story mstory = docSnap.toObject(Story.class);
+                    stories.add(mstory);
+                }
             }
             if (stories != null) {
                 if (stories.size() > 0) {

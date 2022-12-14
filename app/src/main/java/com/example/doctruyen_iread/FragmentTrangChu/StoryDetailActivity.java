@@ -36,6 +36,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StoryDetailActivity extends AppCompatActivity {
@@ -74,6 +75,9 @@ public class StoryDetailActivity extends AppCompatActivity {
 
         if (check == true) {
             linearCheck.setVisibility(View.VISIBLE);
+            tvtheodoi.setVisibility(View.GONE);
+            linearAddChapter.setVisibility(View.GONE);
+            lineFav.setVisibility(View.GONE);
         } else if (check == false) {
             linearCheck.setVisibility(View.GONE);
         }
@@ -302,12 +306,13 @@ public class StoryDetailActivity extends AppCompatActivity {
                     tvDatePost.setText(docSnap.getString("storyDatePost"));
                     tvView.setText((Integer.parseInt(docSnap.get("storyViews").toString()) + 1 + " lượt xem"));
                     String descript = docSnap.getString("storyDescription");
-                    if (descript.equals("") || descript == null) {
+                    if (descript == null) {
                         tvRead.setVisibility(View.GONE);
                         tvDescript.setText("Truyện này không có miêu tả");
-                    } else {
-                        tvDescript.setText(descript);
-                    }
+                    } else if (descript.equals("")) {
+                        tvRead.setVisibility(View.GONE);
+                        tvDescript.setText("Truyện này không có miêu tả");
+                    } else tvDescript.setText(descript);
                     checkAuthors(authorsName);
                     String storyId = docSnap.getString("storyId");
                     setRecycleViewChapter(storyId, authorsName, title);
@@ -345,7 +350,7 @@ public class StoryDetailActivity extends AppCompatActivity {
             for (DocumentSnapshot docSnap : queryDocumentSnapshots.getDocuments()) {
                 Chapter mChapter = docSnap.toObject(Chapter.class);
                 listChapter.add(mChapter);
-//                Collections.sort(listChapter, (o1, o2) -> (Integer) (o1.getChapterIndex() - o2.getChapterIndex()));
+                Collections.sort(listChapter, (o1, o2) -> (Integer) (o1.getChapterIndex() - o2.getChapterIndex()));
             }
 
             if (listChapter.size() > 0) {
